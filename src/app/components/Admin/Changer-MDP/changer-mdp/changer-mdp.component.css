@@ -1,0 +1,69 @@
+
+.navbar{
+    background-color:  rgb(213, 246, 200);
+    height: 70px;
+  }
+  
+  #sidebar{
+    background-color: #fafaf9;
+  }
+  
+  #logoActia{
+    height: 40px;
+    /* padding-top: 10px; */
+  }
+  
+  #sidebarCollapse{
+    background-color:  rgb(213, 246, 200);
+    width: 60px;
+  }
+  
+  .intitule {
+    color: #1d4223;
+    font-weight: bolder;
+  }
+  
+  .fa-bars{
+    width: 20px;
+    height: 20px;
+    color: #1d4223;
+  }
+  
+  .sidebar_user_info{
+    background-color:   #264d2c;
+  }
+  
+  .user_info h6{
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline;
+    margin-left: 15px;
+    font-size: 20px;
+    color:rgb(213, 246, 200) ;
+  }
+  
+  #dashboard{
+    background-color:rgb(213, 246, 200) ;
+  }
+  .act{
+    color: #1d4223;
+  }
+
+  #intro {
+    background-image: url("../../../../../assets/images/layout_img/login_image.jpg");
+    height: 100vh;
+  }
+
+  /* Height for devices larger than 576px */
+  @media (min-width: 992px) {
+    #intro {
+      margin-top: -58.59px;
+    }
+  }
+
+  .navbar .nav-link {
+    color: #fff !important;
+  }
+
+  .btn{
+     margin-left: 29%;   
+  }

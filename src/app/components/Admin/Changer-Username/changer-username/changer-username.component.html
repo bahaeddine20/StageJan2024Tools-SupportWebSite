@@ -1,0 +1,87 @@
+<div class="dashboard dashboard_1">
+    <div class="full_container">
+       <div class="inner_container">
+
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                <div class="sidebar_user_info">
+                    <div class="user_profle_side">
+                        <div class="user_info">
+                            <h6>Welcome To Tools</h6>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="sidebar_blog_2">
+                <ul class="list-unstyled components">
+                    <li><a routerLink="/admin/mainA"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+                    <li class="active">
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue1_color"></i> <span class="intitule">Activities</span></a>
+                        <ol class="collapse list-unstyled" id="dashboard">
+                            <li *ngFor="let a of lesActivites">
+                                <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+                             </li>
+                        </ol>
+                    </li>
+                    <li><a routerLink="/admin/showA"><i class="fa fa-bars purple_color"></i> <span class="intitule">Show Activities</span></a></li>      
+                    <li><a routerLink="/admin/addA"><i class="fa fa-plus-square red_color"></i> <span class="intitule">Add Activities</span></a></li>          
+                </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content" >
+                <!-- topbar -->
+                <div class="topbar">
+                <nav class="navbar " >
+                    <div class="full">
+                        <div class="logo_section">
+                        <img class="img-responsive" id="logoActia"src="assets/images/logo/logo-actia.png" alt="ERREUR!" />
+                        </div>
+                    </div>
+                </nav>
+                </div>
+                <!-- end topbar -->
+                    <!--Main Navigation--> 
+                        <!-- Background image -->
+                        <div id="intro" class="bg-image shadow-2-strong">
+                            <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+                                <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-5 col-md-8">
+                                    <form [formGroup]="ChangerForm" (ngSubmit)="onChanger()"  class="bg-white rounded shadow-5-strong p-5">
+                                        <h3>Change Username</h3>
+                                        <!-- old password input -->
+                                        <div class="form-outline mb-4" data-mdb-input-init>
+                                        <input type="email" id="form1Example1" class="form-control" formControlName="ancien"/>
+                                        <label class="form-label" for="form1Example1">Previous Username</label>
+                                        </div>
+                        
+                                        <!-- new Password input -->
+                                        <div class="form-outline mb-4" data-mdb-input-init>
+                                        <input type="password" id="form1Example2" class="form-control" formControlName="nouveau" />
+                                        <label class="form-label" for="form1Example2">New Username</label>
+                                        </div>
+    
+                                        <!-- confirm new Password input -->
+                                        <div class="form-outline mb-4" data-mdb-input-init>
+                                            <input type="password" id="form1Example2" class="form-control" formControlName="nouveauC"/>
+                                            <label class="form-label" for="form1Example2">Confirm Username</label>
+                                        </div>
+                        
+                                        <!-- Submit button -->
+                                        <button type="submit" class="btn btn-primary btn-block" data-mdb-ripple-init>Save Changes</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <!-- Background image -->
+                        <!--Main Navigation-->
+            </div>
+        </div>
+    </div>
+</div>

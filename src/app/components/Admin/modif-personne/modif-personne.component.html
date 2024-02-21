@@ -1,0 +1,124 @@
+<div class="dashboard dashboard_1">
+  <div class="full_container">
+     <div class="inner_container">
+<!-- Sidebar  -->
+<nav id="sidebar">
+  <div class="sidebar_blog_1">
+     <div class="sidebar-header">
+        <div class="logo_section">
+           <a href="index.html"><img class="logo_icon img-responsive" src="assets/images/logo/renault-logo.png" alt="ERREUR!" /></a>
+        </div>
+     </div>
+     <div class="sidebar_user_info">
+        <div class="user_profle_side">
+           <div class="user_info">
+              <h6>Welcome To Tools</h6>
+           </div>
+        </div>
+     </div>
+  </div>
+
+  <div class="sidebar_blog_2">
+     <ul class="list-unstyled components">
+       <li><a routerLink="/admin/mainA"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+        <li class="active">
+           <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue1_color"></i> <span class="intitule">Activities</span></a>
+           <ol class="collapse list-unstyled" id="dashboard">
+            <li *ngFor="let a of lesActivites">
+              <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+           </li>
+           </ol>
+        </li>
+        <li><a routerLink="/admin/showA"><i class="fa fa-bars purple_color"></i> <span class="intitule">Show Activities</span></a></li>      
+        <li><a routerLink="/admin/addA"><i class="fa fa-plus-square red_color"></i> <span class="intitule">Add Activities</span></a></li>          
+     </ul>
+  </div>
+</nav>
+<!-- end sidebar -->
+          <!-- right content -->
+          <div id="content" >
+              <!-- topbar -->
+              <div class="topbar">
+                <nav class="navbar " >
+                    <div class="full">
+                        <div class="logo_section">
+                          <img class="img-responsive" id="logoActia"src="assets/images/logo/logo-actia.png" alt="ERREUR!" />
+                        </div>
+                    </div>
+                </nav>
+              </div>
+          <!-- end topbar -->
+
+    <section class="">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card card-registration my-4">
+                <div class="row g-0">
+                  <div class="col-xl-6 d-none d-xl-block" id="image">
+                    <img [src]="lesactivite.equipe[this.index].image" alt="Sample photo" class="img-fluid" />
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="card-body p-md-5 text-black">
+                      <h3 class="mb-5 text-uppercase" style="color: rgb(46, 120, 48);">Modify this person from the {{lesactivite.name}} team  </h3>
+                      <form  [formGroup]="yourFormGroupReference" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+                          <div class="col-md-10 mb-4">
+                            <div class="form-outline">
+                              <input type="text" id="form3Example1m" formControlName="firstName" class="form-control form-control-lg" />
+                              <label class="form-label" for="form3Example1m">First name</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-10 mb-4">
+                            <div class="form-outline">
+                              <input type="text" id="form3Example1m" class="form-control form-control-lg" formControlName="lastName" />
+                              <label class="form-label" for="form3Example1m">Last name</label>
+                            </div>
+                          </div>
+                        </div>
+        
+                        <select class="form-select col-md-10 mb-4 form-control form-control-lg" aria-label="Default select example" formControlName="role">
+                          <option selected>Rôle</option>
+                          <option value="Team Lead">Team Lead</option>
+                          <option value="Technical lead">Technical lead</option>
+                          <option value="Developper">Developper</option>
+                        </select>
+        
+                       
+
+                        <div class="col-md-10 mb-4">
+                          <input type="text" id="form3Example9" placeholder="assetes/images/profile" class="form-control form-control-lg" formControlName="image" />
+                          <label class="form-label" for="form3Example9" >Pic</label>
+                        </div>
+        
+                      
+        
+                        <div class="col-md-10 mb-4">
+                          <input type="text" id="form3Example97" class="form-control form-control-lg" formControlName="linkdin"  />
+                          <label class="form-label" for="form3Example97">Linkdin account</label>
+                        </div>
+
+        
+                        <div class=" pt-3">
+                          <button type="submit" class="btn btn-warning btn-lg ms-2" style="background-color: rgb(247, 175, 42);color: black;">Modify form</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+</div>
+
+

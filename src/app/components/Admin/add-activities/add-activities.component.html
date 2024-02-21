@@ -1,0 +1,130 @@
+<div class="dashboard dashboard_1">
+  <div class="full_container">
+     <div class="inner_container">
+<!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar_blog_1">
+       <div class="sidebar-header">
+          <div class="logo_section">
+             <a href="index.html"><img class="logo_icon img-responsive" src="assets/images/logo/renault-logo.png" alt="ERREUR!" /></a>
+          </div>
+       </div>
+       <div class="sidebar_user_info">
+          <div class="user_profle_side">
+             <div class="user_info">
+                <h6>Welcome To Tools</h6>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <div class="sidebar_blog_2">
+       <ul class="list-unstyled components">
+         <li><a routerLink="/admin/mainA"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+          <li class="active">
+             <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue1_color"></i> <span class="intitule">Activities</span></a>
+             <ol class="collapse list-unstyled" id="dashboard">
+               <li *ngFor="let a of lesActivites">
+                  <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+               </li>
+             </ol>
+          </li>
+          <li><a routerLink="/admin/showA"><i class="fa fa-bars purple_color"></i> <span class="intitule">Show Activities</span></a></li>      
+          <li><a routerLink="/admin/addA"><i class="fa fa-plus-square red_color"></i> <span class="intitule">Add Activities</span></a></li>          
+       </ul>
+    </div>
+</nav>
+ <!-- end sidebar -->
+          <!-- right content -->
+          <div id="content" >
+              <!-- topbar -->
+              <div class="topbar">
+                <nav class="navbar " >
+                    <div class="full">
+                        <div class="logo_section">
+                          <img class="img-responsive" id="logoActia"src="assets/images/logo/logo-actia.png" alt="ERREUR!" />
+                        </div>
+                    </div>
+                </nav>
+              </div>
+          <!-- end topbar -->
+              <div class="view jarallax" data-jarallax='{"speed":0.2}' style="background-image:url(../../../../assets/images/logo/actia.jpg);background-repeat: no-repeat; background-size: cover;background-position: center center; color: white; height: 100%;">
+                  <div class="overlay  ">
+                      <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+                          <div class=" m-5 page-wrapper p-t-100p-b-100 font-robo">
+                              <div class="wrapper wrapper--w680">
+                                  <div class="card card-1">
+                                      <img width="100%" src="assets/images/logo/actia2.jpg" style="width: auto;" alt="">
+                                      <div class="card-body">
+                                          <h2 class="title ">Add an activity</h2>
+                                          <form class="form box-form "  [formGroup]="activityForm" (ngSubmit)="onSubmitForm()" >
+                                              <br>
+                                              <div class="input-group">
+                                                <span class="input-group-text">Activitie's Name</span>
+                                                <input type="text" class="form-control" formControlName="name" >
+                                              </div>
+                                              <br>
+                                              <div class="input-group">
+                                                <span class="input-group-text">Description</span>
+                                                <textarea class="form-control" aria-label="With textarea" formControlName="description"></textarea>
+                                              </div>
+                                              <br>
+                                              <div class="input-group">
+                                                <span class="input-group-text">Technologie</span>
+                                                <input type="text" class="form-control" formControlName="technology" >
+                                              </div>                                      
+                                              <br>
+                                              <div class="input-group">
+                                                <span class="input-group-text">Activitie's Image</span>
+                                                <input type="text" class="form-control" placeholder="assets/images/layout_img/login_image.jpg" formControlName="image" >
+                                              </div> 
+                                              <br>
+                                              <br>
+                                              
+                                              <div formArrayName="equipe">
+                                                <div *ngFor="let s of lesequipes.controls ; index as i" [formGroupName]="i">
+
+                                                  <div class="input-group">
+                                                    <span class="input-group-text">Last name</span>
+                                                    <input type="text" class="form-control" formControlName="lastName" >
+                                                  </div><br>
+
+                                                  <div class="input-group">
+                                                    <span class="input-group-text">First name</span>
+                                                    <input type="text" class="form-control" formControlName="firstName" >
+                                                  </div><br>
+
+                                                  <div>
+                                                    <label> Roles :</label><br>
+                                                    <select class="form-control"  name="lesRoles" formControlName="role">
+                                                        <option *ngFor="let c of lesroles" [value]=c>{{c}}</option> 
+                                                    </select>
+                                                  </div><br>
+
+                                                  <div class="input-group">
+                                                    <span class="input-group-text">image</span>
+                                                    <input type="text" class="form-control" formControlName="image" >
+                                                  </div><br>
+
+                                                  <div class="input-group">
+                                                    <span class="input-group-text">Linkdin</span>
+                                                    <input type="text" class="form-control" formControlName="linkdin" >
+                                                  </div>  <br>                                                          
+                                                </div><br>
+                                                <input type="button" value="Add Person" style="color:  rgba(149, 192, 23, 0.756);" class="btn btn-outline-primary btn-sm" (click)="onAjouter()">
+                                            </div>
+                                            <input type="submit" style="float: right; margin-right:38% ;background-color: rgba(149, 192, 23, 0.756);" class="btn btn-sm btn-success" value="ADD Activity">
+                                          </form>
+                                          <br>
+                                          <br>
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
