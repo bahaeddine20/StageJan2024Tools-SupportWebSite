@@ -36,6 +36,19 @@ sonarqube_spring:
     - build-maven-project
 
 
+
+Junit_Tests:
+  stage: test
+
+  script:
+    - cd Backend
+    - mvn test
+  artifacts:
+    paths:
+      - target/surefire-reports/
+
+
+
 sonarqube_angular:
   stage: test
   tags:
@@ -54,7 +67,6 @@ sonarqube_angular:
     - cp Front/sonar-project.properties .
   script:
     - sonar-scanner -X  -Dsonar.projectBaseDir=Front -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
-
 
 
 
