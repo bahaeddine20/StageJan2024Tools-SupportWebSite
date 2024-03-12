@@ -3,6 +3,7 @@ build-maven-project:
   tags:
     - actia
   script:
+    - cd Backend
     - mvn clean install -X
 
 build-artifact:
@@ -61,7 +62,7 @@ push_backend_docker_img:
     - actia
   script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-    - docker build -t ranou98/actia_back .
+    - docker build -t ranou98/actia_back Backend
     - docker push ranou98/actia_back
   needs:
 
