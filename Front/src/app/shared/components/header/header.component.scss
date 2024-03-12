@@ -1,0 +1,111 @@
+// Define primary and accent colors
+$primary-color: #bdd248;
+$accent-color: #ffffff;
+
+// Define a mixin for button styles
+@mixin button-styles {
+  color: white;
+  &:hover {
+    color: lighten($primary-color, 20%);
+  }
+}
+
+// Reset des styles de liste
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Styles de la barre d'élévation
+.mat-elevation-z3 {
+  background-color: #bdd248;
+  color: white; 
+  position: relative;
+  z-index: 5;
+}
+
+// Padding du contenu
+$content-padding: 24px;
+
+.content {
+  padding: $content-padding;
+}
+
+// Hauteur du conteneur du sidenav
+mat-sidenav-container {
+  height: calc(100vh - 64px); // 64px est la hauteur supposée de la barre de navigation
+  mat-sidenav {
+    background-color: $accent-color;
+    color: black;
+    .mat-drawer-inner-container {
+      padding: 16px;
+    }
+  }
+}
+
+// Transition du sidenav
+mat-sidenav, mat-sidenav-content {
+  transition: all 500ms ease-in-out;
+}
+
+// Toolbar
+.mat-toolbar {
+  background-color: $primary-color;
+  color: white;
+  .mat-toolbar-row {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    button {
+      @include button-styles;
+    }
+    span {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    img{
+        height: 40px; /* Adjust the height as needed */
+        margin-right: 16px; /* Space between the logo and the rest of the toolbar content */
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      li {
+        margin-right: 20px;
+        button {
+          @include button-styles;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+// Classe pour masquer le contenu de la page principale lorsque la barre latérale est ouverte
+.show-sidebar-content {
+  overflow: hidden;
+}
+
+// Page blanche semi-transparente
+.white-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5); /* Couleur blanche semi-transparente */
+  z-index: 999; /* Assurez-vous que la page blanche est au-dessus de tout le reste */
+}
+.lock-tabs {
+  ul {
+    li {
+      button {
+        pointer-events: none; /* Désactive les interactions des boutons */
+        opacity: 0.5; /* Rend les boutons semi-transparents */
+      }
+    }
+  }
+}

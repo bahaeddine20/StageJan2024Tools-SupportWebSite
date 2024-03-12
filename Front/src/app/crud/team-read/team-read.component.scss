@@ -1,0 +1,28 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.add-team-btn {
+  background-color: #bdd248 !important;
+  color: white !important;/* Changez la couleur du texte si nécessaire */
+}
+  .main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1348px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .action {
+    display: flex;
+    gap: 5px;
+  }
+  /* Dans votre fichier de styles global (styles.scss) */
+  .circular-image {
+    width: 50px; /* Définissez la taille souhaitée pour l'image */
+    height: 50px;
+    border-radius: 50%; /* Rend l'image circulaire */
+    object-fit: cover; /* Empêche l'image de se déformer */
+  }
+  

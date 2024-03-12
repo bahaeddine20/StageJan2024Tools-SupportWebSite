@@ -1,0 +1,83 @@
+:host {
+  transition: all 500ms ease-in-out;
+}
+
+.sidenav-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  text-align: center;
+  flex-grow: 0; // Default state, not taking up extra space
+
+  img {
+    padding: 5px 5px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+
+    h2, h4 {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.collapsed .sidenav-header {
+  flex-grow: 1; // Take up extra space to center the image in collapsed state
+  justify-content: center; // Center the content vertically
+}
+
+.hide-header-text {
+  opacity: 0;
+  height: 0;
+}
+
+.menu-item {
+  border-left: 5px solid ;
+  border-left-color:rgb(0, 0, 0) ;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &.selected-menu-item {
+    border-left-color: blue;
+    background:rgb(0, 0, 0),0.05;
+  }
+
+  &.dashboard {
+    border-left: 5px solid green;
+  }
+
+  &.home {
+    border-left: 5px solid red;
+  }
+
+  &.list {
+    border-left: 5px solid orange;
+  }
+}
+
+.mat-icon {
+  margin-right: 16px;
+}
+
+
