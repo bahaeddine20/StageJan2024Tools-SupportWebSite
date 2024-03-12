@@ -11,6 +11,7 @@ build-artifact:
   tags:
     - actia
   script:
+    - cd Backend
     - mvn package
   artifacts:
     paths:
