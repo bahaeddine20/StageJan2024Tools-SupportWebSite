@@ -15,7 +15,7 @@ build-artifact:
     - mvn package
   artifacts:
     paths:
-      - target/backend.jar
+      - Backend/target/backend.jar
 
 build-angular-project:
   stage: build
@@ -46,11 +46,10 @@ Junit_Tests:
     - cd Backend
     - mvn test
   artifacts:
-    when: always
     paths:
-      - rspec.xml
+      - Backend/target/backend.jar
     reports:
-      junit: rspec.xml
+      junit: Backend/target/surefire-reports/TEST-com.RHActia.actia_app.services.EmployeeServiceTest.xml
 
 
 sonarqube_angular:
