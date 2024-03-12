@@ -29,6 +29,7 @@ sonarqube_spring:
   tags:
     - actia
   script:
+    - cd Backend
     - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
   needs:
 
