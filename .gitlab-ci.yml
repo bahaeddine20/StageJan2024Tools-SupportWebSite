@@ -39,6 +39,8 @@ sonarqube_spring:
 
 Junit_Tests:
   stage: test
+  tags:
+    - actia
 
   script:
     - cd Backend
