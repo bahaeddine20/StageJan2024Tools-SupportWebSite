@@ -47,7 +47,7 @@ Junit_Tests:
     - mvn test
   artifacts:
     paths:
-      - target/surefire-reports/
+      - target/surefire-reports
 
 
 
