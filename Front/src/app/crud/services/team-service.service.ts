@@ -11,19 +11,19 @@ export class TeamServiceService {
   constructor(private http: HttpClient) {}
 
   getTeamById(id: number): Observable<any> {
-    return this.http.get(`http://localhost:9091/team/getTeamById/${id}`);
+    return this.http.get(`http://10.0.2.15:9091/team/getTeamById/${id}`);
   }
 
   getAllTeams(): Observable<any> {
-    return this.http.get(`http://localhost:9091/team/getAllTeams`);
+    return this.http.get(`http://10.0.2.15:9091/team/getAllTeams`);
   }
 
   addTeam(teamData: any, teamImages: File[]){
     const formData: FormData = new FormData();
-  
+
     // Append team data as a JSON string
     formData.append('team', new Blob([JSON.stringify(teamData)], { type: 'application/json' }));
-  
+
     // Append each image file
     for (let i = 0; i < teamImages.length; i++) {
       formData.append('imagePath', teamImages[i]);
@@ -38,26 +38,26 @@ if (formDataEntries) {
   }
 }
     // Make the HTTP request
-    return this.http.post<Team>('http://localhost:9091/team/addTeam', formData);
+    return this.http.post<Team>('http://10.0.2.15:9091/team/addTeam', formData);
   }
-  
-  
-  
+
+
+
   updateTeam(id: number, teamData: Team, imageFiles: File[]): Observable<any> {
     const formData: FormData = new FormData();
-  
+
     // Append team data as a JSON string
     formData.append('team', new Blob([JSON.stringify(teamData)], { type: 'application/json' }));
-  
+
     // Append each image file with a unique name
     for (let i = 0; i < imageFiles.length; i++) {
       formData.append(`imagePath`, imageFiles[i]);
     }
-  
+
     // Make the HTTP request
-    return this.http.put<Team>(`http://localhost:9091/team/updateTeam/${id}`, formData);
+    return this.http.put<Team>(`http://10.0.2.15:9091/team/updateTeam/${id}`, formData);
   }
   deleteTeam(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:9091/team/deleteTeamById/${id}`);
+    return this.http.delete(`http://10.0.2.15:9091/team/deleteTeamById/${id}`);
   }
 }
