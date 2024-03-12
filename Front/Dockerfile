@@ -2,6 +2,7 @@ FROM node:18 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install typescript@5.3
+RUN npm install domino
 
 RUN npm install -g @angular/cli
 RUN npm install
