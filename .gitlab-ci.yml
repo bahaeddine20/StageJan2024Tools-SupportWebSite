@@ -86,3 +86,7 @@ docker_compose:
     - actia
   script:
     docker compose up -d
+  needs:
+
+    - push_frontend_docker_img
+    - push_backend_docker_img
