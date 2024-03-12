@@ -46,9 +46,11 @@ Junit_Tests:
     - cd Backend
     - mvn test
   artifacts:
+    when: always
     paths:
-      - target/surefire-reports
-
+      - rspec.xml
+    reports:
+      junit: rspec.xml
 
 
 sonarqube_angular:
