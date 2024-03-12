@@ -1,4 +1,4 @@
-134 B
+
 FROM openjdk:17
 EXPOSE 9091
 WORKDIR /ActiaES
