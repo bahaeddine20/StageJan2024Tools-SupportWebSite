@@ -84,21 +84,21 @@ push_backend_docker_img:
 
 
 
-push_frontend_docker_img:
-  stage: deploy
-  tags:
-    - actia
-  script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-    - docker build -t ranou98/actia_front Front
-    - docker push ranou98/actia_front
-docker_compose:
-  stage: deploy
-  tags:
-    - actia
-  script:
-    docker compose up -d
-  needs:
-
-    - push_frontend_docker_img
-    - push_backend_docker_img
+#push_frontend_docker_img:
+#  stage: deploy
+#  tags:
+#    - actia
+#  script:
+#    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+#    - docker build -t ranou98/actia_front Front
+#    - docker push ranou98/actia_front
+#docker_compose:
+#  stage: deploy
+#  tags:
+#    - actia
+#  script:
+#    docker compose up -d
+#  needs:
+#
+#    - push_frontend_docker_img
+#    - push_backend_docker_img
