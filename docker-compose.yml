@@ -7,7 +7,7 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD
       - MYSQL_ROOT_PASSWORD=mypass1234
-      - MYSQL_DATABASE=actiadb
+      - MYSQL_DATABASE=actiadbpc
     ports:
       - 3306:3306
     volumes:
@@ -18,17 +18,17 @@ services:
     image: actia_back
     depends_on:
       - mysqldb
-    build: ./Backend
+    build: ./Back
     restart: on-failure
     ports:
-      - 9091:9091
+      - 8089:8089
     environment:
 
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/actiadb?useSSL=false",
+        "spring.datasource.url= jdbc:mysql://localhost:3306/actiadbpc?createDatabaseIfNotExist=true",
         "spring.datasource.username" : "root",
         "spring.datasource.password" : "mypass1234",
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL8Dialect",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" : "update"}'
     volumes:
       - ./m2:/root/.m2

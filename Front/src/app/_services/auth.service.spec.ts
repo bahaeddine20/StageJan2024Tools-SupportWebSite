@@ -34,7 +34,7 @@ describe('AuthService', () => {
         expect(response).toEqual(mockResponse);
       });
 
-      const req = httpMock.expectOne('http://localhost:9091/api/auth/signin');
+      const req = httpMock.expectOne('http://localhost:8089/api/auth/signin');
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual({ username, password });
       req.flush(mockResponse);
@@ -52,7 +52,7 @@ describe('AuthService', () => {
         expect(response).toEqual(mockResponse);
       });
 
-      const req = httpMock.expectOne('http://localhost:9091/api/auth/signup');
+      const req = httpMock.expectOne('http://localhost:8089/api/auth/signup');
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual({ username, email, password });
       req.flush(mockResponse);
