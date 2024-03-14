@@ -119,6 +119,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 		<finalName>backend</finalName>
 	</build>
