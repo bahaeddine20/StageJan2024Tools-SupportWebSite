@@ -4,7 +4,7 @@ build-maven-project:
     - actia
   script:
     - cd Back
-    - mvn clean install
+    - mvn clean install cobertura:cobertura
     - mvn package
   artifacts:
     paths:
@@ -49,12 +49,11 @@ sonarqube_spring:
     - actia
   script:
     - cd Back
-    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
+    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD -Dsonar.coverage.reportPaths=target/site/cobertura/coverage.xml
   needs:
-
     - build-maven-project
-
     - Junit_Tests
+
 
 sonarqube_angular:
   stage: test
