@@ -8,7 +8,7 @@ build-maven-project:
     - mvn package
   artifacts:
     paths:
-      - Back/target/backend.jar
+      - BackendCrud/target/backend.jar
 
 
 build-angular-project:
@@ -34,13 +34,13 @@ Junit_Tests:
     - actia
 
   script:
-    - cd Back
+    - cd BackendCrud
     - mvn test
   artifacts:
     paths:
-      - Back/target/backend.jar
+      - BackendCrud/target/backend.jar
     reports:
-      junit: Back/target/surefire-reports/TEST-com.RHActia.actia_app.services.EmployeeServiceTest.xml
+      junit: BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.services.EmployeeServiceTest.xml
 
 
 sonarqube_spring:
