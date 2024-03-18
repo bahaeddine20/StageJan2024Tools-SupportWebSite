@@ -9,8 +9,8 @@
 		<version>2.1.8.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.RHActia</groupId>
-	<artifactId>actia_app</artifactId>
+	<groupId>com.RHActia_Auth</groupId>
+	<artifactId>actia_app_Auth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>actia_app</name>
 	<description>app ressources humaines</description>
