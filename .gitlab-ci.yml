@@ -3,12 +3,13 @@ build-maven-project:
   tags:
     - actia
   script:
-    - cd Back
-    - mvn clean install cobertura:cobertura
+    - cd BackendCrud
+    - mvn clean install
     - mvn package
-  artifacts:
-    paths:
-      - BackendCrud/target/backend.jar
+    - cd ../Authentification
+    - mvn clean install
+    - mvn package
+
 
 
 build-angular-project:

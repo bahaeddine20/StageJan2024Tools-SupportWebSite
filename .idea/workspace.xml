@@ -4,45 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test">
-      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/jwt/AuthEntryPointJwtTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/jwt/AuthTokenFilterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/jwt/JwtUtilsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/services/WebSecurityConfigTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/SpringBootSecurityJwtApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/SpringBootSecurityJwtApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/controllers/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/models/ERole.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/models/ERole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/models/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/request/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/request/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/request/SignupRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/response/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/response/JwtResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/response/MessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/response/MessageResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/repository/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/jwt/AuthEntryPointJwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/jwt/AuthEntryPointJwt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/jwt/AuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/jwt/AuthTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/jwt/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/jwt/JwtUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/services/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/services/UserDetailsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/services/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/services/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Authentification/src/test/java/com/bezkoder/springjwt/SpringBootSecurityJwtApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/_services/token-storage.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/_services/token-storage.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/emp-add-edit/emp-add-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/emp-add-edit/emp-add-edit.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/read/read.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/read/read.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/team-add-edit/team-add-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/team-add-edit/team-add-edit.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-    </list>
+    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -281,7 +243,7 @@
       <workItem from="1710494244542" duration="14855000" />
       <workItem from="1710745340128" duration="4349000" />
       <workItem from="1710750350351" duration="15033000" />
-      <workItem from="1710834939352" duration="14849000" />
+      <workItem from="1710834939352" duration="15320000" />
     </task>
     <task id="LOCAL-00001" summary="docker file for front/back, docker compose, sonarqube, and build">
       <option name="closed" value="true" />
@@ -579,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710749913020</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="backend crud, docker file and employee test">
+      <option name="closed" value="true" />
+      <created>1710852813325</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1710852813325</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
