@@ -17,7 +17,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/emp")
-@CrossOrigin(origins = "*") // Add thhe origin of your Angular application
+@CrossOrigin(origins = "*") // Add th// he origin of your Angular application
 public class EmployeeController {
 
     @Autowired
