@@ -26,6 +26,7 @@ const routes: Routes = [
         path: 'list',
         component: TeamReadComponent,
       },
+
       {
         path: 'employees/:teamId',
         component: ReadComponent

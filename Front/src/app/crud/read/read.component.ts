@@ -29,7 +29,7 @@ export class ReadComponent implements OnInit {
     'action',
   ];
 
- 
+
   roles: string[] = [];
   isLoggedIn = false;
 

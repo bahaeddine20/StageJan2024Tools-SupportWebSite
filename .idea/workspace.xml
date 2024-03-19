@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test" />
+    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test">
+      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/jwt/AuthEntryPointJwtTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/jwt/AuthTokenFilterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/jwt/JwtUtilsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Authentification/src/test/java/com/RHActia_Auth/security/services/WebSecurityConfigTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/SpringBootSecurityJwtApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/SpringBootSecurityJwtApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/controllers/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/models/ERole.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/models/ERole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/models/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/request/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/request/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/request/SignupRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/response/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/response/JwtResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/payload/response/MessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/payload/response/MessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/jwt/AuthEntryPointJwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/jwt/AuthEntryPointJwt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/jwt/AuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/jwt/AuthTokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/jwt/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/jwt/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/services/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/services/UserDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/java/com/bezkoder/springjwt/security/services/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/java/com/RHActia_Auth/actia_app_Auth/security/services/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Authentification/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentification/src/test/java/com/bezkoder/springjwt/SpringBootSecurityJwtApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/_services/token-storage.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/_services/token-storage.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/emp-add-edit/emp-add-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/emp-add-edit/emp-add-edit.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/read/read.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/read/read.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/src/app/crud/team-add-edit/team-add-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/src/app/crud/team-add-edit/team-add-edit.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +51,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -24,7 +62,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/BackendCrud" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitLabMergeRequestFiltersHistory">{
@@ -61,43 +99,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.EmployeeServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in actia_app.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ACTIARH [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ACTIARH [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.actia_app [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.actia_app [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.actia_app [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.actia_app [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.actia_app [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-security-jwt [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-security-jwt [install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.SpringBootSecurityJwtApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;&lt;unknown&gt;&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rania.elhor/Desktop/actia-es_hr-app/Authentification&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\rania.elhor\\Desktop\\actia-es_hr-app\\Front\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.All in actia_app.executor": "Run",
+    "JUnit.All in actia_app_Auth.executor": "Run",
+    "JUnit.AuthEntryPointJwtTest (1).executor": "Run",
+    "JUnit.AuthEntryPointJwtTest.executor": "Run",
+    "JUnit.AuthTokenFilterTest.executor": "Run",
+    "JUnit.EmployeeServiceTest.executor": "Run",
+    "JUnit.JwtUtilsTest.executor": "Run",
+    "JUnit.TeamServiceTest.executor": "Run",
+    "JUnit.java in actia_app (1).executor": "Run",
+    "JUnit.java in actia_app.executor": "Run",
+    "Maven.ACTIARH [clean].executor": "Run",
+    "Maven.ACTIARH [install].executor": "Run",
+    "Maven.actia_app [clean].executor": "Run",
+    "Maven.actia_app [compile].executor": "Run",
+    "Maven.actia_app [install].executor": "Run",
+    "Maven.actia_app [package].executor": "Run",
+    "Maven.actia_app [test].executor": "Run",
+    "Maven.actia_app_Auth [clean].executor": "Run",
+    "Maven.actia_app_Auth [install].executor": "Run",
+    "Maven.actia_app_Auth [test].executor": "Run",
+    "Maven.spring-boot-security-jwt [clean].executor": "Run",
+    "Maven.spring-boot-security-jwt [install].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ActiaAppApplication.executor": "Run",
+    "Spring Boot.SpringBootSecurityJwtApplication (2).executor": "Run",
+    "Spring Boot.SpringBootSecurityJwtApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/rania.elhor/Desktop/actia-es_hr-app/Authentification",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "ts.external.directory.path": "C:\\Users\\rania.elhor\\Desktop\\actia-es_hr-app\\Front\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.bezkoder.springjwt.security" />
@@ -122,20 +173,64 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringBootSecurityJwtApplication">
-    <configuration name="EmployeeServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.SpringBootSecurityJwtApplication (2)">
+    <configuration name="All in actia_app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="actia_app" />
-      <option name="PACKAGE_NAME" value="com.RHActia.actia_app.services" />
-      <option name="MAIN_CLASS_NAME" value="com.RHActia.actia_app.services.EmployeeServiceTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in actia_app_Auth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="actia_app_Auth" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthEntryPointJwtTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="actia_app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.RHActia_Auth.security.jwt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.RHActia_Auth.security.jwt" />
+      <option name="MAIN_CLASS_NAME" value="com.RHActia_Auth.security.jwt.AuthEntryPointJwtTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in actia_app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="actia_app" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/Backend/src/test/java" />
+    <configuration name="EmployeeServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="actia_app_Auth" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.RHActia.actia_app.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.RHActia.actia_app.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.RHActia.actia_app.Services.EmployeeServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeamServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="actia_app_Auth" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.RHActia.actia_app.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.RHActia.actia_app.Services" />
+      <option name="MAIN_CLASS_NAME" value="com.RHActia.actia_app.Services.TeamServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,24 +243,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SpringBootSecurityJwtApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="spring-boot-security-jwt" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.RHActia.actia_app.SpringBootSecurityJwtApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SpringBootSecurityJwtApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="SpringBootSecurityJwtApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="actia_app" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bezkoder.springjwt.SpringBootSecurityJwtApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.RHActia_Auth.actia_app_Auth.SpringBootSecurityJwtApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in actia_app" />
+        <item itemvalue="JUnit.All in actia_app_Auth" />
+        <item itemvalue="JUnit.All in actia_app" />
+        <item itemvalue="JUnit.TeamServiceTest" />
         <item itemvalue="JUnit.EmployeeServiceTest" />
+        <item itemvalue="JUnit.AuthEntryPointJwtTest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -189,6 +280,8 @@
       <workItem from="1710401542962" duration="16238000" />
       <workItem from="1710494244542" duration="14855000" />
       <workItem from="1710745340128" duration="4349000" />
+      <workItem from="1710750350351" duration="15033000" />
+      <workItem from="1710834939352" duration="14849000" />
     </task>
     <task id="LOCAL-00001" summary="docker file for front/back, docker compose, sonarqube, and build">
       <option name="closed" value="true" />
@@ -517,11 +610,6 @@
           <url>file://$PROJECT_DIR$/Front/node_modules/ajv-formats/src/index.ts</url>
           <line>14</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/Front/src/app/crud/services/team-service.service.spec.ts</url>
-          <line>106</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

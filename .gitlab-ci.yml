@@ -36,6 +36,7 @@ Junit_Tests:
   script:
     - cd BackendCrud
     - mvn test
+    - cd Aut
   artifacts:
     paths:
       - BackendCrud/target/backend.jar

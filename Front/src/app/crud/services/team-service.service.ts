@@ -11,11 +11,11 @@ export class TeamServiceService {
   constructor(private http: HttpClient) {}
 
   getTeamById(id: number): Observable<any> {
-    return this.http.get(`http://localhost:8089/team/getTeamById/${id}`);
+    return this.http.get(`http://localhost:9091/team/getTeamById/${id}`);
   }
 
   getAllTeams(): Observable<any> {
-    return this.http.get(`http://localhost:8089/team/getAllTeams`);
+    return this.http.get(`http://localhost:9091/team/getAllTeams`);
   }
 
   addTeam(teamData: any, teamImages: File[]){
@@ -38,7 +38,7 @@ if (formDataEntries) {
   }
 }
     // Make the HTTP request
-    return this.http.post<Team>('http://localhost:8089/team/addTeam', formData);
+    return this.http.post<Team>('http://localhost:9091/team/addTeam', formData);
   }
 
 
@@ -55,9 +55,9 @@ if (formDataEntries) {
     }
 
     // Make the HTTP request
-    return this.http.put<Team>(`http://localhost:8089/team/updateTeam/${id}`, formData);
+    return this.http.put<Team>(`http://localhost:9091/team/updateTeam/${id}`, formData);
   }
   deleteTeam(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:8089/team/deleteTeamById/${id}`);
+    return this.http.delete(`http://localhost:9091/team/deleteTeamById/${id}`);
   }
 }

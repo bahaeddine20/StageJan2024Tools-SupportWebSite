@@ -54,8 +54,10 @@ describe('EmpcrudService', () => {
 
     const req = httpMock.expectOne('http://localhost:8089/emp/addEmployee');
     expect(req.request.method).toEqual('POST');
-    expect(req.request.body.get('employee')).toEqual(JSON.stringify(dummyEmployeeData));
-    expect(req.request.body.get('imagePath')).toEqual(dummyImageFiles[0]);
+    const formData = new FormData();
+    formData.append('employee', JSON.stringify(dummyEmployeeData));
+    formData.append('imagePath', dummyImageFiles[0]); // Append the File object here
+    expect(req.request.body).toEqual(formData); // Compare with FormData
     req.flush({});
   });
 

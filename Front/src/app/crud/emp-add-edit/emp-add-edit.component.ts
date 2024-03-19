@@ -42,8 +42,8 @@ export class EmpAddEditComponent implements OnInit {
 
     if (data && data.employee) {
       this.editMode = true;
-      const image = data.employee.employeeImages && data.employee.employeeImages.length 
-        ? data.employee.employeeImages[0] 
+      const image = data.employee.employeeImages && data.employee.employeeImages.length
+        ? data.employee.employeeImages[0]
         : null;
 
       this.empForm.patchValue({

@@ -26,10 +26,14 @@ describe('TokenStorageService', () => {
   });
 
   it('should return null if token is not available', () => {
+    // Clear any existing token
+    window.sessionStorage.removeItem('auth-token');
     expect(service.getToken()).toBeNull();
   });
 
   it('should return empty object if user is not available', () => {
+    // Clear any existing user
+    window.sessionStorage.removeItem('auth-user');
     expect(service.getUser()).toEqual({});
   });
 

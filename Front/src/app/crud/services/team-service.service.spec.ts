@@ -51,9 +51,9 @@ describe('TeamServiceService', () => {
       description: 'Description of Team A',
       employees: []
     };
-    const dummyImageFiles = [new File([''], 'test.jpg')];
+    const dummyImageFile = new File([''], 'test.jpg');
 
-    service.addTeam(dummyTeamData, dummyImageFiles).subscribe(response => {
+    service.addTeam(dummyTeamData, [dummyImageFile]).subscribe(response => {
       expect(response).toBeTruthy();
     });
 
@@ -66,15 +66,15 @@ describe('TeamServiceService', () => {
     const imagePath = formData.get('imagePath');
 
     // Check if the request body contains the expected team data
-    expect(JSON.parse(teamData as string)).toEqual(dummyTeamData);
+    expect(teamData).toEqual(JSON.stringify(dummyTeamData));
 
-    // Check if the request body contains the image files
-    dummyImageFiles.forEach(file => {
-      expect(imagePath).toContain(file);
-    });
+    // Check if the request body contains the image file
+    expect(imagePath).toContain(dummyImageFile);
 
     req.flush({});
   });
+
+
 
 
 

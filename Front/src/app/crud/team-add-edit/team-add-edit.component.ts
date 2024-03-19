@@ -80,7 +80,7 @@ export class TeamAddEditComponent implements OnInit {
 
   addTeam(teamData: Team, imageFiles: File[]): void {
     this._TeamService.addTeam(teamData, imageFiles).subscribe(
-      (response) => {
+        (response) => {
         if (response) {
           this.showSuccessMessage();
           this._dialogRef.close();
@@ -90,7 +90,7 @@ export class TeamAddEditComponent implements OnInit {
       (error) => console.error('Error adding team:', error)
     );
   }
- 
+
   editTeam(TeamData: Team, imageFiles: File[]): void {
     this._TeamService.updateTeam(TeamData.id, TeamData, imageFiles)
       .subscribe(response => {
