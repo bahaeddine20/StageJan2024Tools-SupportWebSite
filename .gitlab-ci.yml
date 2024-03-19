@@ -24,11 +24,6 @@ build-angular-project:
 
 
 
-
-
-
-
-
 Junit_Tests:
   stage: test
   tags:
@@ -37,7 +32,6 @@ Junit_Tests:
   script:
     - cd BackendCrud
     - mvn test
-    - cd Aut
   artifacts:
     paths:
       - BackendCrud/target/backend.jar
