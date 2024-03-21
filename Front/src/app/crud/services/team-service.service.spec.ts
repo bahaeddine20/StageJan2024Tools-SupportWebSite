@@ -27,7 +27,7 @@ describe('TeamServiceService', () => {
       expect(team).toEqual(dummyTeam);
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/team/getTeamById/1');
+    const req = httpMock.expectOne('http://localhost:9091/team/getTeamById/1');
     expect(req.request.method).toEqual('GET');
     req.flush(dummyTeam);
   });
@@ -39,7 +39,7 @@ describe('TeamServiceService', () => {
       expect(teams).toEqual(dummyTeams);
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/team/getAllTeams');
+    const req = httpMock.expectOne('http://localhost:9091/team/getAllTeams');
     expect(req.request.method).toEqual('GET');
     req.flush(dummyTeams);
   });
@@ -57,7 +57,7 @@ describe('TeamServiceService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/team/addTeam');
+    const req = httpMock.expectOne('http://localhost:9091/team/addTeam');
     expect(req.request.method).toEqual('POST');
 
     // Assert the request body
@@ -92,7 +92,7 @@ describe('TeamServiceService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/team/updateTeam/${dummyId}`);
+    const req = httpMock.expectOne(`http://localhost:9091/team/updateTeam/${dummyId}`);
     expect(req.request.method).toEqual('PUT');
     const expectedFormData = new FormData();
     expectedFormData.append('team', JSON.stringify(dummyTeamData));
@@ -110,7 +110,7 @@ describe('TeamServiceService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/team/deleteTeamById/${dummyId}`);
+    const req = httpMock.expectOne(`http://localhost:9091/team/deleteTeamById/${dummyId}`);
     expect(req.request.method).toEqual('DELETE');
     req.flush({});
   });

@@ -27,7 +27,7 @@ describe('EmpcrudService', () => {
       expect(employee).toEqual(dummyEmployee);
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/emp/getEmployeeByID/1');
+    const req = httpMock.expectOne('http://localhost:9091/emp/getEmployeeByID/1');
     expect(req.request.method).toEqual('GET');
     req.flush(dummyEmployee);
   });
@@ -39,7 +39,7 @@ describe('EmpcrudService', () => {
       expect(employees).toEqual(dummyEmployees);
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/emp/getAllEmployees');
+    const req = httpMock.expectOne('http://localhost:9091/emp/getAllEmployees');
     expect(req.request.method).toEqual('GET');
     req.flush(dummyEmployees);
   });
@@ -52,7 +52,7 @@ describe('EmpcrudService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/emp/addEmployee');
+    const req = httpMock.expectOne('http://localhost:9091/emp/addEmployee');
     expect(req.request.method).toEqual('POST');
     const formData = new FormData();
     formData.append('employee', JSON.stringify(dummyEmployeeData));
@@ -77,7 +77,7 @@ describe('EmpcrudService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/emp/updateEmployee/${dummyId}`);
+    const req = httpMock.expectOne(`http://localhost:9091/emp/updateEmployee/${dummyId}`);
     expect(req.request.method).toEqual('PUT');
     const expectedFormData = new FormData();
     expectedFormData.append('employee', JSON.stringify(dummyEmployeeData));
@@ -95,7 +95,7 @@ describe('EmpcrudService', () => {
       expect(response).toBeTruthy();
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/emp/deleteEmployeeById/${dummyId}`);
+    const req = httpMock.expectOne(`http://localhost:9091/emp/deleteEmployeeById/${dummyId}`);
     expect(req.request.method).toEqual('DELETE');
     req.flush({});
   });
@@ -108,7 +108,7 @@ describe('EmpcrudService', () => {
       expect(results).toEqual(dummyResults);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/emp/searchByGender/${dummyGender}`);
+    const req = httpMock.expectOne(`http://localhost:9091/emp/searchByGender/${dummyGender}`);
     expect(req.request.method).toEqual('GET');
     req.flush(dummyResults);
   });
@@ -121,7 +121,7 @@ describe('EmpcrudService', () => {
       expect(results).toEqual(dummyResults);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/emp/EmployeeByIdTeam/${dummyTeamId}`);
+    const req = httpMock.expectOne(`http://localhost:9091/emp/EmployeeByIdTeam/${dummyTeamId}`);
     expect(req.request.method).toEqual('GET');
     req.flush(dummyResults);
   });
@@ -135,7 +135,7 @@ describe('EmpcrudService', () => {
       expect(results).toEqual(dummyResults);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/emp/searchByBirthDateRange/${dummyStartDate}/${dummyEndDate}`);
+    const req = httpMock.expectOne(`http://localhost:9091/emp/searchByBirthDateRange/${dummyStartDate}/${dummyEndDate}`);
     expect(req.request.method).toEqual('GET');
     req.flush(dummyResults);
   });
@@ -147,7 +147,7 @@ describe('EmpcrudService', () => {
       expect(teams).toEqual(dummyTeams);
     });
 
-    const req = httpMock.expectOne('http://localhost:8089/team/getAllTeams');
+    const req = httpMock.expectOne('http://localhost:9091/team/getAllTeams');
     expect(req.request.method).toEqual('GET');
     req.flush(dummyTeams);
   });
@@ -160,7 +160,7 @@ describe('EmpcrudService', () => {
       expect(results).toEqual(dummyResults);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8089/emp/searchByBirthYear/${dummyYear}`);
+    const req = httpMock.expectOne(`http://localhost:9091/emp/searchByBirthYear/${dummyYear}`);
     expect(req.request.method).toEqual('GET');
     req.flush(dummyResults);
   });
