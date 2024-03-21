@@ -1,5 +1,5 @@
-FROM openjdk:1
-EXPOSE 8089
+FROM openjdk:17
+EXPOSE 9091
 WORKDIR /ActiaES
 COPY Back/target/backend.jar /ActiaES/backend.jar
 ENTRYPOINT ["java", "-jar", "backend.jar"]
