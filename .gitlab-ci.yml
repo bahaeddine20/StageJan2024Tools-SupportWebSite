@@ -34,7 +34,7 @@ Junit_Tests:
     - mvn test
   artifacts:
     reports:
-      junit: BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.EmployeeServiceTest.xml BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.TeamServiceTest.xml
+      junit: BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.EmployeeServiceTest.xml
 
 
 sonarqube_spring:

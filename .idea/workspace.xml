@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test" />
+    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -245,7 +247,7 @@
       <workItem from="1710745340128" duration="4349000" />
       <workItem from="1710750350351" duration="15033000" />
       <workItem from="1710834939352" duration="18853000" />
-      <workItem from="1711005546941" duration="2888000" />
+      <workItem from="1711005546941" duration="3547000" />
     </task>
     <task id="LOCAL-00001" summary="docker file for front/back, docker compose, sonarqube, and build">
       <option name="closed" value="true" />
@@ -591,7 +593,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711007918837</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="backend crud, docker file and employee test">
+      <option name="closed" value="true" />
+      <created>1711008810323</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1711008810323</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
