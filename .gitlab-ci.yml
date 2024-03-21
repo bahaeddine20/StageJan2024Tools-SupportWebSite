@@ -45,13 +45,13 @@ sonarqube_spring:
     - actia
   script:
     - cd BackendCrud
-    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD -Dsonar.coverage.reportPaths=target/site/cobertura/coverage.xml
+    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
     - cd ../Authentification
-    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD -Dsonar.coverage.reportPaths=target/site/cobertura/coverage.xml
-
+    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   needs:
     - build-maven-project
     - Junit_Tests
+
 
 
 sonarqube_angular:
