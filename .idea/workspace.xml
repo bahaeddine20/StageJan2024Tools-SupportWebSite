@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test" />
+    <list default="true" id="a36e585f-7852-454c-a984-2e0d95046979" name="Changes" comment="backend crud, docker file and employee test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,6 +84,7 @@
     "Maven.actia_app [test].executor": "Run",
     "Maven.actia_app_Auth [clean].executor": "Run",
     "Maven.actia_app_Auth [install].executor": "Run",
+    "Maven.actia_app_Auth [package].executor": "Run",
     "Maven.actia_app_Auth [test].executor": "Run",
     "Maven.spring-boot-security-jwt [clean].executor": "Run",
     "Maven.spring-boot-security-jwt [install].executor": "Run",
@@ -243,7 +246,7 @@
       <workItem from="1710494244542" duration="14855000" />
       <workItem from="1710745340128" duration="4349000" />
       <workItem from="1710750350351" duration="15033000" />
-      <workItem from="1710834939352" duration="18062000" />
+      <workItem from="1710834939352" duration="18853000" />
     </task>
     <task id="LOCAL-00001" summary="docker file for front/back, docker compose, sonarqube, and build">
       <option name="closed" value="true" />
