@@ -247,7 +247,7 @@
       <workItem from="1710745340128" duration="4349000" />
       <workItem from="1710750350351" duration="15033000" />
       <workItem from="1710834939352" duration="18853000" />
-      <workItem from="1711005546941" duration="817000" />
+      <workItem from="1711005546941" duration="2115000" />
     </task>
     <task id="LOCAL-00001" summary="docker file for front/back, docker compose, sonarqube, and build">
       <option name="closed" value="true" />

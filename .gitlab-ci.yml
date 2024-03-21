@@ -33,8 +33,6 @@ Junit_Tests:
     - cd BackendCrud
     - mvn test
   artifacts:
-    paths:
-      - BackendCrud/target/backend.jar
     reports:
       junit: BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.services.EmployeeServiceTest.xml BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.services.TeamServiceTest.xml
 
