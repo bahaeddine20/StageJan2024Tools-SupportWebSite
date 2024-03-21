@@ -44,7 +44,7 @@ karma_tests:
     - actia
   script:
     - cd Front
-    - npm test     # Run Karma tests
+    - ng test     # Run Karma tests
   needs:
     - build-angular-project
   artifacts:
