@@ -112,10 +112,7 @@
 						<haltOnFailure>true</haltOnFailure>
 						<totalLineRate>80</totalLineRate>
 						<totalBranchRate>80</totalBranchRate>
-						<!-- Adwwd wmore checks as needed -->
-						<!-- Adwwd wmore checks as needed -->
-						<!-- Adwwd wmore checks as needed -->
-
+						<!-- Add more checks as needed -->
 					</check>
 					<formats>
 						<format>xml</format>
