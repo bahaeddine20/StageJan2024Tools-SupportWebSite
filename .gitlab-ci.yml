@@ -34,7 +34,9 @@ Junit_Tests:
     - mvn test
   artifacts:
     reports:
-      junit: BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.EmployeeServiceTest.xml
+      junit:
+        - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.EmployeeServiceTest.xml
+        - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.TeamServiceTest.xml
 
 
 sonarqube_spring:
@@ -71,6 +73,14 @@ sonarqube_angular:
 
 
 
+push_backend_docker_img:
+  stage: deploy
+  tags:
+    - actia
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+    - docker build -t ranou98/actia_backcrud BackendCrud
+    - docker push ranou98/actia_backcrud
 
 
 #push_frontend_docker_img:
