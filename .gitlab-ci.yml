@@ -11,7 +11,14 @@ build-maven-project:
     - mvn package
 
 
+variables:
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
 
+cache:
+  paths:
+    - node_modules/
+    - .npm/
+    -
 build-angular-project:
   stage: build
   tags:
@@ -44,8 +51,6 @@ karma_tests:
     - actia
   script:
     - cd Front
-    - npm install
-
     - ng test     # Run Karma tests
   needs:
     - build-angular-project
