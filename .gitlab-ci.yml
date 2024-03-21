@@ -38,6 +38,19 @@ Junit_Tests:
         - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.EmployeeServiceTest.xml
         - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.TeamServiceTest.xml
 
+karma_tests:
+  stage: test
+  tags:
+    - actia
+  script:
+    - cd Front
+    - npm test     # Run Karma tests
+  needs:
+    - build-angular-project
+  artifacts:
+    reports:
+      junit: junit_reports/test-results.xml
+
 
 sonarqube_spring:
   stage: test
