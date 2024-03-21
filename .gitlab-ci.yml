@@ -78,8 +78,8 @@ push_backend_docker_img:
     - actia
   script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-    - docker build -t ranou98/actia_back Back
-    - docker push ranou98/actia_back
+    - docker build -t ranou98/actia_backCrud BackendCrud
+    - docker push ranou98/actia_backCrud
 
 
 
