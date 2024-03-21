@@ -11,13 +11,9 @@ build-maven-project:
     - mvn package
 
 
-variables:
-  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
 
-cache:
-  paths:
-    - node_modules/
-    - .npm/
+
+
 build-angular-project:
   stage: build
   tags:
@@ -25,6 +21,9 @@ build-angular-project:
   script:
     - cd Front
     - npm install
+  cache:
+    paths:
+      - Front/node_modules
 
 
 
@@ -56,6 +55,9 @@ karma_tests:
   artifacts:
     reports:
       junit: junit_reports/test-results.xml
+  cache:
+    paths:
+      - Front/node_modules
 
 
 sonarqube_spring:
