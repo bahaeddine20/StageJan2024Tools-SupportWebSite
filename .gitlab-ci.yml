@@ -70,14 +70,6 @@ sonarqube_angular:
 
 
 
-push_backend_docker_img:
-  stage: deploy
-  tags:
-    - actia
-  script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-    - docker build -t ranou98/actia_backcrud BackendCrud
-    - docker push ranou98/actia_backcrud
 
 
 
