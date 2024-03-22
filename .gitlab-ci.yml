@@ -57,7 +57,7 @@ karma_tests:
     - tsc --version
     - ng test
 
-  # Run Karma tests
+  # Run Karma jgjkgtests
   needs:
     - build-angular-project
   artifacts:
