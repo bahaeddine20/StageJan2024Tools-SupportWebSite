@@ -48,6 +48,8 @@ karma_tests:
   tags:
     - actia
   script:
+    - tsc --version
+
     - cd Front
     - ng test     # Run Karma tests
   needs:
