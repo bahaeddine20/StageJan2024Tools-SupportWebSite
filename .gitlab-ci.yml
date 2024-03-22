@@ -48,7 +48,7 @@ karma_tests:
   tags:
     - actia
   script:
-    - npm install -g typescript@5.3.3
+    - npm install typescript@5.3.3
     - tsc --version
 
     - cd Front
