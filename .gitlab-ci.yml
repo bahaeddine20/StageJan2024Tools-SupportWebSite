@@ -49,8 +49,6 @@ karma_tests:
   stage: test
   tags:
     - actia
-  variables:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/sonar-scanner/bin:/root/.nvm/versions/node/v14.17.0/bin"
   script:
 
 
