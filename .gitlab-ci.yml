@@ -56,7 +56,6 @@ karma_tests:
 
 
     - cd Front
-    - npm install typescript@5.3.3
     - tsc --version
     - ng test
 
