@@ -28,7 +28,6 @@ build-angular-project:
 
 
 
-
 Junit_Tests:
   stage: test
   tags:
@@ -43,17 +42,24 @@ Junit_Tests:
         - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.EmployeeServiceTest.xml
         - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.TeamServiceTest.xml
 
+
+
+
 karma_tests:
   stage: test
   tags:
     - actia
+  variables:
+    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/sonar-scanner/bin:/root/.nvm/versions/node/v14.17.0/bin"
   script:
     - echo $PATH
     - npm install typescript@5.3.3
     - tsc --version
 
     - cd Front
-    - ng test     # Run Karma tests
+    - ng test
+
+  # Run Karma tests
   needs:
     - build-angular-project
   artifacts:
