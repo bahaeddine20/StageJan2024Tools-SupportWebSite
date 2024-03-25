@@ -49,7 +49,6 @@ karma_tests:
   stage: test
   tags:
     - actia
-  image: trion/ng-cli-karma
   script:
     - cd Front
     - tsc --version
