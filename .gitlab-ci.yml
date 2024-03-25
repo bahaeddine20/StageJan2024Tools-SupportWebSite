@@ -49,24 +49,19 @@ karma_tests:
   stage: test
   tags:
     - actia
+  image: trion/ng-cli-karma
   script:
-
+    - node --version // Check Node.js version
+    - ng --version // Check Angular CLI version
     - cd Front
-    - /root/.nvm/versions/node/v20.11.1/bin/node --version
-    - /root/.nvm/versions/node/v20.11.1/bin/npm --version
-    - /usr/bin/ng version
-    - /usr/bin/ng test
-
-
-  # Run Karma jgjkgtests
-  needs:
-    - build-angular-project
-  artifacts:
-    reports:
-      junit: junit_reports/test-results.xml
+    - npm ci
+    - ng test --watch=false
   cache:
     paths:
       - Front/node_modules
+  artifacts:
+    reports:
+      junit: junit_reports/test-results.xml
 
 
 sonarqube_spring:
