@@ -50,6 +50,8 @@ karma_tests:
   tags:
     - actia
   script:
+    - export PATH=$PATH:/home/raniaelhor/.nvm/versions/node/v20.11.1/bin
+
     - cd Front
     - tsc --version
     - ng test
