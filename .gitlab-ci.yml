@@ -52,7 +52,7 @@ karma_tests:
   script:
 
 
-
+    - echo $PATH
     - cd Front
     - npm cache clean --force
     - npm install -g typescript@5.3.3
