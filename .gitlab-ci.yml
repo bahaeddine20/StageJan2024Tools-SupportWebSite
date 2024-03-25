@@ -51,8 +51,8 @@ karma_tests:
     - actia
   image: trion/ng-cli-karma
   script:
-    - node --version // Check Node.js version
-    - ng --version // Check Angular CLI version
+    - node --version
+    - ng --version
     - cd Front
     - npm ci
     - ng test --watch=false
