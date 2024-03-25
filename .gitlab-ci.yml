@@ -51,7 +51,7 @@ karma_tests:
     - actia
   script:
 
-
+    - cd Front
     - node --version
     - npm --version
     - ng --version
