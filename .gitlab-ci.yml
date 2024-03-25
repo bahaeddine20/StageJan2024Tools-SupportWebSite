@@ -51,11 +51,12 @@ karma_tests:
     - actia
   image: trion/ng-cli-karma
   script:
-    - node --version
-    - ng --version
     - cd Front
+    - /root/.nvm/versions/node/v20.11.1/bin/node --version
+    - /root/.nvm/versions/node/v20.11.1/bin/npm --version
+
     - npm ci
-    - ng test --watch=false
+    - /usr/bin/ng test --watch=false
   cache:
     paths:
       - Front/node_modules
