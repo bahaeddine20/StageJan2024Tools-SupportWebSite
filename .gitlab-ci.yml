@@ -52,8 +52,8 @@ karma_tests:
   image: trion/ng-cli-karma
   script:
     - cd Front
-
-    - /usr/bin/ng test --watch=false
+    - tsc --version
+    - ng test
   cache:
     paths:
       - Front/node_modules
