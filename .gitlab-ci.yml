@@ -52,10 +52,7 @@ karma_tests:
   image: trion/ng-cli-karma
   script:
     - cd Front
-    - /root/.nvm/versions/node/v20.11.1/bin/node --version
-    - /root/.nvm/versions/node/v20.11.1/bin/npm --version
 
-    - npm ci
     - /usr/bin/ng test --watch=false
   cache:
     paths:
