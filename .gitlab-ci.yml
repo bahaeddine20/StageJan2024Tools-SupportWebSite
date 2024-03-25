@@ -52,10 +52,10 @@ karma_tests:
   script:
 
     - cd Front
-    - node --version
-    - npm --version
-    - ng --version
-    - ng test
+    - /root/.nvm/versions/node/v20.11.1/bin/node --version
+    - /root/.nvm/versions/node/v20.11.1/bin/npm --version
+    - /usr/bin/ng version
+    - /usr/bin/ng test
 
 
   # Run Karma jgjkgtests
