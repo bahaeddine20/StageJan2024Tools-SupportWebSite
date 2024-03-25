@@ -52,12 +52,11 @@ karma_tests:
   script:
 
 
-    - echo $PATH
-    - cd Front
-    - npm cache clean --force
-    - npm install -g typescript@5.3.3
-    - /usr/local/node/bin/tsc --version  # Explicitly use the full path to tsc
+    - node --version
+    - npm --version
+    - ng --version
     - ng test
+
 
   # Run Karma jgjkgtests
   needs:
