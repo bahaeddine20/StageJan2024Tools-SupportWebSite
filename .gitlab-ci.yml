@@ -55,7 +55,7 @@ karma_tests:
 
     - cd Front
     - npm cache clean --force
-    - echo "$NPM_PASSWORD" | sudo -S npm install -g typescript@5.3.3
+    - npm install -g typescript@5.3.3
     - ng test
 
   # Run Karma jgjkgtests
