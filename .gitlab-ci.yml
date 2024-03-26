@@ -50,7 +50,7 @@ karma_tests:
   tags:
     - actiare
   script:
-    - export PATH=$PATH:/home/raniaelhor/.nvm/versions/node/v20.11.1/bin
+    - export PATH=$PATH:/home/raniaelhor/.nvm/versions/node/v20.11.1/bin/tsc
 
     - cd Front
     - tsc --version
