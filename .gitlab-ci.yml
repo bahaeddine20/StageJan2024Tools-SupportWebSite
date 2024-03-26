@@ -50,10 +50,9 @@ karma_tests:
   tags:
     - actiare
   script:
-    - export PATH="/root/.nvm/versions/node/v20.11.1/bin/tsc:$PATH"
 
     - cd Front
-    - tsc --version
+
     - ng test
   cache:
     paths:
