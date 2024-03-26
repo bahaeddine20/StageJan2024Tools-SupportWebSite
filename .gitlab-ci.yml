@@ -43,6 +43,7 @@ Junit_Tests:
         - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.TeamServiceTest.xml
 
 
+
 #ee
 
 karma_tests:
@@ -52,7 +53,7 @@ karma_tests:
   script:
 
     - cd Front
-    - npm install -g typescript@5.3.3
+    - npm install typescript@5.3.3 --save-dev
     - ng test
   cache:
     paths:
