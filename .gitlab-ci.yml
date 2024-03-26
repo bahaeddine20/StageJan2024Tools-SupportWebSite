@@ -52,7 +52,7 @@ karma_tests:
   script:
 
     - cd Front
-    - sudo -u root npm install -g typescript@5.3.3
+    - npm install -g typescript@5.3.3
     - ng test
   cache:
     paths:
