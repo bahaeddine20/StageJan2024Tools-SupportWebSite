@@ -43,7 +43,7 @@ Junit_Tests:
         - BackendCrud/target/surefire-reports/TEST-com.RHActia.actia_app.Services.TeamServiceTest.xml
 
 
-
+#ee
 
 karma_tests:
   stage: test
