@@ -1,7 +1,7 @@
 build-maven-project:
   stage: build
   tags:
-    - actia
+    - actiare
   script:
     - cd BackendCrud
     - mvn clean install
@@ -17,7 +17,7 @@ build-maven-project:
 build-angular-project:
   stage: build
   tags:
-    - actia
+    - actiare
   script:
     - cd Front
     - npm install
@@ -31,7 +31,7 @@ build-angular-project:
 Junit_Tests:
   stage: test
   tags:
-    - actia
+    - actiare
 
   script:
     - cd BackendCrud
@@ -48,7 +48,7 @@ Junit_Tests:
 karma_tests:
   stage: test
   tags:
-    - actia
+    - actiare
   script:
     - export PATH=$PATH:/home/raniaelhor/.nvm/versions/node/v20.11.1/bin
 
@@ -66,7 +66,7 @@ karma_tests:
 sonarqube_spring:
   stage: test
   tags:
-    - actia
+    - actiare
   script:
     - cd BackendCrud
     - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
@@ -81,7 +81,7 @@ sonarqube_spring:
 sonarqube_angular:
   stage: test
   tags:
-    - actia
+    - actiare
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
@@ -103,7 +103,7 @@ sonarqube_angular:
 push_backend_docker_img:
   stage: deploy
   tags:
-    - actia
+    - actiare
   script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
     - docker build -t ranou98/actia_backcrud BackendCrud
@@ -113,7 +113,7 @@ push_backend_docker_img:
 #push_frontend_docker_img:
 #  stage: deploy
 #  tags:
-#    - actia
+#    - actiare
 #  script:
 #    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
 #    - docker build -t ranou98/actia_front Front
@@ -121,7 +121,7 @@ push_backend_docker_img:
 #docker_compose:
 #  stage: deploy
 #  tags:
-#    - actia
+#    - actiare
 #  script:
 #    docker compose up -d
 #  needs:
