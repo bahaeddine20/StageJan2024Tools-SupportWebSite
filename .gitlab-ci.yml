@@ -54,6 +54,7 @@ karma_tests:
 
     - cd Front
     - npm install typescript@5.3.3 --save-dev
+    - tsc --version
     - ng test
   cache:
     paths:
