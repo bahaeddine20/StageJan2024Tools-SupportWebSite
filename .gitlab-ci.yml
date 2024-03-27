@@ -48,16 +48,15 @@ karma_tests:
   stage: test
   tags:
     - actiare
+  before_script:
+    - nvm install 20.11.1
+    - nvm use 20.11.1
   script:
     - whoami
-
     - cd Front
-
     - npm install
     - tsc --version
-
     - ng test
-
   artifacts:
     reports:
       junit: junit_reports/test-results.xml
