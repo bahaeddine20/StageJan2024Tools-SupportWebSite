@@ -21,9 +21,7 @@ build-angular-project:
   script:
     - cd Front
     - npm install
-  cache:
-    paths:
-      - Front/node_modules
+
 
 
 
@@ -56,9 +54,7 @@ karma_tests:
     - npm install
 
     - ng test
-  cache:
-    paths:
-      - Front/node_modules
+
   artifacts:
     reports:
       junit: junit_reports/test-results.xml
