@@ -49,6 +49,7 @@ karma_tests:
   tags:
     - actiare
   script:
+    - whoami
 
     - cd Front
     - source $HOME/.nvm/nvm.sh
