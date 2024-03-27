@@ -51,7 +51,7 @@ karma_tests:
   script:
 
     - cd Front
-    - nvm alias default
+    - tsc --version
 
     - npm install
 
