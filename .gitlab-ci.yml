@@ -49,10 +49,11 @@ karma_tests:
   tags:
     - actiare
   before_script:
-    - nvm install 20.11.1
     - nvm use 20.11.1
   script:
-    - whoami
+    - export NVM_DIR="/home/gitlab-runner/.nvm"
+    - source "$NVM_DIR/nvm.sh"  # This loads nvm
+    - nvm use 20.11.1
     - cd Front
     - npm install
     - tsc --version
