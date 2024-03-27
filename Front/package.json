@@ -1,5 +1,5 @@
 {
-  "name": "projet1",
+  "name": "Front",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:projet1": "node dist/projet1/server/server.mjs"
+    "serve:ssr:projet1": "node dist/Front/server/server.mjs"
   },
   "private": true,
   "dependencies": {
