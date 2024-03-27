@@ -52,8 +52,6 @@ karma_tests:
     - whoami
 
     - cd Front
-    - source $HOME/.nvm/nvm.sh
-
     - tsc --version
 
     - npm install
