@@ -51,6 +51,8 @@ karma_tests:
   script:
 
     - cd Front
+    - nvm alias default
+
     - npm install
 
     - ng test
