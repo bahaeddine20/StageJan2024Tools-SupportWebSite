@@ -22,7 +22,10 @@ build-angular-project:
     - cd Front
     - npm install
 
-
+  cache:
+    key: npm-deps
+    paths:
+      - Front/node_modules/
 
 
 
@@ -56,11 +59,13 @@ karma_tests:
     - cd Front
     - npm install
     - tsc --version
-    - ng test
+    - ng test --reporters junit --code-coverage
+    - cat junit_reports/test-results.xml  # Display test results in console
+  dependencies:
+    - build-angular-project
   artifacts:
-    reports:
-      junit: junit_reports/test-results.xml
-
+      reports:
+        junit: junit_reports/test-results.xml
 
 sonarqube_spring:
   stage: test
