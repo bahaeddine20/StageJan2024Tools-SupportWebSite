@@ -60,12 +60,12 @@ karma_tests:
     - npm install
     - tsc --version
     - ng test --reporters junit --code-coverage
-    - cat junit_reports/test-results.xml  # Display test results in console
+    - cat junit-front-reports/test-results.xml  # Display test results in console
   dependencies:
     - build-angular-project
   artifacts:
       reports:
-        junit: junit_reports/test-results.xml
+        junit: junit-front-reports/test-results.xml
 
 sonarqube_spring:
   stage: test
