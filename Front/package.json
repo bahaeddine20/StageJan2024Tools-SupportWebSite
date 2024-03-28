@@ -55,6 +55,7 @@
     "karma-edge-launcher": "^0.4.2",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "karma-junit-reporter": "^2.0.1",
     "typescript": "^5.3.3"
   }
 }
