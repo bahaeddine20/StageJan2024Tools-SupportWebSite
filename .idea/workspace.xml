@@ -79,6 +79,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SpringBootSecurityJwtApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="actia_app_Auth" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.RHActia_Auth.actia_app_Auth.SpringBootSecurityJwtApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Karma.karma.conf.js" />
