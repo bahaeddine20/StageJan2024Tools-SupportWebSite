@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="karma tests">
+      <change beforePath="$PROJECT_DIR$/Front/node_modules/karma-chrome-launcher/examples/simple/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;rania.elhor&quot;,
+      &quot;fullname&quot;: &quot;Rania ELHOR&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.com/rania.elhor/actia-es_hr-app.git&quot;,
+    &quot;second&quot;: &quot;e72540cd-2ad9-4139-8f8d-2a3cb285ae0d&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2dzeWCxy8Q2yMKdrwO7S1AwHzlu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Karma.karma.conf.js.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.actia_app [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\rania.elhor\\AppData\\Roaming\\npm\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Karma.karma.conf.js">
+    <configuration name="karma.conf.js" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/Front/node_modules/karma-chrome-launcher/examples/simple/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/Front/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$/Front/node_modules/karma-chrome-launcher" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="ActiaAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="actia_app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.RHActia.actia_app.ActiaAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Karma.karma.conf.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="" />
+      <created>1711015364421</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711015364421</updated>
+      <workItem from="1711015366276" duration="11308000" />
+      <workItem from="1711092223062" duration="11476000" />
+      <workItem from="1711353694786" duration="9378000" />
+      <workItem from="1711368173578" duration="3948000" />
+      <workItem from="1711439019960" duration="9634000" />
+      <workItem from="1711525111778" duration="17555000" />
+      <workItem from="1711612443633" duration="5211000" />
+    </task>
+    <task id="LOCAL-00062" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711457434586</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1711457434586</updated>
+    </task>
+    <task id="LOCAL-00063" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711458550971</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1711458550971</updated>
+    </task>
+    <task id="LOCAL-00064" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711458845923</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1711458845923</updated>
+    </task>
+    <task id="LOCAL-00065" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711459251736</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1711459251736</updated>
+    </task>
+    <task id="LOCAL-00066" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711459532443</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1711459532444</updated>
+    </task>
+    <task id="LOCAL-00067" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711525186046</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1711525186047</updated>
+    </task>
+    <task id="LOCAL-00068" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711525498525</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1711525498525</updated>
+    </task>
+    <task id="LOCAL-00069" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711525861030</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1711525861030</updated>
+    </task>
+    <task id="LOCAL-00070" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711526554171</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1711526554171</updated>
+    </task>
+    <task id="LOCAL-00071" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711526803125</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1711526803125</updated>
+    </task>
+    <task id="LOCAL-00072" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711527794861</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1711527794861</updated>
+    </task>
+    <task id="LOCAL-00073" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711528296880</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1711528296880</updated>
+    </task>
+    <task id="LOCAL-00074" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711528323541</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1711528323541</updated>
+    </task>
+    <task id="LOCAL-00075" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711528577795</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1711528577795</updated>
+    </task>
+    <task id="LOCAL-00076" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711528954501</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1711528954501</updated>
+    </task>
+    <task id="LOCAL-00077" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711529018159</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1711529018159</updated>
+    </task>
+    <task id="LOCAL-00078" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711529979656</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1711529979656</updated>
+    </task>
+    <task id="LOCAL-00079" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711530307349</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1711530307349</updated>
+    </task>
+    <task id="LOCAL-00080" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711530371960</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1711530371960</updated>
+    </task>
+    <task id="LOCAL-00081" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711530517950</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1711530517950</updated>
+    </task>
+    <task id="LOCAL-00082" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711530864606</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1711530864606</updated>
+    </task>
+    <task id="LOCAL-00083" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711531734536</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1711531734536</updated>
+    </task>
+    <task id="LOCAL-00084" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711532349586</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1711532349586</updated>
+    </task>
+    <task id="LOCAL-00085" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711532817749</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1711532817749</updated>
+    </task>
+    <task id="LOCAL-00086" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711533771318</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1711533771318</updated>
+    </task>
+    <task id="LOCAL-00087" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711534272835</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1711534272835</updated>
+    </task>
+    <task id="LOCAL-00088" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711534653966</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1711534653966</updated>
+    </task>
+    <task id="LOCAL-00089" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711534933706</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1711534933706</updated>
+    </task>
+    <task id="LOCAL-00090" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711535264078</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1711535264078</updated>
+    </task>
+    <task id="LOCAL-00091" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711535669324</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1711535669324</updated>
+    </task>
+    <task id="LOCAL-00092" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711536004849</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1711536004849</updated>
+    </task>
+    <task id="LOCAL-00093" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711537402680</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1711537402680</updated>
+    </task>
+    <task id="LOCAL-00094" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711537770188</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1711537770188</updated>
+    </task>
+    <task id="LOCAL-00095" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711538176505</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1711538176505</updated>
+    </task>
+    <task id="LOCAL-00096" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711538491191</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1711538491191</updated>
+    </task>
+    <task id="LOCAL-00097" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711541529550</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1711541529550</updated>
+    </task>
+    <task id="LOCAL-00098" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711542309754</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1711542309754</updated>
+    </task>
+    <task id="LOCAL-00099" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711542714904</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1711542714904</updated>
+    </task>
+    <task id="LOCAL-00100" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711543121695</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1711543121695</updated>
+    </task>
+    <task id="LOCAL-00101" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711543829021</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1711543829021</updated>
+    </task>
+    <task id="LOCAL-00102" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711543870496</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1711543870497</updated>
+    </task>
+    <task id="LOCAL-00103" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711612752143</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1711612752144</updated>
+    </task>
+    <task id="LOCAL-00104" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711613247158</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1711613247158</updated>
+    </task>
+    <task id="LOCAL-00105" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711613928012</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1711613928012</updated>
+    </task>
+    <task id="LOCAL-00106" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711614304825</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1711614304825</updated>
+    </task>
+    <task id="LOCAL-00107" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711615123678</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1711615123680</updated>
+    </task>
+    <task id="LOCAL-00108" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711615562174</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1711615562174</updated>
+    </task>
+    <task id="LOCAL-00109" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711616097067</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1711616097067</updated>
+    </task>
+    <task id="LOCAL-00110" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711616557603</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1711616557603</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="karma tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="karma tests" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Front/src/app/crud/services/empcrud.service.ts</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
