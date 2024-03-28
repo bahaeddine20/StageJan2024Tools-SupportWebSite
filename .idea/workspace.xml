@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="karma tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Front/Dockerfile" afterDir="false" />
-    </list>
+    <list default="true" id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="karma tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,15 +122,7 @@
       <workItem from="1711525111778" duration="17555000" />
       <workItem from="1711612443633" duration="5211000" />
       <workItem from="1711619976134" duration="1411000" />
-      <workItem from="1711621398416" duration="719000" />
-    </task>
-    <task id="LOCAL-00064" summary="karma tests">
-      <option name="closed" value="true" />
-      <created>1711458845923</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1711458845923</updated>
+      <workItem from="1711621398416" duration="1447000" />
     </task>
     <task id="LOCAL-00065" summary="karma tests">
       <option name="closed" value="true" />
@@ -519,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711621612649</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711622232734</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1711622232735</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
