@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="karma tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Front/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +125,7 @@
       <workItem from="1711525111778" duration="17555000" />
       <workItem from="1711612443633" duration="5211000" />
       <workItem from="1711619976134" duration="1411000" />
-    </task>
-    <task id="LOCAL-00063" summary="karma tests">
-      <option name="closed" value="true" />
-      <created>1711458550971</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1711458550971</updated>
+      <workItem from="1711621398416" duration="719000" />
     </task>
     <task id="LOCAL-00064" summary="karma tests">
       <option name="closed" value="true" />
@@ -517,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711620751096</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="karma tests">
+      <option name="closed" value="true" />
+      <created>1711621612649</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1711621612649</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

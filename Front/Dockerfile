@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install typescript@5.3.3
 RUN npm install domino
-
+#test
 RUN npm install -g @angular/cli
 RUN npm install
 COPY . .
