@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="karma tests">
-      <change beforePath="$PROJECT_DIR$/Front/node_modules/karma-chrome-launcher/examples/simple/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="b38927ac-8423-4ebd-8348-dd04e7f6b377" name="Changes" comment="karma tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
