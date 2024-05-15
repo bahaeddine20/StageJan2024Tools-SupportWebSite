@@ -1,0 +1,58 @@
+<header class="header-container">
+    <mat-toolbar class="mat-elevation-z3">
+      <mat-toolbar-row>
+        <!-- Use a conditional expression to change the icon based on the sidebar state -->
+        <button mat-icon-button (click)="toggleMenu()">
+          <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+        </button>
+        <!-- Replace the span with an img tag -->
+        <img src="assets/images/logo-actia1.png" alt="ACTIA" class="toolbar-logo">
+        <!-- Rest of the toolbar content -->
+        <h1>Tools and Support activity</h1>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+          <ul fxLayout="row" fxLayoutGap="20px">
+            <li>
+              <button mat-icon-button>
+                <mat-icon>settings</mat-icon>
+              </button>
+            </li>
+            <li>
+              <button mat-icon-button>
+                <mat-icon>help_outline</mat-icon>
+              </button>
+            </li>
+            <li>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>person_outline</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
+                  Sign Up
+                </button>
+                <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
+                  Login
+                </button>
+                <button mat-menu-item *ngIf="isLoggedIn" routerLink="profile">
+                  {{ username }}
+                </button>
+                <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
+                  Log out
+                </button>
+              </mat-menu>
+            </li>
+          </ul>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    </header>
+    <mat-sidenav-container>
+      <mat-sidenav opened [mode]="isCollapsed ? 'side' : 'over'" [style.width]="isCollapsed ? '65px' : '250px'" [ngClass]="!isCollapsed ? 'expanded' : ''" >
+        <app-sidenav [isCollapsed]="isCollapsed"></app-sidenav>
+      </mat-sidenav>
+      <mat-sidenav-content class="content" [style.margin-left]="isCollapsed ? '65px' : '250px'" >
+        <div class="sidenav-header">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+    

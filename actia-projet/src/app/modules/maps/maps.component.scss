@@ -1,0 +1,16 @@
+
+iframe {
+    width: 100%;
+    height:100%;
+    border:0;
+    margin-top: 20px;
+
+}
+.d-sm-20 {
+    width: 100%; // Ajustez la largeur selon vos besoins
+    height: 600px; // Ajustez la hauteur selon vos besoins
+    border: none; // Supprime les bordures de l'iframe
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Ajoute une ombre portée (facultatif)
+    border-radius: 8px; // Arrondit les coins de l'iframe (facultatif)
+  }
+  

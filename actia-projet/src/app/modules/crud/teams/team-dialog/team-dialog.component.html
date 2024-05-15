@@ -1,0 +1,26 @@
+<mat-dialog-content class="dialog-content">
+  <div class="dialog-header">
+    <h2>{{ team.name }}</h2>
+  </div>
+  <div class="dialog-body">
+    <p><strong>Description:</strong> {{ team.description }}</p>
+    <p><strong>Technology:</strong> {{ team.technologie }}</p>
+    <img [src]="getImageUrl(team.teamImages[0])" alt="Team Photo" class="dialog-image">
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <div class="action-icons">
+    <span *ngIf="roles.includes('ROLE_ADMIN')">
+      <button mat-icon-button color="primary" (click)="openEditForm(team)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteTeam(team.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    <button mat-icon-button color="accent" [routerLink]="['/employees', team.id]" (click)="onNoClick()">
+      <mat-icon>visibility</mat-icon>
+    </button>
+    </span>
+  </div>
+  <button mat-button (click)="onNoClick()" class="close-button">Close</button>
+</mat-dialog-actions>

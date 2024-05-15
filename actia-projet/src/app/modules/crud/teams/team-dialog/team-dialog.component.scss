@@ -1,0 +1,109 @@
+.dialog-content {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 10px;
+    max-width: 500px;
+    max-height: 600px;
+    overflow: auto;
+  }
+  
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; // Alignement vertical au centre
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+    p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+  }
+  
+  .dialog-body {
+    p {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    .dialog-image {
+      width: 300px;
+      height: 300px;
+      margin: 10px auto;
+      margin-top: 30px;
+      display: block;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: space-between; // Alignement horizontal
+    align-items: center;
+    margin-top: 20px;
+  
+    .action-icons {
+      display: flex;
+      gap: 8px;
+  
+      button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: darken($color: #ececec, $amount: 5%);
+        }
+  
+        mat-icon {
+          font-size: 24px;
+        }
+      }
+  
+      button[color='primary'] {
+        color: #1976d2;
+  
+        &:hover {
+          background-color: #bbdefb;
+        }
+      }
+  
+      button[color='warn'] {
+        color: #d32f2f;
+  
+        &:hover {
+          background-color: #ef9a9a;
+        }
+      }
+  
+      button[color='accent'] {
+        color: #ffa726;
+  
+        &:hover {
+          background-color: #ffcc80;
+        }
+      }
+    }
+  
+    .close-button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      color: black;
+      &:hover {
+        cursor: pointer;
+        background-color: #c62828;
+        color: aliceblue;
+      }
+    }
+  }
+  

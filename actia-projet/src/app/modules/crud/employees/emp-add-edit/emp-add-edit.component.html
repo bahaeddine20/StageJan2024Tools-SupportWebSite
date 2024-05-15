@@ -1,0 +1,73 @@
+<div mat-dialog-title>
+    <h1>Employee Form</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput type="text" placeholder="Ex. Technical" formControlName="firstname">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Ex. Babaji" formControlName="lastname">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="email">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Team</mat-label>
+                <mat-select formControlName="team">
+                    <mat-option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" placeholder="Select gender">
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                    <input matInput type="number" placeholder="phone: 22 222 222" formControlName="phone">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>role</mat-label>
+                <mat-select formControlName="role" placeholder="Select gender">
+                    <mat-option value="TEAM_LEAD">Team Lead</mat-option>
+                    <mat-option value="TECHNICAL_LEAD">Technical Lead</mat-option>
+                    <mat-option value="DEVELOPER">Developper</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>linkedin</mat-label>
+                <input matInput type="text" placeholder="Ex. linkedin profile link" formControlName="linkedin">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <input type="file" formControlName="image" (change)="onFileSelected($event)" accept="image/*">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Employee Image" class="circular-image">
+        </div>
+
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-button [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" class="btn-submit" *ngIf="editMode">Modifier</button>
+        <button mat-raised-button color="primary" type="submit" class="btn-submit" *ngIf="!editMode">Enregistrer</button>
+    </div>
+</form>

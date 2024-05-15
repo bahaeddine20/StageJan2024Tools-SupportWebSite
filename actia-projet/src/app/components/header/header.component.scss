@@ -1,0 +1,150 @@
+// Define primary and accent colors
+$primary-color: #000000;
+$accent-color: #ffffff;
+
+// Define a mixin for button styles
+@mixin button-styles {
+  color: white;
+  &:hover {
+    color: lighten(#BDD248, 10%);
+  }
+}
+
+// Reset des styles de liste
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Styles de la barre d'élévation
+.mat-elevation-z3 {
+  background-color: #bdd248;
+  color: white; 
+  position: relative;
+  z-index: 5;
+  font-size: 0.2rem;
+  padding: 5px;
+  border-bottom: 5px solid #BDD248;
+}
+
+// Padding du contenu
+$content-padding: 24px;
+
+.content {
+  padding: $content-padding;
+}
+
+// Hauteur du conteneur du sidenav
+mat-sidenav-container {
+  height: calc(100vh - 64px); // 64px est la hauteur supposée de la barre de navigation
+  mat-sidenav {
+    background-color: $accent-color;
+    color: black;
+    .mat-drawer-inner-container {
+      padding: 16px;
+    }
+  }
+}
+
+// Transition du sidenav
+mat-sidenav, mat-sidenav-content {
+  transition: all 500ms ease-in-out;
+}
+.header-container { 
+// Toolbar
+.mat-toolbar {
+  background-color: $primary-color;
+  color: white; 
+  position: sticky; // Make the header stick to the top
+  top: 0; // Stick to the very top of the viewport
+  z-index: 1000; // Higher than the content to remain on top
+  .mat-toolbar-row {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    button {
+      @include button-styles;
+    }
+    span {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    img{
+        height: 60px; /* Adjust the height as needed */
+        margin-right: 5%; /* Space between the logo and the rest of the toolbar content */
+        
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      li {
+        margin-right: 20px;
+        button {
+          @include button-styles;
+        }
+      }
+    }
+    h1 {
+      flex-grow: 1;
+      text-align: left;
+      font-family: 'Roboto', sans-serif; // Exemple de police élégante
+      font-weight: 500; // Poids de la police
+      font-size: 24px; // Taille de la police
+      color: #ffffff; // Couleur du texte
+    }
+  }
+}
+}
+
+// Classe pour masquer le contenu de la page principale lorsque la barre latérale est ouverte
+.show-sidebar-content {
+  overflow: hidden;
+}
+
+// Page blanche semi-transparente
+.white-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5); /* Couleur blanche semi-transparente */
+  z-index: 999; /* Assurez-vous que la page blanche est au-dessus de tout le reste */
+}
+.lock-tabs {
+  ul {
+    li {
+      button {
+        pointer-events: none; /* Désactive les interactions des boutons */
+        opacity: 0.5; /* Rend les boutons semi-transparents */
+      }
+    }
+  }
+}
+.moving-link {
+  position: fixed; // Fixed position to keep it in view
+  top: 0; // Position it at the top
+  right: 0; // Position it on the right
+  z-index: 1001; // Above the header
+  background-color: #bdd248; // Background color
+  padding: 10px; // Padding around the text
+  border-bottom-left-radius: 10px; // Rounded corner
+}
+.header-container {
+  .mat-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: start; // Align items at the start of the toolbar
+
+    .toolbar-logo {
+      height: 60px; // Adjust the height of the logo as needed
+      margin-right: 100px; // Add some space between the logo and the title
+    }
+
+    h1 {
+      flex-grow: 1; // Allow the title to take up the remaining space
+      text-align: center; // Center the title
+    }
+  }
+}

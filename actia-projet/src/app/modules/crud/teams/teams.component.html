@@ -1,0 +1,26 @@
+<div class="main-body">
+  <mat-form-field class="custom-filter" appearance="fill">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Type to filter...">
+  </mat-form-field>  
+  <span class="example-spacer" *ngIf="roles.includes('ROLE_ADMIN')">
+    <button mat-raised-button class="add-team-btn" (click)="openAddEditTeamForm()">
+      ADD Team
+    </button>
+  </span>
+  <div class="card-container">
+    <mat-card *ngFor="let team of dataSource?.filteredData" class="team-card" (click)="navigateToEmployees(team.id)">
+      <mat-card-header>
+        <mat-card-title>{{ team.name }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="getImageUrl(team.teamImages[0])" alt="Team Photo" class="circular-image">
+      <mat-card-content>
+        <p>{{ team.technologie }}</p>
+      </mat-card-content>
+      <mat-card-actions class="card-actions">
+        <button mat-raised-button color="primary" (click)="$event.stopPropagation(); openTeamDetails(team)">More Details</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

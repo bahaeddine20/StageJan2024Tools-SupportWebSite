@@ -1,0 +1,94 @@
+<div class="form-card js-form-card"  *ngIf="roles.includes('ROLE_USER') && !roles.includes('ROLE_ADMIN')">
+  <div class="form-card__cnt js-profile-cnt">
+    <div class="form-card__name">Please Fill out This Form</div>
+    <form class="leave-request-container" [formGroup]="cancelForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name"  formControlName="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="startDate" class="form-label">Start Date:</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="endDate" class="form-label">End Date:</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="employeeEmail" class="form-label">Your Email:</label>
+        <input type="email" id="employeeEmail" formControlName="employeeEmail" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="adminEmail" class="form-label">Admin Email:</label>
+        <input type="email" id="adminEmail" formControlName="adminEmail" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="reason" class="form-label">Reason:</label>
+        <textarea id="reason" formControlName="reason" class="form-control" required></textarea>
+      </div>
+      <div class="form-card-form__bottom">
+        <button type="submit" class="form-card__button button--blue" [disabled]="cancelForm.invalid">Submit</button>
+        <button type="button" class="form-card__button button--gray" (click)="CancelForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-3">
+  <h2>Leave Requests</h2>
+  <div class="card-custom">
+    <button class="btn custom-btn select-all-btn" (click)="selectAllRequests($event)">
+   Select All
+</button>
+
+<button class="btn custom-btn delete-selected-btn" (click)="deleteSelectedRequests()" [disabled]="isDeleteDisabled()">
+   Delete Selected
+</button>
+    
+    <div class="table-responsive">
+      <table class="table table-custom" *ngIf="hasRequests(); else noRequests">
+        <thead>
+          <tr>
+            <th></th> <!-- Empty header for alignment with rows having checkboxes -->
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Email</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests">
+            <td><input type="checkbox" [(ngModel)]="request.selected"/></td>
+            <td>{{ request.name }}</td>
+            <td>{{ request.startDate | date: 'mediumDate' }}</td>
+            <td>{{ request.endDate | date: 'mediumDate' }}</td>
+            <td>{{ request.employeeEmail }}</td>
+            <td>{{ request.reason }}</td>
+            <td>{{ request.status }}</td>
+            <td>
+              <button class="btn custom-btn" (click)="acceptRequest(request.id)" [disabled]="request.status === 'Accepted'">
+                <i class="fas fa-check-circle"></i>
+              </button>
+              <button class="btn custom-btn" (click)="rejectRequest(request.id)" [disabled]="request.status === 'Rejected'">
+                <i class="fas fa-times-circle"></i>
+              </button>
+              <button class="btn custom-btn" (click)="deleteRequestById(request.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="totalPages > 1">
+        <button (click)="previousPage()" [disabled]="currentPage === 0">Précédent</button>
+        <span>Page {{ currentPage + 1 }} sur {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Suivant</button>
+      </div>      
+    </div>
+    <ng-template #noRequests>
+      <p class="no-requests">No leave requests found.</p>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<footer class="site-footer main-body">
+    <div class="footer-content">
+      <!-- About Us Section -->
+      <div class="footer-section">
+        <h4 class="about-title"><i class="fa fa-info-circle" aria-hidden="true"></i>  À PROPOS D'ACTIA</h4>
+        <p class="about-description">
+          Spécialiste des systèmes électroniques embarqués depuis sa création en 1986, le groupe international ACTIA conçoit et fabrique des solutions qui répondent aux enjeux liés à une mobilité connectée, sûre et durable dans des environnements clients particulièrement exigeants.
+        </p>
+        <a href="https://www.actia.com" target="_blank" class="about-link">
+          Visiter le site corporate
+          <i class="fas fa-external-link-alt"></i>
+        </a>    
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/company/actia-engineering-services/" target="_blank" rel="noopener" class="icon icon-linkedin">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.youtube.com/@ActiaOfficialCom" target="_blank" rel="noopener" class="icon icon-youtube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.facebook.com/ACTIAES?locale=fr_FR" target="_blank" rel="noopener" class="icon icon-facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </div>
+        
+      </div>
+      <!-- Most Read Section -->
+      <div class="footer-section">
+        <h4>Most Read</h4>
+        <ul class="footer-links">
+          <li><a href="#">Quarterly earnings report...</a></li>
+          <li><a href="#">Technology is transforming...</a></li>
+        </ul>
+      </div>
+      <!-- Tags Section -->
+      <div class="footer-section">
+        <h4>Tags</h4>
+        <div class="tags">
+          <a href="#" class="tag">2024</a>
+          <a href="#" class="tag">ACTIA</a>
+          <a href="#" class="tag">Renault</a>
+          <!-- More tags -->
+        </div>
+      </div>
+      <!-- Links Section -->
+      <div class="footer-section">
+        <h4>Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">MULTIDIAG [Diagnostic Multimarque]</a></li>
+          <li><a href="#">Garage Equipment</a></li>
+          <!-- More links -->
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <mat-divider></mat-divider>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2024 ACTIA Group. All Rights Reserved.</p>
+      <div class="language-selector">
+        <select (change)="switchLanguage($any($event.target).value)">
+          <option *ngFor="let language of languages" [value]="language.value">{{ language.name }}</option>
+        </select>
+        <img [src]="selectedFlag" [alt]="selectedLanguage" class="flag-icon">
+      </div>
+    </div>
+  
+  

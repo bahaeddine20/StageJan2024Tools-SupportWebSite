@@ -1,0 +1,124 @@
+$primary-color: #bdd248;
+
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1348px;
+  height: 100%; 
+  margin-bottom: 50px;
+}
+
+.add-team-btn {
+  margin-left: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #bdd248 !important;
+  color: white !important;
+}
+.team-card .card-actions button {
+  margin-left: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: $primary-color;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($color: $primary-color, $amount: 10%);
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px; /* Adjust the space between the cards if necessary */
+  margin-top: 10px;
+}
+.team-card {
+  width: calc(48% - 30px); // Réduire la largeur et ajouter un peu d'espace entre les cartes
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), // Ombre principale
+  0 6px 20px rgba(0, 0, 0, 0.1); // Ombre supplémentaire pour plus de profondeur
+  padding: 20px;
+
+  .circular-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 20px;
+  }
+
+  .card-actions {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.square-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.mat-card-header {
+  text-align: center;
+}
+
+.mat-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.mat-card-content {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.site-footer {
+  background-color: #000000;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 10px 20px;
+  border-top: 5px solid #bdd248;
+  border-bottom: 3px solid #bdd248;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: none; /* Initially hide the footer */
+}
+

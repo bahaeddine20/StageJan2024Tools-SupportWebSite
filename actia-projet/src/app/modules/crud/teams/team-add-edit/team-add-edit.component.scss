@@ -1,0 +1,119 @@
+.dialog-title {
+    text-align: center;
+    // Add other styles for the title here
+  }
+  
+  .dialog-content {
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      
+      .custom-mat-form-field {
+        flex-grow: 1;
+        mat-label {
+          color: green; // Customize as needed
+        }
+        
+        .mat-form-field-flex {
+          background-color: #e8f5e9; // A light green background color
+        }
+  
+        .mat-form-field-outline-thick {
+          color: green; // Outline color when not focused
+        }
+  
+        .mat-form-field-outline {
+          border-color: green; // Outline color
+        }
+        
+        .mat-focused .mat-form-field-outline-thick {
+          color: darken(green, 10%); // Outline color when focused
+        }
+  
+        .mat-form-field-ripple {
+          background-color: green; // Ripple effect color
+        }
+        
+        .mat-input-element {
+          &::placeholder {
+            color: lighten(green, 20%); // Placeholder text color
+          }
+        }
+      }
+    }
+  
+    .file-input-row {
+      margin-top: 20px;
+      align-items: center;
+      
+      input[type="file"] {
+        margin-right: 10px;
+      }
+      
+      .circular-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+  
+  .dialog-actions {
+    justify-content: flex-end;
+    margin-top: 20px;
+  
+    button {
+      margin-right: 10px;
+      
+      &.green-button {
+        background-color: green;
+        color: white;
+  
+        &:hover {
+          background-color: darken(green, 10%);
+        }
+      }
+    }
+  }
+  
+  // If you need to apply global styles for Angular Material elements, use ::ng-deep with caution.
+  // Below are examples of how to target material components. Uncomment and adjust as needed.
+  
+  /*
+  ::ng-deep {
+    .mat-dialog-container {
+      // Styles for the dialog container
+    }
+    
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      border-color: green;
+    }
+  
+    .mat-focused .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+      color: darken(green, 10%);
+    }
+    
+    .mat-form-field-label {
+      color: green;
+    }
+  
+    .mat-input-element {
+      color: green;
+      &::placeholder {
+        color: lighten(green, 20%);
+      }
+    }
+  
+    .mat-button, .mat-raised-button, .mat-icon-button {
+      &.green-button {
+        background-color: green;
+        &:hover {
+          background-color: darken(green, 10%);
+        }
+      }
+    }
+  }
+  */
+  

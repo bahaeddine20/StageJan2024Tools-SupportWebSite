@@ -1,0 +1,28 @@
+.content {
+    padding-top: 10px;
+  }
+  .row {
+    display: flex;
+    gap: 10px;
+  
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .action {
+    padding: 0px 25px 20px;
+    button {
+      flex: 1;
+    }
+  }
+  .selected-image {
+    width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+    height: 100px;
+  }
+  .circular-image {
+    width: 50px; /* Définissez la taille souhaitée pour l'image */
+    height: 50px;
+    border-radius: 50%; /* Rend l'image circulaire */
+    object-fit: cover; /* Empêche l'image de se déformer */
+  }
