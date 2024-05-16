@@ -1,0 +1,26 @@
+<section class="min-vh-100">
+    <form  class="box-form ">
+        <div class="left">
+            <div class="overlay">
+            <h1>Login Here.</h1>
+            <br>
+            <span>
+            <a routerLink="/mainU" style="text-decoration: none;" >Go back to home page</a>
+            </span>
+            </div>
+        </div>
+        <div class="right">
+            <img src="assets/images/logo/logo-actia.png " width="200px"><br><br><br>
+            <p>Please Enter your user name and password below.</p>
+            <form [formGroup]="loginForm" (ngSubmit)="onAuthentif()">
+                <input type="text" formControlName="username" placeholder="username">
+                <br><br>
+                <input type="password" formControlName="password" placeholder="password">
+                <br><br>
+                <br>
+                <button type="submit">Login</button>
+               
+            </form>
+        </div>
+    </form>
+</section>

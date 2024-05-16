@@ -1,0 +1,93 @@
+<div class="dashboard dashboard_1">
+    <div class="full_container">
+       <div class="inner_container">
+<!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar_blog_1">
+       <div class="sidebar-header">
+          <div class="logo_section">
+             <a href="index.html"><img class="logo_icon img-responsive" src="assets/images/logo/renault-logo.png" alt="ERREUR!" /></a>
+          </div>
+       </div>
+       <div class="sidebar_user_info">
+          <div class="user_profle_side">
+             <div class="user_info">
+                <h6>Welcome To Tools</h6>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <div class="sidebar_blog_2">
+       <ul class="list-unstyled components">
+         <li><a routerLink="/admin/mainA"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+          <li class="active">
+             <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue1_color"></i> <span class="intitule">Activities</span></a>
+             <ol class="collapse list-unstyled" id="dashboard">
+                <li *ngFor="let a of lesActivites">
+                    <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+                 </li>
+             </ol>
+          </li>
+          <li><a routerLink="/admin/showA"><i class="fa fa-bars purple_color"></i> <span class="intitule">Show Activities</span></a></li>      
+          <li><a routerLink="/admin/addA"><i class="fa fa-plus-square red_color"></i> <span class="intitule">Add Activities</span></a></li>          
+       </ul>
+    </div>
+</nav>
+ <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                <nav class="navbar " >
+                    <div class="full">
+                        <div class="logo_section">
+                            <a href="index.html"><img class="img-responsive" id="logoActia" src="assets/images/logo/logo-actia.png" alt="ERREUR!" /></a>
+                        </div>
+                    </div>
+                </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- table section -->
+                <div class="col-md-17">
+                    <div class="white_shd full margin_bottom_30" id="tab">
+                        <div class="full graph_head" >
+                            <div class="heading1 margin_0">
+                                <h2>Activitie's Table</h2>
+                            </div>
+                        </div>
+                        <div class="table_section padding_infor_info">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Technology</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let a of lesActivites">
+                                        <td>{{a.name}}</td>
+                                        <td style="max-width: 450px;">{{a.description}}</td>
+                                        <td>{{a.technology}}</td>
+                                        <td >
+                                            <a [routerLink]="['/admin/detailsA',a.id]" class="icon"><i class="fa fa-info-circle yellow_color"></i></a>
+                                            <a [routerLink]="['/admin/modifA',a.id]" class="icon"><i class="fa fa-edit blue2_color"></i></a>
+                                            <a (click)="deleteAct(a.id)" class="icon"><i class="fa fa-trash red_color"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- table section -->
+            </div>
+        </div>
+     </div>
+  </div>
+ 

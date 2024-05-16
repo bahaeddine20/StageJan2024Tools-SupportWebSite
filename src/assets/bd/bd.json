@@ -1,0 +1,198 @@
+{
+  "activite": [
+    {
+      "name": "ADAS",
+      "technology": "Matlab/Simulink, Git, Gilabt CI, shell, Jira",
+      "description": "Model based Integration",
+      "image": "assets/images/activite/adas2.png",
+      "equipe": [
+        {
+          "firstName": "tekaya",
+          "lastName": "manel",
+          "role": "Team Lead",
+          "image": "assets/images/layout_img/manel_tekaya.jpg",
+          "linkdin": "https://www.linkedin.com/in/manel-tekaya/"
+        },
+        {
+          "firstName": "souhaiel",
+          "lastName": "sami",
+          "role": "Developper",
+          "image": "assets/images/layout_img/photo_sami.jpeg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        }
+      ],
+      "id": "1"
+    },
+    {
+      "name": "Matrix",
+      "technology": "Python, Robot Framwork",
+      "description": "Matrix: Microservice Automotive Test Robot Integration eXecuter -> Test Framework development in OO Python Developed Keywords cover most of IVI/IVC services (canakin for can traffic, IVI_Test_Service, Androsmart and appium for HMI testing, TKD for HMI testing based on AI, Metacortex for ATLAS, Wicket for SSH connexion …) Coordination with automated tests teams to ensure uptodate automatic compains inline with framework updates",
+      "image": "assets/images/activite/matrix.png",
+      "equipe": [
+        {
+          "lastName": "Attouani",
+          "firstName": "Anis",
+          "role": "Team Lead",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "lastName": "dhouib",
+          "firstName": "tesnim",
+          "role": "technical Lead",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "lastName": "dammak",
+          "firstName": "Syrine",
+          "role": "developper",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        }
+      ],
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "name": "ASFIT",
+      "technology": "Git, gitlab, jiras ,artifactory ,Docker",
+      "image": "assets/images/activite/asfit.png",
+      "description": "Ensure SW build and tests launch automatically and continuously Setup CI environment templates and tools for different projects Ensure no regressions for all Core CI users",
+      "equipe": [
+        {
+          "lastName": "Attouani",
+          "firstName": "Anis",
+          "role": "Team Lead",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "lastName": "dhouib",
+          "firstName": "tesnim",
+          "role": "technical Lead",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "id": "3",
+          "lastName": "Elaa",
+          "firstName": "Baraket",
+          "role": "Developpeur",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/alaa-baraket-%F0%9F%87%B5%F0%9F%87%B8-431709a2/"
+        },
+        {
+          "firstName": "Fatma",
+          "lastName": "Bouhnich",
+          "role": "Developpeur",
+          "image": "assets/images/layout_img/fatma.jpg",
+          "linkdin": ""
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "JIRA",
+      "technology": "Jira",
+      "image": "assets/images/activite/jira.jpg",
+      "description": "More than 18000 Jira users / 20000 licences L1, L2 and L3 support  / JiraProj  for administration scripts developing Create and maintain Jira workflows including projects autorisations, access rights notification (SAM tool configuration) Create and maintain Jira dashboards, Jira database and jira plugins Migration between Jira instancesJira components managing",
+      "equipe": [
+        {
+          "lastName": "regaya",
+          "firstName": "mouna",
+          "role": "Team Lead",
+          "image": "assets/images/layout_img/Mouna_REGAYA.png",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "lastName": "ben amor",
+          "firstName": "manel",
+          "role": "technical Lead",
+          "image": "assets/images/layout_img/manel.benamor.png",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "lastName": "abdallah",
+          "firstName": "amal",
+          "role": "developper",
+          "image": "assets/images/layout_img/Amal Abdallah.jpeg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "lastName": "borni",
+          "firstName": "souhail",
+          "role": "developper",
+          "image": "assets/images/layout_img/souhail_borni.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "HMI DELEVERY",
+      "technology": "Gradle",
+      "image": "assets/images/activite/hmi.png",
+      "description": "Provide testing Teams : Automatic Test framework development for IVI  Apps Templates for different tests types: smoke tests / monkey tests … Support for Android applications testing teams",
+      "equipe": [
+        {
+          "id": "1",
+          "lastName": "Attouani",
+          "firstName": "Anis",
+          "role": "Team Lead",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "id": "2",
+          "lastName": "dhouib",
+          "firstName": "tesnim",
+          "role": "developper",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        },
+        {
+          "id": "3",
+          "lastName": "dammak",
+          "firstName": "Syrine",
+          "role": "developper",
+          "image": "assets/images/layout_img/profile.jpg",
+          "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/"
+        }
+      ]
+    }
+  ],
+  "membre": [
+    {
+      "lastName": "Attouani",
+      "firstName": "Anis",
+      "role": "Team Lead",
+      "image": "assets/images/layout_img/profile.jpg",
+      "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/",
+      "id": "6a20"
+    },
+    {
+      "lastName": "dhouib",
+      "firstName": "tesnim",
+      "role": "developper",
+      "image": "assets/images/layout_img/profile.jpg",
+      "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/",
+      "id": "7ec8"
+    },
+    {
+      "lastName": "dammak",
+      "firstName": "Syrine",
+      "role": "developper",
+      "image": "assets/images/layout_img/profile.jpg",
+      "linkdin": "https://www.linkedin.com/in/salma-rouissi-bb1271259/",
+      "id": "7e98"
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123"
+    }
+  ]
+}

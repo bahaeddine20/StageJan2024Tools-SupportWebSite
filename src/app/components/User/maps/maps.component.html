@@ -1,0 +1,58 @@
+<div class="dashboard dashboard_1">
+   <div class="full_container">
+      <div class="inner_container">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+            <div class="sidebar_blog_1">
+               <div class="sidebar-header">
+                  <div class="logo_section">
+                     <a href="#"><img class="logo_icon img-responsive" src="assets/images/logo/renault-logo.png" alt="ERREUR!" /></a>
+                  </div>
+               </div>
+               <div class="sidebar_user_info">
+                  <div class="user_profle_side">
+                     <div class="user_info">
+                        <h6>Welcome To Tools</h6>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="sidebar_blog_2">
+               <ul class="list-unstyled components">
+                 <li><a routerLink="/mainU"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+                  <li class="active">
+                     <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue2_color"></i> <span class="intitule">Activities</span></a>
+                     <ol class="collapse list-unstyled" id="dashboard">
+                        <li *ngFor="let a of lesActivites">
+                           <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+                        </li>
+                     </ol>
+                  </li>
+                  <li><a routerLink="/aboutUs"><i class="fa fa-clock-o orange_color"></i> <span class="intitule">About Us</span></a></li>
+                  
+                  <li><a routerLink="/maps"><i class="fa fa-map purple_color2"></i> <span class="intitule">Map</span></a></li>
+               </ul>
+            </div>
+         </nav>
+         <!-- end sidebar -->
+         <!-- right content -->
+         <div id="content">
+            <!-- topbar -->
+            <div class="topbar">
+               <nav class="navbar " >
+                  <div class="full">
+                     <div class="logo_section">
+                        <a ><img class="img-responsive" id="logoActia" src="assets/images/logo/logo-actia.png" alt="ERREUR!" /></a>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+            <!-- end topbar -->
+             <!-- maps iframe -->
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.6603276102915!2d10.187386611890382!3d36.89847340383299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb71441d3031%3A0x5a4c7079706aa5e3!2sACTIA%20Engineering%20Services!5e0!3m2!1sen!2stn!4v1706003254707!5m2!1sen!2stn" referrerpolicy="no-referrer-when-downgrade" class="d-sm-20"></iframe>
+             <!--end maps iframe -->
+            </div>
+        </div>
+     </div>
+  </div>

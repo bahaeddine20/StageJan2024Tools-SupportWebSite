@@ -1,0 +1,144 @@
+<div class="dashboard dashboard_1">
+    <div class="full_container">
+       <div class="inner_container">
+          <!-- Sidebar  -->
+          <nav id="sidebar">
+             <div class="sidebar_blog_1">
+                <div class="sidebar-header">
+                   <div class="logo_section">
+                      <a href="#"><img class="logo_icon img-responsive" src="assets/images/logo/renault-logo.png" alt="ERREUR!" /></a>
+                   </div>
+                </div>
+                <div class="sidebar_user_info">
+                   <div class="user_profle_side">
+                      <div class="user_info">
+                         <h6>Welcome To Tools</h6>
+                      </div>
+                   </div>
+                </div>
+                
+             </div>
+             <div class="sidebar_blog_2">
+                <ul class="list-unstyled components">
+                  <li><a routerLink="/mainU"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+                   <li class="active">
+                      <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue2_color"></i> <span class="intitule">Activities</span></a>
+                      <ol class="collapse list-unstyled" id="dashboard">
+                        <li *ngFor="let a of lesActivites">
+                            <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+                         </li>
+                      </ol>
+                   </li>
+                   <li><a routerLink="/aboutUs"><i class="fa fa-clock-o orange_color"></i> <span class="intitule">About Us</span></a></li>
+                   
+                   <li><a routerLink="/maps"><i class="fa fa-map purple_color2"></i> <span class="intitule">Map</span></a></li>
+                </ul>
+             </div>
+          </nav>
+          <!-- end sidebar -->
+          <!-- right content -->
+          <div id="content">
+             <!-- topbar -->
+             <div class="topbar">
+                <nav class="navbar " >
+                   <div class="full">
+                      <div class="logo_section">
+                         <a ><img class="img-responsive" id="logoActia" src="assets/images/logo/logo-actia.png" alt="ERREUR!" /></a>
+                      </div>
+                   </div>
+                </nav>
+             </div>
+             <!-- end topbar -->
+            <div class="view jarallax" data-jarallax='{"speed":0.2}' style="background-image:url('../../../../{{act.image}}');background-repeat: no-repeat; background-size: cover;background-position: center center; color: white; height: 100%;">
+                <div class="overlay  ">
+                    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+                        <div class=" m-5 page-wrapper p-t-100p-b-100 font-robo">
+                            <div class="wrapper wrapper--w680">
+                                <div class="card card-1">
+                                    <img width="100%"[src]="act.image" alt="">
+                                    <div class="card-body">
+                                        <h2 style="text-align:center;color: rgb(35, 155, 35);font-family: Georgia,'Times New Roman', Times, serif;" class="title ">{{act.name}}</h2>
+                                        <ul style="list-style: disc;">
+                                            <li><strong style="font-size: 20px;">Description:</strong></li>
+                                            <span  style="font-size: 15px;">{{act.description}}</span><br><br>
+                                            <li><strong  style="font-size: 20px;">Technology:</strong> <br></li>
+                                            <span style="font-size: 15px;">{{act.technology}}</span>
+                                        </ul><br>
+                                    </div>
+
+                                    <!-- Le profile du chef -->
+                                 <ng-container *ngFor="let a of act.equipe, index as i" >
+                                    <div  *ngIf="act.equipe[i].role== 'Team Lead'"  class="container profile-page chef ">
+                                        <div class="row">
+                                            <div class="  col-md-12">
+                                                <div class="card1 profile-header custom1-card1 profile-card">
+                                                    <div class="body">
+                                                        <div class="row">
+                                                            <div class=" col-md-4 " style="width: auto;">
+                                                                <div class="profile-image float-md-right" id="pic" >
+                                                                    <img [src]="act.equipe[i].image" alt >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8 col-md-8 col-12 deschef">
+                                                                <h4 class="m-t-0 m-b-0">{{act.equipe[i].firstName | titlecase}} {{act.equipe[i].lastName | uppercase}}</h4>
+                                                                <span class="job_post">{{act.equipe[i].role| titlecase}}</span>
+                                                                <a title="linkidin" style="margin-left: 4%;" >
+                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                                                     <path style="color: rgb(52, 57, 200);" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                                                                 </svg>
+                                                             </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                 
+                                 </ng-container>
+                                 
+                                    <!-- End du Le profile du chef -->
+                                    
+                                     <div  class="container profile-page"   >
+                                         <div class="row" >
+                                             <!-- premier Profil -->
+                                         <ng-container *ngFor="let a of act.equipe, index as i" >
+                                             <div class="col-md-6"  *ngIf="act.equipe[i].role != 'Team Lead'"   >
+                                                 
+                                                 <div class="card1 profile-header custom1-card1 profile-card"   >
+                                                     <div class="body" >
+                                                         <div class="row">
+                                                             <div class="col-md-4" >
+                                                                 <div class="profile-image float-md-right"> 
+                                                                     <img [src]="act.equipe[i].image"  style="width: 110px; height: 140px;"> 
+                                                                 </div>
+                                                             </div>
+                                                             <div class="col-md-8">
+                                                                 <h4 class="m-t-0 m-b-0">{{act.equipe[i].firstName | titlecase}} {{act.equipe[i].lastName | uppercase}}</h4>
+                                                                 <span class="job_post">{{act.equipe[i].role| titlecase}}</span>
+                                                                 <a title="linkidin" style="margin-left: 4%;" >
+                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                                                         <path style="color: rgb(52, 57, 200);" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                                                                     </svg>
+                                                                 </a>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                             </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+
+

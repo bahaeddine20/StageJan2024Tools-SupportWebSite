@@ -1,0 +1,134 @@
+<div class="dashboard dashboard_1">
+    <div class="full_container">
+       <div class="inner_container">
+          <!-- Sidebar  -->
+          <nav id="sidebar">
+             <div class="sidebar_blog_1">
+                <div class="sidebar-header">
+                   <div class="logo_section">
+                      <a href="#"><img class="logo_icon img-responsive" src="assets/images/logo/renault-logo.png" alt="ERREUR!" /></a>
+                   </div>
+                </div>
+                <div class="sidebar_user_info">
+                   <div class="user_profle_side">
+                      <div class="user_info">
+                         <h6>Welcome To Tools</h6>
+                      </div>
+                   </div>
+                </div>
+                
+             </div>
+             <div class="sidebar_blog_2">
+                <ul class="list-unstyled components">
+                  <li><a routerLink="/mainU"><i class="fa fa-home yellow_color"></i> <span class="intitule">Home</span></a></li>
+                   <li class="active">
+                      <a href="#dashboard" data-toggle="collapse" aria-expanded="false"><i class="fa fa-object-group blue2_color"></i> <span class="intitule">Activities</span></a>
+                      <ol class="collapse list-unstyled" id="dashboard">
+                        <li *ngFor="let a of lesActivites">
+                            <a (click)="onDetails(a.id)" style="cursor: pointer;"><span class="act">> {{a.name}}</span></a>
+                         </li>
+                      </ol>
+                   </li>
+                   <li><a routerLink="/aboutUs"><i class="fa fa-clock-o orange_color"></i> <span class="intitule">About Us</span></a></li>
+                   
+                   <li><a routerLink="/maps"><i class="fa fa-map purple_color2"></i> <span class="intitule">Map</span></a></li>
+                </ul>
+             </div>
+          </nav>
+          <!-- end sidebar -->
+          <!-- right content -->
+          <div id="content">
+             <!-- topbar -->
+             <div class="topbar">
+                <nav class="navbar " >
+                   <div class="full">
+                      <div class="logo_section">
+                         <a ><img class="img-responsive" id="logoActia" src="assets/images/logo/logo-actia.png" alt="ERREUR!" /></a>
+                      </div>
+                   </div>
+                </nav>
+             </div>
+             <!-- end topbar -->
+             <!-- Start Why Choose Us Section -->
+             <div class="why-choose-section">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="section-title">Why Choose Us</h2>
+                            <p>
+                                In the dynamic world of embedded electronic engineering, choosing the right partner is crucial to ensure the success and reliability of your projects. 
+                                Actia Engineering Service stands out as a key reference in this field, providing exceptional expertise and innovative solutions. 
+                            </p>
+
+                            <div class="row my-5">
+                                <div class="col-6 col-md-6">
+                                    <div class="feature">
+                                        <div class="icon">
+                                            <i class="fa fa-wrench fa-3x red_color"></i>
+                                        </div>
+                                        <h3>Technical Expertise</h3>
+                                        <p> 
+                                            Actia Engineering Service could offer specific technical expertise in the field of embedded electronic engineering, 
+                                            especially in the automotive sector. Their expertise could be crucial if you have specific needs in this domain.  
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-6">
+                                    <div class="feature">
+                                        <div class="icon">
+                                            <i class="fa fa-star fa-3x "></i>
+                                        </div>
+                                        <h3>Compliance with Standards</h3>
+                                        <p>
+                                            If your company operates in a regulated industry, 
+                                            you may want to ensure that Actia Engineering Service complies with all applicable standards and regulations.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-6">
+                                    <div class="feature">
+                                        <div class="icon">
+                                            <i class="fa fa-group fa-3x blue2_color"></i>
+                                        </div>
+                                        <h3>Customer Service</h3>
+                                        <p>
+                                            Good customer service is often a key factor in choosing a business partner. 
+                                            If Actia Engineering Service is renowned for its attentive and responsive customer service, 
+                                            that could be a positive aspect.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-6">
+                                    <div class="feature">
+                                        <div class="icon">
+                                            <i class="fa fa-cog fa-3x purple_color2"></i>
+                                        </div>
+                                        <h3>Customized Solutions</h3>
+                                        <p>
+                                            Actia Engineering Service could offer customized solutions based on the specific needs of your company. 
+                                            The ability to tailor their services to your individual requirements can be a determining factor.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="img-wrap">
+                                <img src="assets/images/layout_img/actia.jpg" alt="Image" class="img-fluid" >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Why Choose Us Section -->
+
+          </div>
+       </div>
+    </div>
+ </div>
