@@ -36,3 +36,9 @@
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
+@media (max-width: 576px) {
+  .container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

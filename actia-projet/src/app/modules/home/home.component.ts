@@ -5,12 +5,10 @@ import { EmployeesComponent } from '../crud/employees/employees.component';
 import { EmployeeService } from '../../_services/employees/employee.service';
 import { TeamService } from '../../_services/teams/team.service';
 import { TeamsComponent } from '../crud/teams/teams.component';
-import { FileDownloadService } from '../../_services/file/file-download.service';
-import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { TranslationModule } from '../../translation/translation.module';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { LanguageService } from '../../_services/language/language.service';
+import { TranslationModule } from '../../translation/translation.module';
 
 @Component({
   selector: 'app-home',

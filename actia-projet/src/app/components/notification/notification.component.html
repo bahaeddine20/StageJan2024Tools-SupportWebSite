@@ -1,0 +1,10 @@
+<ul>
+    <li *ngFor="let notification of notifications">
+      <strong>{{ notification.name }}</strong>
+      <p>{{ notification.reason }}</p>
+      <p>Status: {{ notification.status }}</p>
+      <button (click)="acceptRequest(notification.id)">Accepter</button>
+      <button (click)="rejectRequest(notification.id)">Rejeter</button>
+    </li>
+  </ul>
+  

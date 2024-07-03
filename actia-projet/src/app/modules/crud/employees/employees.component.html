@@ -2,7 +2,17 @@
   <h2 class="team-section-title">{{ 'MEET_OUR_TEAM' | translate }} <strong>{{ team?.name }}</strong></h2>
   <div class="team-description">
     <h3>{{ 'TEAM_NAME' | translate }} : <strong>{{ team?.name }}</strong></h3>
-    <p><strong>{{ 'DESCRIPTION' | translate }} :</strong> {{ team?.description }}</p>
+    <p class="team-member-bio">
+      <strong>{{ 'DESCRIPTION' | translate }} :</strong>
+      <span *ngIf="!team.showFullBio && team.description.length > 100">
+        {{ team.description.slice(0, 100) }}
+        <a href="#" (click)="toggleBio(team, $event)">{{ 'READ_MORE' | translate }}</a>
+      </span>
+      <span *ngIf="team.showFullBio">
+        {{ team.description }}
+        <a href="#" (click)="toggleBio(team, $event)">{{ 'READ_LESS' | translate }}</a>
+      </span>
+    </p>    
     <p><strong>{{ 'TECHNOLOGIES_USED' | translate }} :</strong> {{ team?.technologie }}</p>
   </div>
   <div class="team-filter">

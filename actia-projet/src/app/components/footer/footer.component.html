@@ -58,9 +58,9 @@
 <div class="footer-bottom">
   <p [innerHTML]="'FOOTER.COPYRIGHT' | translate"></p>
   <div class="language-selector">
+    <img [src]="selectedFlag" [alt]="selectedLanguage" class="flag-icon">
     <select (change)="switchLanguage($any($event.target).value)">
       <option *ngFor="let language of languages" [value]="language.value">{{ language.name }}</option>
     </select>
-    <img [src]="selectedFlag" [alt]="selectedLanguage" class="flag-icon">
   </div>
 </div>

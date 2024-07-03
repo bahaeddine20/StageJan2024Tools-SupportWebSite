@@ -19,11 +19,11 @@ ul, ol {
 
 // Styles de la barre d'élévation
 .mat-elevation-z3 {
-  background-color: #bdd248;
+  background-color: $primary-color;
   color: white; 
   position: relative;
   z-index: 5;
-  font-size: 0.2rem;
+  font-size: 1rem;
   padding: 5px;
   border-bottom: 5px solid #BDD248;
 }
@@ -51,100 +51,128 @@ mat-sidenav-container {
 mat-sidenav, mat-sidenav-content {
   transition: all 500ms ease-in-out;
 }
-.header-container { 
-// Toolbar
-.mat-toolbar {
-  background-color: $primary-color;
-  color: white; 
-  position: sticky; // Make the header stick to the top
-  top: 0; // Stick to the very top of the viewport
-  z-index: 1000; // Higher than the content to remain on top
-  .mat-toolbar-row {
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 16px;
-    button {
-      @include button-styles;
-    }
-    span {
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-    img{
-        height: 60px; /* Adjust the height as needed */
-        margin-right: 5%; /* Space between the logo and the rest of the toolbar content */
-        
-    }
-    ul {
+
+// Styles spécifiques pour les grands écrans
+@media (min-width: 700px) {
+  .header-container { 
+    .mat-toolbar {
+      background-color: $primary-color;
+      color: white; 
+      position: sticky; // Make the header stick to the top
+      top: 0; // Stick to the very top of the viewport
+      z-index: 1000; // Higher than the content to remain on top
       display: flex;
       align-items: center;
-      li {
-        margin-right: 20px;
+      justify-content: start; // Align items at the start of the toolbar
+    
+      .mat-toolbar-row {
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 16px;
+        
         button {
           @include button-styles;
         }
+    
+        span {
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+    
+        img {
+          margin-right: 5%; /* Space between the logo and the rest of the toolbar content */
+        }
+    
+        .desktop-buttons {
+          display: flex;
+          align-items: center;
+    
+          li {
+            margin-right: 20px;
+    
+            button {
+              @include button-styles;
+            }
+          }
+        }
+    
+        h1 {
+          flex-grow: 1;
+          text-align: left;
+          font-family: 'Roboto', sans-serif; // Exemple de police élégante
+          font-weight: 500; // Poids de la police
+          color: #ffffff; // Couleur du texte
+        }
       }
     }
-    h1 {
-      flex-grow: 1;
-      text-align: left;
-      font-family: 'Roboto', sans-serif; // Exemple de police élégante
-      font-weight: 500; // Poids de la police
-      font-size: 24px; // Taille de la police
-      color: #ffffff; // Couleur du texte
-    }
+  }
+  .mobile-menu-button {
+    display: none;
   }
 }
-}
 
-// Classe pour masquer le contenu de la page principale lorsque la barre latérale est ouverte
-.show-sidebar-content {
-  overflow: hidden;
-}
+// Media query to hide desktop buttons and show mobile menu button on small screens
+@media (max-width: 700px) {
+  .desktop-buttons {
+    display: none;
+  }
 
-// Page blanche semi-transparente
-.white-page {
-  position: fixed;
+  .mobile-menu-button {
+    display: inline-block;
+    padding-left: 30px;
+    li{
+      margin-right: 20px;
+    }
+  }
+
+  .toolbar-logo {
+    height: 20px;
+    margin-right: 2%;
+  }
+
+  .toolbar-title {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .toolbar-buttons ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+@media (max-width: 400px) {
+  .desktop-buttons {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-block;
+  }
+
+  .toolbar-logo {
+    height: 20px;
+    margin-right: 3%;
+  }
+
+  .toolbar-title {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .toolbar-buttons ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+.notification-badge {
+  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.5); /* Couleur blanche semi-transparente */
-  z-index: 999; /* Assurez-vous que la page blanche est au-dessus de tout le reste */
-}
-.lock-tabs {
-  ul {
-    li {
-      button {
-        pointer-events: none; /* Désactive les interactions des boutons */
-        opacity: 0.5; /* Rend les boutons semi-transparents */
-      }
-    }
-  }
-}
-.moving-link {
-  position: fixed; // Fixed position to keep it in view
-  top: 0; // Position it at the top
-  right: 0; // Position it on the right
-  z-index: 1001; // Above the header
-  background-color: #bdd248; // Background color
-  padding: 10px; // Padding around the text
-  border-bottom-left-radius: 10px; // Rounded corner
-}
-.header-container {
-  .mat-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: start; // Align items at the start of the toolbar
-
-    .toolbar-logo {
-      height: 60px; // Adjust the height of the logo as needed
-      margin-right: 100px; // Add some space between the logo and the title
-    }
-
-    h1 {
-      flex-grow: 1; // Allow the title to take up the remaining space
-      text-align: center; // Center the title
-    }
-  }
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 12px;
 }

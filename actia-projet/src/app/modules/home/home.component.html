@@ -35,24 +35,26 @@
   </section>
 </div>
 
+
+
 <div class="container">
   <div class="row">
-    <div class="col-md-3 col-sm-6">
+    <div class="col-md-3">
       <div class="panel post">
         <a href="javascript:void();"><span>8 </span>{{ 'POSTS' | translate }}</a>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6">
+    <div class="col-md-3">
       <div class="panel users">
         <a href="javascript:void();"><span>{{ teamCount }}</span> {{ 'TEAMS' | translate }}</a>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6">
+    <div class="col-md-3">
       <div class="panel page">
         <a href="javascript:void();"><span>5 </span>{{ 'PAGES' | translate }}</a>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6">
+    <div class="col-md-3">
       <div class="panel user">
         <a href="javascript:void();"><span>{{ employeeCount }}</span> {{ 'EMPLOYEES' | translate }}</a>
       </div>
@@ -68,19 +70,25 @@
 </div>
 <mat-divider></mat-divider>
 <div class="wrapper">
-  <div class="background-section">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1 class="welcome">{{ 'FIND_OUT_MORE' | translate }}</h1>
-      <div class="typing-effect">
-        <p class="top-ph">
-          {{ 'ACTIVITY' | translate }} <br>
-          <a href="https://lab-engineering.actia.tn/en/home/" class="btn">{{ 'FIND_OUT_MORE_LINK' | translate }}</a>
-        </p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="background-section text-center">
+          <div class="overlay"></div>
+          <div class="content">
+            <h1 class="welcome">{{ 'FIND_OUT_MORE' | translate }}</h1>
+            <div class="typing-effect">
+              <p class="top-ph">
+                {{ 'ACTIVITY' | translate }} <br>
+                <a href="https://lab-engineering.actia.tn/en/home/" class="btn">{{ 'FIND_OUT_MORE_LINK' | translate }}</a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
+  
   <section class="section-services">
     <div class="content">
       <h2 class="head-name" id="services">{{ 'OUR_VALUES' | translate }}</h2>
@@ -89,154 +97,153 @@
 
   <div class="wraper-block">
     <div class="wraper-icon-block">
-      <div class="far fa-lightbulb"></div>
-      <h3>{{ 'INNOVATION' | translate }}</h3>
+        <div class="far fa-lightbulb"></div>
+        <h3>{{ 'INNOVATION' | translate }}</h3>
     </div>
     <div class="wraper-icon-block">
-      <i aria-hidden="true" class="fas fa-eye"></i>
-      <h3>{{ 'INDEPENDENCE' | translate }}</h3>
+        <i aria-hidden="true" class="fas fa-eye"></i>
+        <h3>{{ 'INDEPENDENCE' | translate }}</h3>
     </div>
     <div class="wraper-icon-block">
-      <div class="fas fa-check"></div>
-      <h3>{{ 'QUALITY' | translate }}</h3>
+        <div class="fas fa-check"></div>
+        <h3>{{ 'QUALITY' | translate }}</h3>
     </div>
     <div class="wraper-icon-block">
-      <div class="fas fa-hand-pointer"></div>
-      <h3>{{ 'REACTIVITY' | translate }}</h3>
+        <div class="fas fa-hand-pointer"></div>
+        <h3>{{ 'REACTIVITY' | translate }}</h3>
+    </div>
+</div>
+<div class="wraper-portfolio">
+  <div class="portfolio">
+    <h2 class="head-name" id="portfolio">{{ 'OUR_ACTIVITIES' | translate }}</h2>
+  </div>
+  <div class="port-top">
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/mechanical-combined-test/">
+        <div class="top-image lef-top"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>Mechanical & Combined</h3>
+        <p>#VIBRATION #ENDURANCE #COMBINE #CABLE</p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/micro-section-test/">
+        <div class="top-image middle-top"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>Micro-section</h3>
+        <p>#PCB #PCBA</p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/corrosion-chemical-testing/">
+        <div class="top-image right-top"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>Corrosion & Chemical</h3>
+        <p>#FOG #SALIN #CHEMICALS</p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/pcb-pcba-testing/">
+        <div class="top-image left-bottom"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>PCB & PCBA</h3>
+        <p>#TRACTION #COMPRESSION #INSPECTION X-RAY</p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/emc-electrical-testing//">
+        <div class="top-image middle-bottom"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>CEM & Electronics</h3>
+        <p>#CEM #CIVIL #AUTOMOBILE #ELECTRIC STRENGTH #INSULATION RESISTANCE</p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/testing-support/">
+        <div class="top-image right-bottom"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>Support</h3>
+        <p>#SUPPORT<br></p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/test-on-request/">
+        <div class="top-image scnd-left-bottom"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>Tests on request</h3>
+        <p>#PERSONALIZATION</p>
+      </div>
+    </div>
+    <div class="wraper-top">
+      <a href="https://lab-engineering.actia.tn/en/solutions-en/climate-and-thermal-testing/">
+        <div class="top-image scnd-right-bottom"></div>
+      </a>
+      <div class="wraper-port-text">
+        <h3>Air Conditioning & Heating</h3>
+        <p>#TEMPERATURE #VARIATION #HUMIDITY #COMBINE</p>
+      </div>
     </div>
   </div>
 
-  <div class="wraper-portfolio">
-    <div class="portfolio">
-      <h2 class="head-name" id="portfolio">{{ 'OUR_ACTIVITIES' | translate }}</h2>
+  <div class="wraper-about-us">
+    <div class="wraper-about">
+      <h2 class="head-name" id="about">{{ 'ABOUT_US' | translate }}</h2>
+      <p class="proin">{{ 'ACTIA ES THROUGHOUT THE YEARS' | translate }}</p>
     </div>
-    <div class="port-top">
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/mechanical-combined-test/">
-          <div class="top-image lef-top"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>Mechanical & Combined</h3>
-          <p>#VIBRATION #ENDURANCE #COMBINE #CABLE</p>
+    <div class="july">
+      <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
+        <div class="about-left">
+          <div class="text-about-us">
+            <h3 [innerHTML]="'HUMBLE_BEGINNING' | translate"></h3>
+            <p>{{ 'HUMBLE_BEGINNING_DESC' | translate }}</p>
+          </div>
+          <div class="circle-img-july"></div>
         </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/micro-section-test/">
-          <div class="top-image middle-top"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>Micro-section</h3>
-          <p>#PCB #PCBA</p>
-        </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/corrosion-chemical-testing/">
-          <div class="top-image right-top"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>Corrosion & Chemical</h3>
-          <p>#FOG #SALIN #CHEMICALS</p>
-        </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/pcb-pcba-testing/">
-          <div class="top-image left-bottom"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>PCB & PCBA</h3>
-          <p>#TRACTION #COMPRESSION #INSPECTION X-RAY</p>
-        </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/emc-electrical-testing//">
-          <div class="top-image middle-bottom"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>CEM & Electronics</h3>
-          <p>#CEM #CIVIL #AUTOMOBILE #ELECTRIC STRENGTH #INSULATION RESISTANCE</p>
-        </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/testing-support/">
-          <div class="top-image right-bottom"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>Support</h3>
-          <p>#SUPPORT<br></p>
-        </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/test-on-request/">
-          <div class="top-image scnd-left-bottom"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>Tests on request</h3>
-          <p>#PERSONALIZATION</p>
-        </div>
-      </div>
-      <div class="wraper-top">
-        <a href="https://lab-engineering.actia.tn/en/solutions-en/climate-and-thermal-testing/">
-          <div class="top-image scnd-right-bottom"></div>
-        </a>
-        <div class="wraper-port-text">
-          <h3>Air Conditioning & Heating</h3>
-          <p>#TEMPERATURE #VARIATION #HUMIDITY #COMBINE</p>
-        </div>
-      </div>
+      </a>
     </div>
-
-    <div class="wraper-about-us">
-      <div class="wraper-about">
-        <h2 class="head-name" id="about">{{ 'ABOUT_US' | translate }}</h2>
-        <p class="proin">{{ 'ACTIA ES THROUGHOUT THE YEARS' | translate }}</p>
-      </div>
-      <div class="july">
-        <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
-          <div class="about-left">
-            <div class="text-about-us">
-              <h3 [innerHTML]="'HUMBLE_BEGINNING' | translate"></h3>
-              <p>{{ 'HUMBLE_BEGINNING_DESC' | translate }}</p>
-            </div>
-            <div class="circle-img-july"></div>
+    <div class="january">
+      <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
+        <div class="about-right">
+          <div class="text-about-us">
+            <h3 [innerHTML]="'STARTUP_BATTLES' | translate"></h3>
+            <p>{{ 'STARTUP_BATTLES_DESC' | translate }}</p>
           </div>
-        </a>
-      </div>
-      <div class="january">
-        <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
-          <div class="about-right">
-            <div class="text-about-us">
-              <h3 [innerHTML]="'STARTUP_BATTLES' | translate"></h3>
-              <p>{{ 'STARTUP_BATTLES_DESC' | translate }}</p>
-            </div>
-            <div class="circle-img-january"></div>
+          <div class="circle-img-january"></div>
+        </div>
+      </a>
+    </div>
+    <div class="december">
+      <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
+        <div class="about-left">
+          <div class="text-about-us">
+            <h3 [innerHTML]="'EMBRACING_GROWTH' | translate"></h3>
+            <p>{{ 'EMBRACING_GROWTH_DESC' | translate }}</p>
           </div>
-        </a>
-      </div>
-      <div class="december">
-        <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
-          <div class="about-left">
-            <div class="text-about-us">
-              <h3 [innerHTML]="'EMBRACING_GROWTH' | translate"></h3>
-              <p>{{ 'EMBRACING_GROWTH_DESC' | translate }}</p>
-            </div>
-            <div class="circle-img-december"></div>
+          <div class="circle-img-december"></div>
+        </div>
+      </a>
+    </div>
+    <div class="february">
+      <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
+        <div class="about-right">
+          <div class="text-about-us">
+            <h3 [innerHTML]="'NOW' | translate"></h3>
+            <p>{{ 'NOW_DESC' | translate }}</p>
           </div>
-        </a>
-      </div>
-      <div class="february">
-        <a href="https://lab-engineering.actia.tn/en/actia-engineering-services-en/">
-          <div class="about-right">
-            <div class="text-about-us">
-              <h3 [innerHTML]="'NOW' | translate"></h3>
-              <p>{{ 'NOW_DESC' | translate }}</p>
-            </div>
-            <div class="circle-img-february"></div>
-          </div>
-        </a>
-      </div>
-      <div class="circle-img-end">
-        <p [innerHTML]="'OUR_STORY_CONTINUES' | translate"></p>
-      </div>
+          <div class="circle-img-february"></div>
+        </div>
+      </a>
+    </div>
+    <div class="circle-img-end">
+      <p [innerHTML]="'OUR_STORY_CONTINUES' | translate"></p>
     </div>
   </div>
+</div>
 </div>

@@ -318,4 +318,34 @@ export class LeaveRequestComponent implements OnInit {
   handleEvent(action: string, event: CalendarEvent): void {
     // Add your modal handling code here
   }
+
+  exportRequestsToExcel() {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    const url = 'http://localhost:8080/exportRequestsToExcel';
+    
+    this.http.get(url, { responseType: 'blob', headers })
+      .subscribe(
+        (response: Blob) => {
+          this.downloadFile(response);
+        },
+        (error) => {
+          console.error('Error downloading the file', error);
+          alert('Failed to download the file. Please try again later.');
+        }
+      );
+  }
+
+private downloadFile(blob: Blob) {
+    const downloadLink = document.createElement('a');
+    const url = window.URL.createObjectURL(blob);
+    downloadLink.href = url;
+    downloadLink.download = 'requests.xlsx';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    window.URL.revokeObjectURL(url);
+}
+
 }

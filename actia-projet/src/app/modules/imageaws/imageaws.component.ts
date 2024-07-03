@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TokenStorageService } from '../../_services/loginService/token-storage.service';
-import { TranslationModule } from '../../translation/translation.module';
 import { LanguageService } from '../../_services/language/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from '../../translation/translation.module';
 
 @Component({
   selector: 'app-imageaws',

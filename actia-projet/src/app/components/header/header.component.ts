@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { TokenStorageService } from '../../_services/loginService/token-storage.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationModule } from '../../translation/translation.module';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { NotificationComponent } from '../notification/notification.component';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -22,7 +25,8 @@ import { TranslationModule } from '../../translation/translation.module';
     SidenavComponent,
     CommonModule,
     RouterModule,
-    TranslationModule
+    TranslationModule,
+    NotificationComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -38,10 +42,18 @@ export class HeaderComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   isSuccessful = false;
+  isMobileDevice = false;
   constructor(private tokenStorageService: TokenStorageService,  
-    private router: Router, private translate: TranslateService ) {
-      translate.setDefaultLang('en');
+    private router: Router, private translate: TranslateService,
+    private breakpointObserver: BreakpointObserver ) {
+    translate.setDefaultLang('en');
     translate.use('en');
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape
+    ]).subscribe(result => {
+      this.isMobileDevice = result.matches;
+    });
      }
      switchLanguage(language: string) {
       this.translate.use(language);

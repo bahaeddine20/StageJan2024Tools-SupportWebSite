@@ -56,13 +56,13 @@
         <thead>
           <tr>
             <th></th>
-            <th>{{ 'LEAVE_REQUEST.NAME' | translate }}</th>
-            <th>{{ 'LEAVE_REQUEST.START_DATE' | translate }}</th>
-            <th>{{ 'LEAVE_REQUEST.END_DATE' | translate }}</th>
-            <th>{{ 'LEAVE_REQUEST.YOUR_EMAIL' | translate }}</th>
-            <th>{{ 'LEAVE_REQUEST.REASON' | translate }}</th>
-            <th>{{ 'LEAVE_REQUEST.STATUS' | translate }}</th>
-            <th>{{ 'LEAVE_REQUEST.ACTIONS' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.NAME' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.START_DATE' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.END_DATE' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.YOUR_EMAIL' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.REASON' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.STATUS' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.ACTIONS' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -89,6 +89,9 @@
         </tbody>
       </table>
     </div>
+    <div class="button-container">
+      <button class="export-button" mat-raised-button color="primary" (click)="exportRequestsToExcel()">Export Requests to Excel</button>
+    </div>    
     <div class="container mt-3">
       <div class="row text-center">
         <div class="col-md-4">

@@ -183,11 +183,50 @@
       align-items: center;
   
       .footer-section {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        text-align: center;
   
         &:last-child {
           margin-bottom: 0;
         }
       }
     }
-  }
+    .language-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Ajoute cette ligne pour centrer horizontalement */
+      gap: 0.5rem;
+    
+      select {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        background-color: #f9f9f9;
+        font-size: 1rem;
+        color: #333;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    
+        &:hover, &:focus {
+          border-color: #007bff;
+          background-color: #fff;
+        }
+    
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+      }
+    
+      .flag-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+    
+    }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
+import { TokenStorageService } from './token-storage.service';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
@@ -12,7 +13,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
+
   // Ajouter getUserId pour récupérer l'ID de l'utilisateur connecté
   getUserId(): number | null {
     const user = localStorage.getItem('currentUser');
@@ -22,12 +24,21 @@ export class AuthService {
     }
     return null;
   }
-  login(usernameOrEmail: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
-      usernameOrEmail,
-      password
-    }, httpOptions);
-  }
+// Dans votre service d'authentification Angular
+login(usernameOrEmail: string, password: string): Observable<any> {
+  return this.http.post<any>(AUTH_API + 'signin', { usernameOrEmail, password }).pipe(
+    tap(response => {
+      if (response.token) {
+        this.tokenStorageService.saveToken(response.token);
+      }
+    })
+  );
+}
+
+isAuthenticated(): boolean {
+  return this.tokenStorageService.isLoggedIn();
+}
+
 
   register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {

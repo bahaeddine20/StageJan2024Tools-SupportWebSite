@@ -130,6 +130,10 @@ export class EmployeesComponent implements OnInit {
       this.members = data; // Stocker les membres de l'équipe dans la variable 'members'
     });
   }
+  toggleBio(member: any, event: Event) {
+    event.preventDefault();
+    member.showFullBio = !member.showFullBio;
+  }
   ngOnInit(): void {
     this.loadMembers();
     this.dataSource = new MatTableDataSource();

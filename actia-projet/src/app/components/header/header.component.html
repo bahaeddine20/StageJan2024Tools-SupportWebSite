@@ -1,13 +1,22 @@
 <header class="header-container">
   <mat-toolbar class="mat-elevation-z3">
     <mat-toolbar-row>
-      <button mat-icon-button (click)="toggleMenu()">
+      <button mat-icon-button (click)="toggleMenu()" class="menu-button" *ngIf="!isMobileDevice">
         <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
       </button>
       <img src="assets/images/logo-actia1.png" alt="ACTIA" class="toolbar-logo">
       <h1>{{ 'HEADER.TITLE' | translate }}</h1>
-      <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
-        <ul fxLayout="row" fxLayoutGap="20px">
+      <div class="toolbar-buttons" fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+        <!-- Icons for larger screens -->
+        <ul class="desktop-buttons" fxLayout="row" fxLayoutGap="20px">
+          <li>
+            <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+              <mat-icon>notifications</mat-icon>
+            </button>
+            <mat-menu #notificationMenu="matMenu">
+              <app-notification></app-notification>
+            </mat-menu>
+          </li>
           <li>
             <button mat-icon-button>
               <mat-icon>settings</mat-icon>
@@ -38,10 +47,29 @@
             </mat-menu>
           </li>
         </ul>
+        <!-- Menu button for mobile screens -->
+        <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobileMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #mobileMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>help_outline</mat-icon>
+            <span>Help</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="menu">
+            <mat-icon>person_outline</mat-icon>
+            <span>Profile</span>
+          </button>
+        </mat-menu>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
 </header>
+
 <mat-sidenav-container>
   <mat-sidenav opened [mode]="isCollapsed ? 'side' : 'over'" [style.width]="isCollapsed ? '65px' : '250px'" [ngClass]="!isCollapsed ? 'expanded' : ''">
     <app-sidenav [isCollapsed]="isCollapsed"></app-sidenav>
@@ -52,3 +80,4 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

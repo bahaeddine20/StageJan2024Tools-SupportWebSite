@@ -27,9 +27,9 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { TeamDialogComponent } from './team-dialog/team-dialog.component';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog.component';
-import { TranslationModule } from '../../../translation/translation.module';
 import { LanguageService } from '../../../_services/language/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from '../../../translation/translation.module';
 
 @Component({
   selector: 'app-teams',
