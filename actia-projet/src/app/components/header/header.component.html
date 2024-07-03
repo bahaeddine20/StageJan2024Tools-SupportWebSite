@@ -9,9 +9,10 @@
       <div class="toolbar-buttons" fxFlex fxLayout="row" fxLayoutAlign="flex-end">
         <!-- Icons for larger screens -->
         <ul class="desktop-buttons" fxLayout="row" fxLayoutGap="20px">
-          <li>
+          <li class="notification-icon">
             <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
               <mat-icon>notifications</mat-icon>
+              <span *ngIf="notifications.length" class="notification-badge">{{ notifications.length }}</span>
             </button>
             <mat-menu #notificationMenu="matMenu">
               <app-notification></app-notification>

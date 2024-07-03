@@ -1,10 +1,9 @@
-<ul>
-    <li *ngFor="let notification of notifications">
-      <strong>{{ notification.name }}</strong>
-      <p>{{ notification.reason }}</p>
-      <p>Status: {{ notification.status }}</p>
-      <button (click)="acceptRequest(notification.id)">Accepter</button>
-      <button (click)="rejectRequest(notification.id)">Rejeter</button>
-    </li>
-  </ul>
-  
+<ul class="notification-list">
+  <li *ngFor="let notification of notifications" class="notification-item">
+    <div class="notification-content">
+      <strong class="notification-name">{{ notification.name }}</strong>
+      <p class="notification-reason"><b>Reason:</b> {{ notification.reason }}</p>
+      <p class="notification-status"><b>Status:</b> {{ notification.status }}</p>
+    </div>
+  </li>
+</ul>

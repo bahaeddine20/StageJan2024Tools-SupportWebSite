@@ -277,5 +277,10 @@ public class FormSubmissionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/notifications")
+    public ResponseEntity<List<Request>> getAllNotifications() {
+        List<Request> notifications = emailSenderService.getAllNotifications(); // Utilisez votre service pour récupérer les notifications
+        return ResponseEntity.ok(notifications);
+    }
 
 }

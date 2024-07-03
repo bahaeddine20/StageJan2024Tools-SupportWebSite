@@ -110,5 +110,7 @@ public class EmailService {
     public void deleteMultipleAuthorizationRequests(List<Long> ids) {
         authorizationRequestRepository.deleteByIdIn(ids);
     }
-
+    public List<Request> getAllNotifications() {
+        return rR.findAll();
+    }
 }

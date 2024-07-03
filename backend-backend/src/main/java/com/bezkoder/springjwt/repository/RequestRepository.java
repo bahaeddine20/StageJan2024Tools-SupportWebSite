@@ -12,4 +12,5 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     void deleteByIdIn(List<Long> ids);
 
     List<Request> findByStatus(String status);
+
 }
