@@ -77,7 +77,6 @@ export class EmployeesComponent implements OnInit {
     'action',
   ];
   currentTeamId: number | null = null;
-
   faLinkedin = faLinkedin;
   roles: string[] = [];
   isLoggedIn = false;

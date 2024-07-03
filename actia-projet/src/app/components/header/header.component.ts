@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslationModule } from '../../translation/translation.module';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { NotificationComponent } from '../notification/notification.component';
+import { RequestService } from '../../_services/Request/request.service';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +33,7 @@ import { NotificationComponent } from '../notification/notification.component';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+  notifications: Notification[] = [];
   title = 'material-responsive-sidenav';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -45,7 +47,8 @@ export class HeaderComponent implements OnInit {
   isMobileDevice = false;
   constructor(private tokenStorageService: TokenStorageService,  
     private router: Router, private translate: TranslateService,
-    private breakpointObserver: BreakpointObserver ) {
+    private breakpointObserver: BreakpointObserver,
+    private requestService: RequestService) {
     translate.setDefaultLang('en');
     translate.use('en');
     this.breakpointObserver.observe([
@@ -70,6 +73,17 @@ export class HeaderComponent implements OnInit {
 
       this.username = user.username;
     }
+    this.fetchNotifications();
+  }
+  fetchNotifications(): void {
+    this.requestService.getNotifications().subscribe(
+      (notifications) => {
+        this.notifications = notifications;
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
   }
   toggleMenu() {
       this.sidenav.open(); 

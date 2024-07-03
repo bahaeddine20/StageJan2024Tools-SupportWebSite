@@ -37,7 +37,7 @@
       "QUALITY": "QUALITY",
       "REACTIVITY": "REACTIVITY",
       "OUR_ACTIVITIES": "Our activities...",
-      "ABOUT_US": "About Us",
+      "ABOUT_US": "About ACTIA",
       "HUMBLE_BEGINNING": "From 2005 to 2009<br>Our Humble Beginning",
       "HUMBLE_BEGINNING_DESC": "ACTIA ES was created in 2005 with 5 employees and is one of the 4 entities of the ACTIA group in Tunisia. Until 2009 we had less than 100 employees",
       "STARTUP_BATTLES": "From 2009 to 2012<br>Facing Startup Battles",
@@ -202,7 +202,9 @@
         "LEAVING_TIME_PAST": "Leaving time cannot be in the past.",
         "LEAVING_TIME_RANGE": "Leaving time must be between 09:00 and 17:00.",
         "REASON_REQUIRED": "Reason is required."
-      }
+      },
+      "OPEN_FORM":"Open KPI Form",
+      "OPEN_SHAREPOINT":"Open SharePoint"
 }
   
   

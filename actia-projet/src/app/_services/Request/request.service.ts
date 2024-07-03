@@ -20,6 +20,13 @@ export class RequestService {
     // Notice that the body is being sent as an option in the second parameter for HttpClient.delete
     return this.http.delete(`${this.baseUrl}/deleteRequests`, { headers, body: ids });
   }
+  getNotifications(): Observable<Notification[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.get<Notification[]>(`${this.baseUrl}/notifications`, { headers });
+  }
   /*loadRequests(page: number, size: number): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem('token')

@@ -20,6 +20,7 @@ import { TranslationModule } from '../../translation/translation.module';
 })
 export class ImageawsComponent implements OnInit {
   imageUrls: string[] = [];
+  showForm = false;
   sprintName!: string;
   startDate!: string;
   endDate!: string;
@@ -113,5 +114,8 @@ export class ImageawsComponent implements OnInit {
     if (roles) {
       this.roles = JSON.parse(roles);
     }
+  }
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }
