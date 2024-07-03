@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+// src/styles/fullcalendar.scss
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@mixin responsive-text {
+    font-size: 14px;
+    @media (min-width: 600px) {
+      font-size: 16px;
+    }
+    @media (min-width: 1024px) {
+      font-size: 18px;
+    }
+  }
+  
+  .header-text {
+    @include responsive-text;
+  }
+  
+  .footer-text {
+    @include responsive-text;
+  }
+  

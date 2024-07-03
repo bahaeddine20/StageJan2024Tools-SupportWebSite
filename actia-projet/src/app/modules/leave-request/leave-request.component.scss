@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
+
+html {
+  position: relative; /* Changed 'relative' from 'relative!important' */
+  overflow-x: hidden; /* Removed '!important' */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: #324e63;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.wrapper {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  padding: 50px 20px;
+  padding-top: 100px;
+  display: flex;
+  /* Removed duplicate 'display: flex;' */
+  @media screen and (max-width: 768px) {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 100px;
+  }
+}
+
+.form-card {
+  width: 100%;
+  min-height: 460px;
+  margin: auto;
+  box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
+  background: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  position: relative;
+
+  &.active {
+    .form-card__cnt {
+      filter: blur(6px);
+    }
+
+    .form-card-message,
+    .form-card__overlay {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: .1s;
+    }
+
+    .form-card-form {
+      transform: none;
+      transition-delay: .1s;
+    }
+  }
+  &__name {
+    font-weight: 700;
+    font-size: 24px;
+    color: #BDD248;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  &__cnt {
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px 20px;
+    padding-bottom: 40px;
+    transition: all .3s;
+  }
+
+
+  &__txt {
+    font-size: 18px;
+    font-weight: 500;
+    color: #324e63;
+    margin-bottom: 15px;
+
+    strong {
+      //color: #ff2846;
+      font-weight: 700;
+    }
+
+  }
+
+  &-loc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+
+    &__icon {
+      display: inline-flex;
+      font-size: 27px;
+      margin-right: 10px;
+      //color: #6944ff;
+    }
+
+  }
+
+  &-inf {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 35px;
+
+    &__item {
+      padding: 10px 35px;
+      min-width: 150px;
+
+      @media screen and (max-width: 768px) {
+        padding: 10px 20px;
+        min-width: 120px;
+      }
+
+    }
+
+    &__title {
+      font-weight: 700;
+      font-size: 27px;
+      //color: #6944ff;
+      color: #324e63;
+    }
+
+    &__txt {
+      font-weight: 500;
+      margin-top: 7px;
+    }
+
+  }
+
+  &-social {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &__item {
+      display: inline-flex;
+      width: 55px;
+      height: 55px;
+      margin: 15px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: #405de6;
+      box-shadow: 0px 7px 30px rgba(43,98,169,0.5);
+      position: relative;
+      font-size: 21px;
+      flex-shrink: 0;
+      transition: all .3s;
+
+      @media screen and (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+      }
+
+      @media screen and (min-width: 768px){
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .icon-font {
+      display: inline-flex;
+    }
+
+  }
+
+  &-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    @media screen and (max-width: 576px) {
+      flex-wrap: wrap;
+    }
+
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    margin: 15px 35px;
+    padding: 15px 40px;
+    min-width: 201px;
+    border-radius: 50px;
+    min-height: 55px;
+    color: #fff;
+    cursor: pointer;
+    backface-visibility: hidden;
+    transition: all .3s;
+
+    @media screen and (max-width: 768px) {
+      min-width: 170px;
+      margin: 15px 25px;
+    }
+
+    @media screen and (max-width: 576px) {
+      min-width: inherit;
+      margin: 0;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 300px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &:focus {
+      outline: none!important;
+    }
+
+    @media screen and (min-width: 768px) {
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.button--blue {
+      background: linear-gradient(45deg, #BDD248 , #d1e07f); // Changed background color to #BDD248
+      box-shadow: 0px 4px 30px #d7e491;
+    
+      &:hover {
+        box-shadow: 0px 7px 30px #cadb6d;
+      }
+    }
+    
+    &.button--gray {
+      box-shadow: none;
+      background: #dcdcdc;
+      color: #142029;
+    }
+
+  }
+}
+.form {
+  &-form {
+    box-shadow: 0 4px 30px rgba(15, 22, 56, 0.35);
+    max-width: 80%;
+    margin: 20px 20px 20px 20px;
+    height: 100%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 35px;
+    transform: scale(0.8);
+    position: relative;
+    z-index: 3;
+    transition: all 0.3s;
+
+    @media screen and (max-width: 768px) {
+      max-width: 90%;
+      height: auto;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 20px;
+    }
+
+    &__bottom {
+      justify-content: space-between;
+      display: flex;
+
+      @media screen and (max-width: 576px) {
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+.form-control {
+  border: 1px solid #ced4da; // Border color
+  border-radius: 0.25rem; // Border radius
+  padding: 0.375rem 0.75rem; // Padding
+  font-size: 1rem; // Font size
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; // Smooth transition
+  width: 100%; // Ensure the input takes the full width
+
+  &:focus {
+    border-color: #80bdff; // Border color on focus
+    outline: 0; // Remove default focus outline
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); // Add focus shadow
+  }
+}
+/* Custom Styles for Leave Request Component */
+.table-custom {
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.table-custom th, .table-custom td {
+  padding: 12px 15px;
+  vertical-align: middle; /* Aligns content vertically center */
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-custom th {
+  background-color: #f8f9fa; /* Light grey background for a softer look */
+  color: #333;
+}
+
+/* Base button styling for uniformity */
+.custom-btn {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 0.25rem;
+  color: #fff;
+  border: none; /* Ensures no borders are visible */
+  background: transparent; /* Background to transparent to focus on icons */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Styling for the Select All button */
+.select-all-btn {
+  background-color: #BDD248; /* Green for positive actions like selecting all */
+}
+.select-all-btn:hover, .select-all-btn:focus {
+  background-color: #BDD248;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+}
+
+.card-custom {
+  padding: 20px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border: 1px solid #dee2e6;
+}
+.delete-selected-btn {
+  margin-left: 10px;
+  background-color: #9a9c9c; /* Red for deletion actions */
+}
+.delete-selected-btn:hover, .delete-selected-btn:focus {
+  background-color: #9a9c9c;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.24);
+}
+
+/* Card styling */
+.card-custom {
+  padding: 20px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border:  #dee2e6;
+}
+
+/* Message when no requests are found */
+.no-requests {
+  font-size: 20px; /* Increase font size */
+  color: #6c757d; /* Change text color */
+  padding: 10px; /* Add padding for better readability */
+  text-align: center; /* Center align text */
+  width: 100%; /* Make the message span the width of its container */
+}
+
+/* Icon styling for clear visibility */
+.btn-custom i {
+  margin-right: 5px; /* Space between icon and text */
+  font-size: 1rem; /* Icon size that matches the text size for balance */
+}
+/* Apply specific colors to icons within buttons */
+.custom-btn .fa-check-circle {
+  color: #28a745; /* Green for accept */
+}
+.custom-btn .fa-times-circle {
+  color: #dc3545; /* Red for reject */
+}
+.custom-btn .fa-trash-alt {
+  color: #6c757d; /* Yellow for delete, change to darker if needed */
+}
+
+.custom-btn:hover .fa-check-circle,
+.custom-btn:focus .fa-check-circle {
+  color: #218838; /* Darker green on hover/focus */
+}
+
+.custom-btn:hover .fa-times-circle,
+.custom-btn:focus .fa-times-circle {
+  color: #c82333; /* Darker red on hover/focus */
+}
+
+.custom-btn:hover .fa-trash-alt,
+.custom-btn:focus .fa-trash-alt {
+  color: #6c757d; /* Darker yellow on hover/focus */
+}
+h2 {
+  color: #333; /* Dark grey for a professional look */
+  font-size: 28px; /* Larger font size for the title */
+  margin-bottom: 20px; /* Adds space below the title */
+  text-align: center; /* Centers the text */
+  padding-bottom: 10px; /* Adds padding to give space below the text */
+  font-weight: 700;
+  color: #BDD248;
+  margin-top: 20px;
+}

@@ -1,0 +1,87 @@
+<div class="form-card js-form-card" *ngIf="roles.includes('ROLE_USER') && !roles.includes('ROLE_ADMIN')">
+  <div class="form-card__cnt js-profile-cnt">
+      <div class="form-card__name">{{ 'AUTHORIZATION_REQUEST.PLEASE_FILL_FORM' | translate }}</div>
+      <form class="leave-request-container" [formGroup]="cancelForm" (ngSubmit)="submitAuthorizationRequest()">
+          <div class="form-group">
+              <label for="requesterName" class="form-label">{{ 'AUTHORIZATION_REQUEST.YOUR_NAME' | translate }}</label>
+              <input type="text" id="requesterName" formControlName="requesterName" class="form-control" [class.error]="hasError('requesterName', 'required')" required>
+              <div *ngIf="hasError('requesterName', 'required')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.NAME_REQUIRED' | translate }}</div>
+          </div>
+          <div class="form-group">
+              <label for="requesterEmail" class="form-label">{{ 'AUTHORIZATION_REQUEST.YOUR_EMAIL' | translate }}</label>
+              <input type="email" id="requesterEmail" formControlName="requesterEmail" class="form-control" [class.error]="hasError('requesterEmail', 'required')" required>
+              <div *ngIf="hasError('requesterEmail', 'required')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.EMAIL_REQUIRED' | translate }}</div>
+              <div *ngIf="hasError('requesterEmail', 'email')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.INVALID_EMAIL' | translate }}</div>
+          </div>
+          <div class="form-group">
+              <label for="adminEmail" class="form-label">{{ 'AUTHORIZATION_REQUEST.ADMIN_EMAIL' | translate }}</label>
+              <input type="email" id="adminEmail" formControlName="adminEmail" class="form-control" [class.error]="hasError('adminEmail', 'required')" required>
+              <div *ngIf="hasError('adminEmail', 'required')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.ADMIN_EMAIL_REQUIRED' | translate }}</div>
+              <div *ngIf="hasError('adminEmail', 'email')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.INVALID_EMAIL' | translate }}</div>
+          </div>
+          <div class="form-group">
+              <label for="leavingTime" class="form-label">{{ 'AUTHORIZATION_REQUEST.LEAVING_TIME' | translate }}</label>
+              <input type="datetime-local" id="leavingTime" formControlName="leavingTime" class="form-control" [class.error]="hasError('leavingTime', 'required')" required>
+              <div *ngIf="hasError('leavingTime', 'required')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.LEAVING_TIME_REQUIRED' | translate }}</div>
+              <div *ngIf="hasError('leavingTime', 'pastDate')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.LEAVING_TIME_PAST' | translate }}</div>
+              <div *ngIf="hasError('leavingTime', 'timeRange')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.LEAVING_TIME_RANGE' | translate }}</div>
+          </div>
+          <div class="form-group">
+              <label for="reason" class="form-label">{{ 'AUTHORIZATION_REQUEST.REASON' | translate }}</label>
+              <textarea id="reason" formControlName="reason" class="form-control" [class.error]="hasError('reason', 'required')" required></textarea>
+              <div *ngIf="hasError('reason', 'required')" class="text-danger">{{ 'AUTHORIZATION_REQUEST.REASON_REQUIRED' | translate }}</div>
+          </div>
+          <div class="form-card-form__bottom">
+              <button type="submit" class="form-card__button button--blue" [disabled]="cancelForm.invalid">{{ 'AUTHORIZATION_REQUEST.SUBMIT' | translate }}</button>
+              <button type="button" class="form-card__button button--gray" (click)="CancelForm()">{{ 'AUTHORIZATION_REQUEST.CANCEL' | translate }}</button>
+          </div>
+      </form>
+  </div>
+</div>
+
+<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-3">
+  <h2>{{ 'AUTHORIZATION_REQUEST.AUTHORIZATION_REQUESTS' | translate }}</h2>
+  <div class="card-custom">
+    <button class="btn custom-btn select-all-btn" (click)="selectAllRequests($event)">{{ 'AUTHORIZATION_REQUEST.SELECT_ALL' | translate }}</button>
+    <button class="btn custom-btn delete-selected-btn" (click)="deleteSelectedRequests()" [disabled]="isDeleteDisabled()">{{ 'AUTHORIZATION_REQUEST.DELETE_SELECTED' | translate }}</button>
+    <div class="table-responsive">
+      <table class="table table-custom" *ngIf="requests.length > 0; else noRequests">
+        <thead>
+          <tr>
+            <th></th>
+            <th>{{ 'AUTHORIZATION_REQUEST.REQUESTER_NAME' | translate }}</th>
+            <th>{{ 'AUTHORIZATION_REQUEST.REQUESTER_EMAIL' | translate }}</th>
+            <th>{{ 'AUTHORIZATION_REQUEST.REASON' | translate }}</th>
+            <th>{{ 'AUTHORIZATION_REQUEST.LEAVING_TIME' | translate }}</th>
+            <th>{{ 'AUTHORIZATION_REQUEST.STATUS' | translate }}</th>
+            <th>{{ 'AUTHORIZATION_REQUEST.ACTIONS' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests">
+            <td><input type="checkbox" [(ngModel)]="request.selected" /></td>
+            <td>{{ request.requesterName }}</td>
+            <td>{{ request.requesterEmail }}</td>
+            <td>{{ request.reason }}</td>
+            <td>{{ request.leavingTime | date: 'short' }}</td>
+            <td>{{ request.status }}</td>
+            <td>
+              <button class="btn custom-btn" (click)="acceptRequest(request.id)" [disabled]="request.status === 'Accepted'">
+                <i class="fas fa-check-circle"></i>
+              </button>
+              <button class="btn custom-btn" (click)="rejectRequest(request.id)" [disabled]="request.status === 'Rejected'">
+                <i class="fas fa-times-circle"></i>
+              </button>
+              <button class="btn custom-btn" (click)="deleteRequestById(request.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noRequests>
+      <p class="no-requests">{{ 'AUTHORIZATION_REQUEST.NO_AUTHORIZATION_REQUESTS' | translate }}</p>
+    </ng-template>
+  </div>
+</div>

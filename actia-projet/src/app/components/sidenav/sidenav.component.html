@@ -1,0 +1,28 @@
+<div class="sidenav-header">
+  <img *ngIf="user.profileImage && user.profileImage.length > 0" 
+    [width]="profilePicSize()" [height]="profilePicSize()" 
+    [src]="getProfileImage(user.profileImage[0])" 
+    [alt]="'PROFILE_IMAGE_ALT' | translate: {username: user.username}">
+  <img *ngIf="!user.profileImage || user.profileImage.length === 0" 
+    [width]="profilePicSize()" [height]="profilePicSize()" 
+    [src]="getProfileImage()" 
+    [alt]="'PROFILE_IMAGE_ALT_DEFAULT' | translate"/>
+  <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
+    <h2>{{ username }}</h2>
+    <h4>{{ email }}</h4>
+    <h4 *ngIf="roles.includes('ROLE_ADMIN')">{{ 'YOUR_ROLE_ADMIN' | translate }}</h4>
+  </div>
+</div>
+<mat-nav-list>
+  <mat-divider></mat-divider>
+  <mat-nav-list class="nav-list">
+    <a mat-list-item *ngFor="let item of menuItems" 
+       [routerLink]="item.route"
+       routerLinkActive="selected-menu-item"
+       #rla="routerLinkActive" 
+       [activated]="rla.isActive">
+      <mat-icon class="custom-icon" matListItemIcon>{{item.icon}}</mat-icon>
+      <span class="custom-label" matListItemTitle>{{ 'MENU_ITEMS.' + item.label | translate }}</span>
+    </a>
+  </mat-nav-list>
+</mat-nav-list>

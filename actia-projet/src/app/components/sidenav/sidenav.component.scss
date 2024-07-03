@@ -1,0 +1,73 @@
+:host {
+    transition: all 500ms ease-in-out;
+  }
+  
+  .sidenav-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    flex-grow: 0; /* Default state, not taking up extra space */
+  }
+  
+  .sidenav-header img {
+    padding: 5px 5px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+  
+  .sidenav-header .header-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidenav-header .header-text h2,
+  .sidenav-header .header-text h4 {
+    margin: 0;
+  }
+  
+  .sidenav-header .header-text h2 {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-weight: bold;
+    color: #333; /* Adjust text color as needed */
+  }
+  
+  .sidenav-header .header-text h4 {
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    color: #666; /* Adjust text color as needed */
+  
+    img {
+      padding: 5px 5px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 5px;
+    }
+  }
+  
+  .collapsed .sidenav-header {
+    flex-grow: 1; // Take up extra space to center the image in collapsed state
+    justify-content: center; // Center the content vertically
+  }
+  
+  .hide-header-text {
+    opacity: 0;
+    height: 0;
+  }
+  .custom-icon {
+    color: #1b1b19!important; /* Change this to your desired icon color */
+  }
+  
+  .custom-label {
+    color: #1b1b19!important; /* Change this to your desired label color */
+  }
+  .nav-list{
+    background-color: #bdd248!important;
+  }
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
+  

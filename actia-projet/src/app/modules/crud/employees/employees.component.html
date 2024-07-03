@@ -1,0 +1,101 @@
+<div class="team-section">
+  <h2 class="team-section-title">{{ 'MEET_OUR_TEAM' | translate }} <strong>{{ team?.name }}</strong></h2>
+  <div class="team-description">
+    <h3>{{ 'TEAM_NAME' | translate }} : <strong>{{ team?.name }}</strong></h3>
+    <p><strong>{{ 'DESCRIPTION' | translate }} :</strong> {{ team?.description }}</p>
+    <p><strong>{{ 'TECHNOLOGIES_USED' | translate }} :</strong> {{ team?.technologie }}</p>
+  </div>
+  <div class="team-filter">
+    <mat-form-field>
+      <mat-label>{{ 'FILTER' | translate }}</mat-label>
+      <input matInput (keyup)="applyFilter($event)" [placeholder]="'EX_FILTER' | translate" #input>
+    </mat-form-field>
+  </div>
+  <div class="team-grid">
+    <!-- Afficher le team lead séparément -->
+    <ng-container *ngFor="let member of dataSource?.filteredData">
+      <div class="team-member-card team-lead" [ngClass]="{'team-lead': isTeamLead(member)}" *ngIf="isTeamLead(member)">
+        <div class="team-badge">{{ member.role }}</div>
+        <div class="team-member-details">
+          <div class="left-section">
+            <div *ngIf="member.employeeImages?.[0] as empImage; else defaultImage">
+              <img [src]="getImageUrl(empImage)" [alt]="'EMPLOYEE_IMAGE' | translate:{firstname: member.firstname, lastname: member.lastname}" class="circular-image">
+            </div>
+            <ng-template #defaultImage>
+              <img [src]="getDefaultImage(member.gender)" [alt]="'DEFAULT_IMAGE' | translate" class="circular-image">
+            </ng-template>
+          </div>
+          <div class="right-section">
+            <div class="team-member-info">
+              <h3 class="team-member-name"><mat-icon>person</mat-icon>{{ member.firstname }} {{ member.lastname }}</h3>
+              <p class="team-member-bio"><mat-icon>email</mat-icon><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
+              <p class="team-member-phone"><mat-icon>phone</mat-icon>{{ member.phone }}</p>
+              <div class="team-member-socials">
+                <div class="linkedin-container">
+                  <a href="{{ member.linkedin }}" target="_blank" class="linkedin-link">
+                    <img src="assets/images/Linkedin-Logo.png" [alt]="'LINKEDIN' | translate">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="team-member-actions" *ngIf="roles.includes('ROLE_ADMIN')">
+              <button mat-icon-button color="primary" (click)="openEditForm(member)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteEmployee(member.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="team-members">
+      <ng-container *ngFor="let member of dataSource?.filteredData">
+        <div class="team-member-card" *ngIf="!isTeamLead(member)" [ngClass]="{'technical-lead': isTechnicalLead(member)}">
+          <div class="team-badge">{{ member.role }}</div>
+          <div class="team-member-details">
+            <div class="left-section">
+              <div *ngIf="member.employeeImages?.[0] as empImage; else defaultImage">
+                <img [src]="getImageUrl(empImage)" [alt]="'EMPLOYEE_IMAGE' | translate:{firstname: member.firstname, lastname: member.lastname}" class="circular-image">
+              </div>
+              <ng-template #defaultImage>
+                <img [src]="getDefaultImage(member.gender)" [alt]="'DEFAULT_IMAGE' | translate" class="circular-image">
+              </ng-template>
+            </div>
+            <div class="right-section">
+              <div class="team-member-info">
+                <h3 class="team-member-name"><mat-icon>person</mat-icon>{{ member.firstname }} {{ member.lastname }}</h3>
+                <p class="team-member-bio"><mat-icon>email</mat-icon><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
+                <p class="team-member-phone"><mat-icon>phone</mat-icon>{{ member.phone }}</p>
+                <div class="team-member-socials">
+                  <div class="linkedin-container">
+                    <a href="{{ member.linkedin }}" target="_blank" class="linkedin-link">
+                      <img src="assets/images/Linkedin-Logo.png" [alt]="'LINKEDIN' | translate">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="team-member-actions" *ngIf="roles.includes('ROLE_ADMIN')">
+                <button mat-icon-button color="primary" (click)="openEditForm(member)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteEmployee(member.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div *ngIf="roles.includes('ROLE_ADMIN')" class="add-employee-button">
+    <button mat-fab (click)="openAddEditEmpForm()" class="color">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="isMatrixTeam()">
+    <app-imageaws></app-imageaws>
+  </div>
+</div>

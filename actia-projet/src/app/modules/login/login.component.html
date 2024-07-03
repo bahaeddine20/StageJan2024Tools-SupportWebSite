@@ -1,0 +1,67 @@
+<div class="parent col-12">
+  <div class="container" [ngClass]="isSignDivVisible ? 'active' : ''" id="container">
+    <div class="form-container sign-up col-6">
+      <form>
+        <h1>Create Account</h1>
+        <div class="logo">
+          <img src="/assets/images/logo-actia.png" alt="Company Logo">
+        </div>
+        <span>or use your email for registration</span>
+        <input type="text" name="name" [(ngModel)]="signUpObj.name" placeholder="Name" [ngClass]="{'error': formSubmitted && !signUpObj.name}">
+        <div *ngIf="formSubmitted && !signUpObj.name" class="error-message">Name is required.</div>
+        <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Email" [ngClass]="{'error': formSubmitted && !signUpObj.email}">
+        <div *ngIf="formSubmitted && !signUpObj.email" class="error-message">Email is required.</div>
+        <div class="password-field">
+          <input [type]="showPasswordSignUp ? 'text' : 'password'" name="password" [(ngModel)]="signUpObj.password" placeholder="Password" [ngClass]="{'error': formSubmitted && !signUpObj.password}">
+          <svg *ngIf="showPasswordSignUp" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" (click)="togglePasswordVisibilitySignUp()">
+            <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+          </svg>
+          <svg *ngIf="!showPasswordSignUp" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" (click)="togglePasswordVisibilitySignUp()">
+            <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
+          </svg>
+        </div>
+        <div *ngIf="formSubmitted && !signUpObj.password" class="error-message">Password is required.</div>
+        <div *ngIf="isSignUpFailed" class="error-message">{{ errorMessage }}</div>
+        <button type="button" id="register-button" (click)="onRegister()">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in">
+      <form>
+        <h1>Sign In</h1>
+        <div class="logo">
+          <img src="/assets/images/logo-actia.png" alt="Company Logo">
+        </div>
+        <span>or use your email password</span>
+        <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Email" [ngClass]="{'error': formSubmitted && !loginObj.email}">
+        <div *ngIf="formSubmitted && !loginObj.email" class="error-message">Email is required.</div>
+        <div class="password-field">
+          <input [type]="showPasswordSignIn ? 'text' : 'password'" name="password" [(ngModel)]="loginObj.password" placeholder="Password" [ngClass]="{'error': formSubmitted && !loginObj.password}">
+          <svg *ngIf="showPasswordSignIn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" (click)="togglePasswordVisibilitySignIn()">
+            <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+          </svg>
+          <svg *ngIf="!showPasswordSignIn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" (click)="togglePasswordVisibilitySignIn()">
+            <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
+          </svg>
+        </div>
+        <div *ngIf="formSubmitted && !loginObj.password" class="error-message">Password is required.</div>
+        <div *ngIf="isLoginFailed" class="error-message">{{ errorMessage }}</div>
+        <a routerLink="/request-reset-password">Forget Your Password?</a>
+        <button type="button" id="sign-in-button" (click)="onLogin()">Sign In</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h1>Welcome Back!</h1>
+          <p>Enter your personal details to use all site features</p>
+          <button type="button" class="hidden" id="login" (click)="isSignDivVisible = false">Sign In</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>Hello, Friend!</h1>
+          <p>Register with your personal details to use all site features</p>
+          <button type="button" class="hidden" id="register" (click)="isSignDivVisible = true">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

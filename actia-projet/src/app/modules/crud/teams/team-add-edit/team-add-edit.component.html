@@ -1,0 +1,34 @@
+<div mat-dialog-title>
+  <h1 class="dialog-title">{{ 'TEAM_FORM' | translate }}</h1>
+</div>
+<form [formGroup]="TeamForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="dialog-content">
+    <div class="form-row">
+      <mat-form-field appearance="outline" [ngClass]="{ 'custom-mat-form-field': TeamForm.get('name')?.hasError('teamNameExists') }">
+        <mat-label>{{ 'NAME' | translate }}</mat-label>
+        <input matInput type="text" [placeholder]="'EX_NAME' | translate" formControlName="name">
+        <mat-error *ngIf="TeamForm.get('name')?.hasError('teamNameExists')">Team name already exists</mat-error>
+      </mat-form-field>            
+      <mat-form-field appearance="outline" class="custom-mat-form-field">
+        <mat-label>{{ 'DESCRIPTION' | translate }}</mat-label>
+        <textarea matInput class="input" [placeholder]="'EX_DESCRIPTION' | translate" formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="custom-mat-form-field">
+        <mat-label>{{ 'TECHNOLOGY' | translate }}</mat-label>
+        <textarea matInput [placeholder]="'EX_TECHNOLOGY' | translate" formControlName="technologie"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="file-input-row">
+      <input type="file" class="form-control" id="inputState" (change)="onFileSelected($event)" accept="image/*">
+      <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="{{ 'EMPLOYEE_IMAGE' | translate }}" class="circular-image">
+      <ng-template #defaultImage>
+        <img src="assets/images/team.webp" alt="{{ 'DEFAULT_IMAGE' | translate }}" class="circular-image">
+      </ng-template>
+    </div>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button [mat-dialog-close]="false">{{ 'CANCEL' | translate }}</button>
+    <button mat-raised-button color="primary" type="submit" class="btn-submit green-button" *ngIf="editMode">{{ 'EDIT' | translate }}</button>
+    <button mat-raised-button color="primary" type="submit" class="btn-submit green-button" *ngIf="!editMode">{{ 'SAVE' | translate }}</button>
+  </div>
+</form>

@@ -1,0 +1,72 @@
+<div mat-dialog-title>
+  <h1>{{ 'EMPLOYEE_FORM.TITLE' | translate }}</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.FIRST_NAME' | translate }}</mat-label>
+        <input matInput type="text" [placeholder]="'EMPLOYEE_FORM.FIRST_NAME_PLACEHOLDER' | translate" formControlName="firstname">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.LAST_NAME' | translate }}</mat-label>
+        <input matInput [placeholder]="'EMPLOYEE_FORM.LAST_NAME_PLACEHOLDER' | translate" formControlName="lastname">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" [ngClass]="{ 'email-exists': empForm.get('email')?.hasError('emailExists') }">
+        <mat-label>{{ 'EMPLOYEE_FORM.EMAIL' | translate }}</mat-label>
+        <input matInput type="email" [placeholder]="'EMPLOYEE_FORM.EMAIL_PLACEHOLDER' | translate" formControlName="email">
+        <mat-error *ngIf="empForm.get('email')?.hasError('emailExists')">Email already exists</mat-error>
+      </mat-form-field>           
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.TEAM' | translate }}</mat-label>
+        <mat-select formControlName="team">
+          <mat-option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.GENDER' | translate }}</mat-label>
+        <mat-select formControlName="gender" [placeholder]="'EMPLOYEE_FORM.GENDER_PLACEHOLDER' | translate">
+          <mat-option value="male">{{ 'EMPLOYEE_FORM.GENDER_MALE' | translate }}</mat-option>
+          <mat-option value="female">{{ 'EMPLOYEE_FORM.GENDER_FEMALE' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.PHONE' | translate }}</mat-label>
+        <input matInput type="number" [placeholder]="'EMPLOYEE_FORM.PHONE_PLACEHOLDER' | translate" formControlName="phone">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.ROLE' | translate }}</mat-label>
+        <mat-select formControlName="role" [placeholder]="'EMPLOYEE_FORM.ROLE_PLACEHOLDER' | translate">
+          <mat-option value="TEAM_LEAD">{{ 'EMPLOYEE_FORM.ROLE_TEAM_LEAD' | translate }}</mat-option>
+          <mat-option value="TECHNICAL_LEAD">{{ 'EMPLOYEE_FORM.ROLE_TECHNICAL_LEAD' | translate }}</mat-option>
+          <mat-option value="DEVELOPER">{{ 'EMPLOYEE_FORM.ROLE_DEVELOPER' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'EMPLOYEE_FORM.LINKEDIN' | translate }}</mat-label>
+        <input matInput type="text" [placeholder]="'EMPLOYEE_FORM.LINKEDIN_PLACEHOLDER' | translate" formControlName="linkedin">
+      </mat-form-field>
+    </div>
+    <div class="file-input-row">
+      <input type="file" class="form-control" id="inputState" (change)="onFileSelected($event)" accept="image/*">
+      <img *ngIf="imageUrl" [src]="imageUrl" [alt]="'EMPLOYEE_FORM.IMAGE_ALT' | translate" class="circular-image">
+    </div>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button [mat-dialog-close]="false">{{ 'EMPLOYEE_FORM.CANCEL' | translate }}</button>
+    <button mat-raised-button color="primary" type="submit" class="btn-submit green-button" *ngIf="editMode">{{ 'EMPLOYEE_FORM.MODIFY' | translate }}</button>
+    <button mat-raised-button color="primary" type="submit" class="btn-submit green-button" *ngIf="!editMode">{{ 'EMPLOYEE_FORM.SAVE' | translate }}</button>
+  </div>
+</form>
