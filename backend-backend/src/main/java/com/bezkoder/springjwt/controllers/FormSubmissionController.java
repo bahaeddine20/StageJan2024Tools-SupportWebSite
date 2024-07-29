@@ -2,16 +2,13 @@ package com.bezkoder.springjwt.controllers;
 
 import antlr.ASTNULLType;
 
-import com.bezkoder.springjwt.models.AuthorizationRequest;
-import com.bezkoder.springjwt.models.FormSubmissionDTO;
-import com.bezkoder.springjwt.models.Request;
+import com.bezkoder.springjwt.models.*;
 import com.bezkoder.springjwt.repository.AuthorizationRequestRepository;
 import com.bezkoder.springjwt.repository.RequestRepository;
 import com.bezkoder.springjwt.security.services.EmailService;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import com.bezkoder.springjwt.security.services.TeamService;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,10 +24,8 @@ import javax.validation.Valid;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.YearMonth;
+import java.util.*;
 
 @CrossOrigin(origins = "*") // Allow requests from Angular frontend
 @RestController
@@ -41,7 +36,8 @@ public class FormSubmissionController {
 
     @Autowired
     private RequestRepository requestRepository;
-
+    @Autowired
+    private TeamService teamService;
     @Autowired
     private AuthorizationRequestRepository authorizationRequestRepository;
 
@@ -243,26 +239,117 @@ public class FormSubmissionController {
 
             // Create header row
             Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("ID");
-            headerRow.createCell(1).setCellValue("Name");
-            headerRow.createCell(2).setCellValue("Employee Email");
-            headerRow.createCell(3).setCellValue("Start Date");
-            headerRow.createCell(4).setCellValue("End Date");
-            headerRow.createCell(5).setCellValue("Reason");
-            headerRow.createCell(6).setCellValue("Status");
+            headerRow.createCell(0).setCellValue("T:");
+            headerRow.createCell(1).setCellValue("Training");
+            Row headerRow2 = sheet.createRow(1);
+            headerRow2.createCell(0).setCellValue("0:");
+            headerRow2.createCell(1).setCellValue("means \"day not worked\" ");
+            Row headerRow3 = sheet.createRow(2);
+            headerRow3.createCell(0).setCellValue("1:");
+            headerRow3.createCell(1).setCellValue("means \"day  fully worked\"");
+            Row headerRow4 = sheet.createRow(3);
+            headerRow4.createCell(0).setCellValue("0.5:");
+            headerRow4.createCell(1).setCellValue("means \"between 3 and 5 hours worked\"");
+            Row headerRow5 = sheet.createRow(4);
+            headerRow5.createCell(0).setCellValue("V:");
+            headerRow5.createCell(1).setCellValue("Vacation");
+            Row headerRow6 = sheet.createRow(5);
+            headerRow6.createCell(0).setCellValue("PH:");
+            headerRow6.createCell(1).setCellValue("Public holidays");
+            Row headerRow7 = sheet.createRow(6);
+            headerRow7.createCell(0).setCellValue("WE:");
+            headerRow7.createCell(1).setCellValue("WeekEnd");
+            Row headerRow8 = sheet.createRow(7);
+            headerRow8.createCell(0).setCellValue("NI:");
+            headerRow8.createCell(1).setCellValue("Not Invoiced");
+            String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
-            // Fill data
-            int rowNum = 1;
-            for (Request request : requests) {
-                Row row = sheet.createRow(rowNum++);
-                row.createCell(0).setCellValue(request.getId());
-                row.createCell(1).setCellValue(request.getName());
-                row.createCell(2).setCellValue(request.getEmployeeEmail());
-                row.createCell(3).setCellValue(request.getStartDate().toString());
-                row.createCell(4).setCellValue(request.getEndDate().toString());
-                row.createCell(5).setCellValue(request.getReason());
-                row.createCell(6).setCellValue(request.getStatus());
+            Row headerMonthRow = sheet.createRow(8);
+            headerMonthRow.createCell(1).setCellValue("Month");
+            Row headerWeekRow = sheet.createRow(9);
+            headerWeekRow.createCell(1).setCellValue("Week");
+            Row headerDayRow = sheet.createRow(10);
+            headerDayRow.createCell(1).setCellValue("Day");
+
+            int monthCellIndex = 2; // Start from column 2 for months (column B in Excel)
+            int weekCellIndex = 2;  // Start from column 2 for weeks (column B in Excel)
+            int dayCellIndex = 2;   // Start from column 2 for days (column B in Excel)
+            int weekCount = 0;
+
+// Iterate through each month
+            for (int monthIndex = 0; monthIndex < months.length; monthIndex++) {
+                String month = months[monthIndex];
+                int monthNum = monthIndex + 1;
+                int daysInMonth = YearMonth.of(2024, monthNum).lengthOfMonth(); // Adjust year as needed
+
+                // Create month header cell
+                headerMonthRow.createCell(monthCellIndex).setCellValue(month);
+
+                // Create weeks and days headers for each month
+                int currentWeek = 1;
+
+                for (int day = 1; day <= daysInMonth; day++) {
+                    // Determine the week number for the current day
+                    int weekNum = (day - 1) / 7 + 1;
+
+                    // Check if a new week is starting
+                    if (weekNum > weekCount) {
+                        // Create a new week header cell
+                        headerWeekRow.createCell(weekCellIndex).setCellValue("Week " + currentWeek);
+                        weekCount = weekNum;
+                        currentWeek++;
+                    }
+
+                    // Fill the day cell
+                    Cell dayCell = headerDayRow.createCell(dayCellIndex);
+                    dayCell.setCellValue(day);
+
+                    // Move to the next day and week cell
+                    dayCellIndex++;
+                    weekCellIndex++;
+                }
+
+                // Move to the next month cell
+                monthCellIndex += daysInMonth;
             }
+            // Create cell style for green background
+            CellStyle greenCellStyle = createCellStyle(workbook, IndexedColors.LIGHT_GREEN);
+            CellStyle redCellStyle = createCellStyle(workbook, IndexedColors.RED);
+            // Assuming you have a method to get all teams
+
+            int rowIndex = 11; // Start writing data from the second row
+            for (Team team : teamService.getAllTeamExcel()) {
+                // Write team name
+                Row teamRow = sheet.createRow(rowIndex++);
+                teamRow.createCell(1).setCellValue(team.getName());
+
+                // Write each employee's name under the team
+                for (Employee employee : team.getEmployees()) {
+                    Row employeeRow = sheet.createRow(rowIndex++);
+                    employeeRow.createCell(0).setCellValue("RENAULT");
+                    employeeRow.createCell(1).setCellValue(employee.getFirstname() + " " + employee.getLastname());
+
+                    for (int monthIndex = 0; monthIndex < 12; monthIndex++) {
+                        int daysInMonth = YearMonth.of(2024, monthIndex + 1).lengthOfMonth();
+
+                        for (int day = 1; day <= daysInMonth; day++) {
+                            Cell cell = employeeRow.createCell(2 + day - 1); // Column for each day
+                            Date currentDate = new Date(2024 - 1900, monthIndex, day); // Adjust year as needed
+
+                            boolean isOnLeave = isEmployeeOnLeave(employee, currentDate, requests);
+                            if (isOnLeave) {
+                                cell.setCellValue("0");
+                                cell.setCellStyle(redCellStyle);
+                            } else {
+                                cell.setCellValue("1");
+                                cell.setCellStyle(greenCellStyle);
+                            }
+                        }
+                    }
+                }
+            }
+           // Fill data
+            int rowNum = 40;
 
             workbook.write(bos);
             workbook.close();
@@ -277,10 +364,35 @@ public class FormSubmissionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    private CellStyle createCellStyle(Workbook workbook, IndexedColors color) {
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setFillForegroundColor(color.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        return cellStyle;
+    }
+
+    private boolean isEmployeeOnLeave(Employee employee, Date date, List<Request> requests) {
+        for (Request request : requests) {
+            if (request.getEmployeeEmail().equals(employee.getEmail()) &&
+                    !date.before(request.getStartDate()) &&
+                    !date.after(request.getEndDate())) {
+                return true;
+            }
+        }
+        return false;
+    }
     @GetMapping("/notifications")
     public ResponseEntity<List<Request>> getAllNotifications() {
         List<Request> notifications = emailSenderService.getAllNotifications(); // Utilisez votre service pour récupérer les notifications
         return ResponseEntity.ok(notifications);
     }
+
+
+
+
+    //cal int
+
+
+
 
 }

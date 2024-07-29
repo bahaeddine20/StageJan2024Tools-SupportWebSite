@@ -1,37 +1,53 @@
-<!-- Bouton pour ouvrir le formulaire -->
-<div class="team-section">
-  <button (click)="toggleForm()" class="btn btn-primary button-left">
-    {{ 'OPEN_FORM' | translate }}
-  </button>
-    <a href="https://grouperenault.sharepoint.com" target="_blank"  class="btn btn-primary button-right">
-      {{ 'OPEN_SHAREPOINT' | translate }}
-    </a>
-  <!-- Formulaire conditionnel -->
-  <div *ngIf="showForm && isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-4">
-    <form (ngSubmit)="onSubmit()" #sprintForm="ngForm">
-      <div class="form-group">
-        <label for="sprintName" class="form-label">{{ 'SPRINT_FORM.SPRINT_NAME' | translate }}</label>
-        <input type="text" id="sprintName" required [(ngModel)]="sprintName" name="sprintName" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="carryForwardSp" class="form-label">{{ 'SPRINT_FORM.CARRY_FORWARD_SP' | translate }}</label>
-        <input type="text" id="carryForwardSp" required [(ngModel)]="carryForwardSp" name="carryForwardSp" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="startDate" class="form-label">{{ 'SPRINT_FORM.START_DATE' | translate }}</label>
-        <input type="text" id="startDate" required [(ngModel)]="startDate" name="startDate" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="endDate" class="form-label">{{ 'SPRINT_FORM.END_DATE' | translate }}</label>
-        <input type="text" id="endDate" required [(ngModel)]="endDate" name="endDate" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.SUBMIT' | translate }}</button>
-    </form>
-  </div>
+<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-4">
+  <form (ngSubmit)="onSubmit()" #sprintForm="ngForm">
+    <div class="form-group">
+      <label for="sprintName" class="form-label">{{ 'SPRINT_FORM.SPRINT_NAME' | translate }}</label>
+      <input type="text" id="sprintName" required [(ngModel)]="sprintName" name="sprintName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="carryForwardSp" class="form-label">{{ 'SPRINT_FORM.CARRY_FORWARD_SP' | translate }}</label>
+      <input type="text" id="carryForwardSp" required [(ngModel)]="carryForwardSp" name="carryForwardSp" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="startDate" class="form-label">{{ 'SPRINT_FORM.START_DATE' | translate }}</label>
+      <input type="text" id="startDate" required [(ngModel)]="startDate" name="startDate" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="endDate" class="form-label">{{ 'SPRINT_FORM.END_DATE' | translate }}</label>
+      <input type="text" id="endDate" required [(ngModel)]="endDate" name="endDate" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.SUBMIT' | translate }}</button>
+  </form>
+
+  <!-- Form for uploading Excel file -->
+  <form (ngSubmit)="onFileUpload(excelFile, 'excel')" #excelForm="ngForm" class="mt-4">
+    <div class="form-group">
+      <label for="excelFile" class="form-label">{{ 'SPRINT_FORM.UPLOAD_EXCEL' | translate }}</label>
+      <input type="file" id="excelFile" required (change)="onFileChange($event, 'excel')" name="excelFile" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.UPLOAD_EXCEL_BUTTON' | translate }}</button>
+  </form>
+
+  <!-- Form for uploading Velocity file -->
+  <form (ngSubmit)="onFileUpload(velocityFile, 'velocity')" #velocityForm="ngForm" class="mt-4">
+    <div class="form-group">
+      <label for="velocityFile" class="form-label">{{ 'SPRINT_FORM.UPLOAD_VELOCITY' | translate }}</label>
+      <input type="file" id="velocityFile" required (change)="onFileChange($event, 'velocity')" name="velocityFile" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.UPLOAD_VELOCITY_BUTTON' | translate }}</button>
+  </form>
+
+  <!-- Form for uploading Carry file -->
+  <form (ngSubmit)="onFileUpload(carryFile, 'carry')" #carryForm="ngForm" class="mt-4">
+    <div class="form-group">
+      <label for="carryFile" class="form-label">{{ 'SPRINT_FORM.UPLOAD_CARRY' | translate }}</label>
+      <input type="file" id="carryFile" required (change)="onFileChange($event, 'carry')" name="carryFile" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.UPLOAD_CARRY_BUTTON' | translate }}</button>
+  </form>
 </div>
 
-<!-- Section des images -->
-<div *ngIf="showForm && imageUrls.length > 0" class="container-fluid mt-4">
+<div *ngIf="imageUrls.length > 0" class="container-fluid mt-4">
   <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let imageUrl of imageUrls; let i = index">
       <div class="card shadow-sm h-100">
@@ -41,10 +57,10 @@
   </div>
 </div>
 
-<div *ngIf="showForm && imageUrls.length === 0" class="container-fluid mt-4">
+<div *ngIf="imageUrls.length === 0" class="container-fluid mt-4">
   <div class="row">
-    <div class="col text-center">
-      <p class="text-muted">{{ 'SPRINT_FORM.NO_IMAGES' | translate }}</p>
+    <div class="col-12">
+      <p>{{ 'SPRINT_FORM.NO_IMAGES_FOUND' | translate }}</p>
     </div>
   </div>
 </div>

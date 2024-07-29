@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TokenStorageService } from '../../_services/loginService/token-storage.service';
+import { TranslationModule } from '../../translation/translation.module';
 import { LanguageService } from '../../_services/language/language.service';
 import { TranslateService } from '@ngx-translate/core';
-import { TranslationModule } from '../../translation/translation.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-imageaws',
@@ -20,26 +20,33 @@ import { TranslationModule } from '../../translation/translation.module';
 })
 export class ImageawsComponent implements OnInit {
   imageUrls: string[] = [];
-  showForm = false;
   sprintName!: string;
   startDate!: string;
   endDate!: string;
   carryForwardSp!: string;
-  roles: string[] = [];  // Add this line to store user roles
+  roles: string[] = [];
   isLoggedIn = false;
   user: any;
-  constructor(private http: HttpClient,
+
+  excelFile!: File;
+  velocityFile!: File;
+  carryFile!: File;
+
+  constructor(
+    private http: HttpClient,
     private tokenStorageService: TokenStorageService,
-    private translate: TranslateService, 
+    private translate: TranslateService,
     private languageService: LanguageService
   ) {
     this.languageService.currentLanguage.subscribe(language => {
       this.translate.use(language);
     });
   }
+
   switchLanguage(language: string) {
     this.languageService.changeLanguage(language);
   }
+
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
@@ -48,10 +55,9 @@ export class ImageawsComponent implements OnInit {
 
       console.log('Is Logged In:', this.isLoggedIn);
       console.log('Roles:', this.roles);
-
     }
     this.loadImageUrls();
-    this.loadUserRoles();  // Add this line to load user roles
+    this.loadUserRoles();
   }
 
   onSubmit() {
@@ -70,15 +76,51 @@ export class ImageawsComponent implements OnInit {
       });
   }
 
-  loadImageUrls() {
+  onFileChange(event: any, fileType: string) {
+    const file = event.target.files[0];
+    if (fileType === 'excel') {
+      this.excelFile = file;
+    } else if (fileType === 'velocity') {
+      this.velocityFile = file;
+    } else if (fileType === 'carry') {
+      this.carryFile = file;
+    }
+  }
+
+  onFileUpload(file: File, fileType: string) {
+    const formData = new FormData();
+    formData.append('file', file);
+  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.getToken()}`
     });
   
+    let uploadUrl = '';
+    if (fileType === 'excel') {
+      uploadUrl = 'http://localhost:8080/api/files/upload/excel';
+    } else if (fileType === 'velocity') {
+      uploadUrl = 'http://localhost:8080/api/files/upload/velocity';
+    } else if (fileType === 'carry') {
+      uploadUrl = 'http://localhost:8080/api/files/upload/carry';
+    }
+  
+    this.http.post(uploadUrl, formData, { headers }).subscribe(response => {
+      console.log('File upload response:', response);
+    }, error => {
+      console.error('File upload error:', error);
+    });
+  }
+  
+
+  loadImageUrls() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.getToken()}`
+    });
+
     const bucketUrl = 'https://rania-actia-bucket.s3.amazonaws.com/';
-  
+
     this.imageUrls = [];
-  
+
     this.http.get<string[]>('http://localhost:8080/api/images/list', { headers })
       .subscribe({
         next: (response) => {
@@ -109,13 +151,9 @@ export class ImageawsComponent implements OnInit {
   }
 
   private loadUserRoles() {
-    // Assuming you store the roles in local storage
     const roles = localStorage.getItem('userRoles');
     if (roles) {
       this.roles = JSON.parse(roles);
     }
-  }
-  toggleForm() {
-    this.showForm = !this.showForm;
   }
 }

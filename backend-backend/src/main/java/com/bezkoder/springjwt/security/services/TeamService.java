@@ -30,6 +30,11 @@ public class TeamService {
         TR.findAll().forEach(t -> Teams.add(t));
         return Teams;
     }
+    public List<Team> getAllTeamExcel() {
+        List<Team> Teams = new ArrayList<Team>();
+        TR.findAll().forEach(t -> Teams.add(t));
+        return Teams;
+    }
 
     //getting a specific record by using the method findById() of CrudRepository
     public Team getTeamById(int id) {

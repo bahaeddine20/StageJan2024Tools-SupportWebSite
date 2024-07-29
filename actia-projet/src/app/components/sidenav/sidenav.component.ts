@@ -88,6 +88,11 @@ export class SidenavComponent implements OnInit {
       icon: 'maps',
       label: 'MAP',
       route: 'maps'
+    },
+    {
+      icon: 'access_time',
+      label: 'AUTHORIZATION',
+      route: 'congee'
     }
   ];
   profilePicSize = computed(() => this.sideNavCollapsed() ? '50' : '100');

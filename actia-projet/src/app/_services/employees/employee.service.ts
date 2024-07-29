@@ -1,13 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenStorageService } from '../loginService/token-storage.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Employee } from '../../modules/crud/employees/employee';
+import { catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  private baseUrl = 'http://localhost:8080/api/leaves';
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService) {}
 
@@ -105,5 +107,67 @@ export class EmployeeService {
     });
     return this.http.get<boolean>(`http://localhost:8080/emp/checkEmailExists?email=${email}`,{ headers });
   }
-  
+
+  requestLeave(leaveRequest: any) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.post<any>(`${this.baseUrl}/request`, leaveRequest,{ headers });
+  }
+
+  confirmLeave(requestId: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.post<any>(`${this.baseUrl}/confirm/${requestId}`,{}, { headers });
+  }
+  submitLeaveRequest(leaveRequest: any): Observable<any> {
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+        'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(`http://localhost:8080/api/leaves/leave-request`, leaveRequest, { headers, responseType: 'text' as 'json' }).pipe(
+        catchError(error => {
+            if (error instanceof HttpErrorResponse && error.status === 200 && typeof error.error === 'string') {
+                // If the response is text, log it and return an observable with an empty object
+                console.error('Received non-JSON response:', error.error);
+                return of({});
+            }
+            // Re-throw the error if it is not the expected scenario
+            return throwError(error);
+        })
+    );
+}
+  // Méthode pour obtenir toutes les demandes de congés
+  getAllLeaveRequests(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('authToken') // Assurez-vous de gérer l'authentification
+    });
+    return this.http.get<any>(`http://localhost:8080/api/leaves/all`, { headers });
+  }
+    // Nouvelle méthode pour obtenir les dates sélectionnées
+  getSelectedDates(email: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.get<any>(`${this.baseUrl}/selectedDates/${email}`, { headers });
+  }
+
+  // Nouvelle méthode pour obtenir les jours confirmés
+  getConfirmedDays(email: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.get<any>(`${this.baseUrl}/confirmedDays/${email}`, { headers });
+  }
+
+  // Nouvelle méthode pour créer une demande de congé
+  createLeaveRequest(leaveRequest: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.baseUrl}`, leaveRequest, { headers });
+  }
 }

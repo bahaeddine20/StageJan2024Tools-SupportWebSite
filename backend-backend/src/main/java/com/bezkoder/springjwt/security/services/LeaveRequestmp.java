@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+
 public class LeaveRequestmp implements LeaveRequestService {
 
     @Autowired
@@ -22,18 +23,23 @@ public class LeaveRequestmp implements LeaveRequestService {
     public List<LeaveRequest> getLeaveRequestsByEmployeeId(Long employeeId) {
         return leaveRequestRepository.findByEmployeeId(employeeId);
     }
+    @Override
+    public List<LeaveRequest> getAllLeaveRequests() {
+        return leaveRequestRepository.findAll();
+    }
 
     @Override
     public LeaveRequest confirmLeaveRequest(Long requestId) {
-        LeaveRequest leaveRequest = leaveRequestRepository.findById(requestId).orElse(null);
-        if (leaveRequest != null) {
-            leaveRequest.setConfirmed(true);
-            return leaveRequestRepository.save(leaveRequest);
-        }
-        return null;
-    }
-    public List<LeaveRequest> getLeaveRequestsByDate(String date) {
-        return leaveRequestRepository.findBySelectedDatesContaining(date);
+        LeaveRequest leaveRequest = leaveRequestRepository.findById(requestId).orElseThrow(() -> new RuntimeException("Leave request not found"));
+        leaveRequest.setConfirmed(true);
+        return leaveRequestRepository.save(leaveRequest);
     }
 
+    public void saveSelectedDates(LeaveRequest dateSelection) {
+        leaveRequestRepository.save(dateSelection);
+    }
+
+    public List<LeaveRequest> getSelectedDates() {
+        return leaveRequestRepository.findAll();
+    }
 }

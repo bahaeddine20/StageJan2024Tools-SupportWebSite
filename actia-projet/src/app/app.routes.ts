@@ -12,6 +12,7 @@ import { ResetPasswordGuard } from './_services/reset-password.guard';
 import { ImageawsComponent } from './modules/imageaws/imageaws.component';
 import { AuthorizationRequestsComponent } from './modules/authorization-requests/authorization-requests.component';
 import { AuthGuard } from './_services/loginService/auth.guard';
+import { CongeTableComponent } from './modules/conge-table/conge-table.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,7 @@ export const routes: Routes = [
             { path: 'employees', component: EmployeesComponent },
             { path: 'boutton', component: ImageawsComponent },
             { path: 'authorization', component: AuthorizationRequestsComponent },
+            { path: 'congee', component: CongeTableComponent }
         ]
     }
 ];

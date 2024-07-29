@@ -1,0 +1,136 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2">T:</th>
+        <th rowspan="2">Training</th>
+      </tr>
+      <tr>
+        <th rowspan="2">0:</th>
+        <th rowspan="2">means "day not worked"</th>
+      </tr>
+      <tr>
+        <th rowspan="2">1:</th>
+        <th rowspan="2">means "day fully worked"</th>
+      </tr>
+      <tr>
+        <th rowspan="2">0.5:</th>
+        <th rowspan="2">means "between 3 and 5 hours worked"</th>
+      </tr>
+      <tr>
+        <th rowspan="2">V:</th>
+        <th rowspan="2">Vacation</th>
+      </tr>
+      <tr>
+        <th rowspan="2">PH:</th>
+        <th rowspan="2">Public holidays</th>
+      </tr>
+      <tr>
+        <th rowspan="2">WE:</th>
+        <th rowspan="2">WeekEnd</th>
+      </tr>
+      <tr>
+        <th rowspan="2">NI:</th>
+        <th rowspan="2">Not Invoiced</th>
+      </tr>
+    </thead>
+  </table>
+  <br>
+  <div class="table-container">
+    <table class="TableStyle">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <ng-container *ngFor="let month of months">
+            <th [attr.colspan]="month.days">{{ month.name }} - {{ month.year }}</th>
+          </ng-container>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <ng-container *ngFor="let month of months">
+            <ng-container *ngFor="let weekIndex = index; let week of month.weeks">
+              <th colspan="7">Week {{ getOverallWeekNumber(month, weekIndex) }}</th>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <ng-container *ngFor="let month of months">
+            <ng-container *ngFor="let week of month.weeks">
+              <ng-container *ngFor="let day of week">
+                <th>{{ day }}</th>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rows">
+          <td>{{ row.label }}</td>
+          <ng-container *ngFor="let month of months">
+            <ng-container *ngFor="let weekIndex = index; let week of month.weeks">
+              <ng-container *ngFor="let day of week">
+                <td [ngClass]="{
+                  'day-cell': true,
+                  'selected-day': isSelectedDay(row.label, month, weekIndex, day),
+                  'confirmed-day': isConfirmedDay(row.label, month, weekIndex, day)
+                }"
+                (click)="toggleDaySelection(row.label, month, weekIndex, day)"
+                (mouseover)="hoveredDay = { row: row.label, month: month.name, week: getWeekName(weekIndex), day: day }"
+                (mouseout)="hoveredDay = null"
+                >
+                {{ row.data[month.name][getWeekName(weekIndex)][day] }}
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <button (click)="confirmLeaveRequest()">Leave Request</button>
+    <div *ngIf="messageSuccess" class="success-message">
+      {{ messageSuccess }}
+    </div>
+    <div *ngIf="showNotification" class="notification-bar">
+      <p>{{ notificationMessage }}</p>
+      <button (click)="closeNotification()">OK</button>
+    </div>
+  </div>
+  <div *ngIf="isAdmin">
+    <h2>Leave Requests</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Employee Name</th>
+          <th>Selected Dates</th>
+          <th>Confirmed</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of leaveRequests">
+          <td>{{ request.id }}</td>
+          <td>{{ getEmployeeName(request.employeeEmail) }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let date of request.selectedDates">{{ date }}</li>
+            </ul>
+          </td>
+          <td>{{ request.confirmed ? 'Yes' : 'No' }}</td>
+          <td>
+            <button (click)="confirmLeaveRequest()">Accept</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!isAdmin">
+    <p>You do not have permission to view this content.</p>
+  </div>
+</div>
