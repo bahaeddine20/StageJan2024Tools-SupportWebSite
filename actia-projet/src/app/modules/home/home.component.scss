@@ -4,7 +4,8 @@ body {
 }
 
 .container {
-  margin: 0 auto;
+  padding: 10px;
+  margin: auto; // Ajoute un espacement autour du contenu dans les mobiles
 }
 
 #content .carousel {
@@ -356,23 +357,22 @@ body {
 }
 
 .wraper-block {
-  height: auto;
-  width: 940px;
   display: flex;
-  margin: 0 auto;
-  font-size: 17px;
-  padding-bottom: 50px;
-  padding-top: 50px;
-}
+  flex-wrap: wrap;
+  justify-content: space-around; // Pour espacer les éléments
 
-.wraper-icon-block {
-  height: auto;
-  width: 33%;
-  display: inline-block;
-  margin: 0 auto;
-  text-align: center;
-  vertical-align: top;
-  padding-top: 50px;
+  .wraper-icon-block {
+    text-align: center;
+    margin: 10px;
+    flex: 1 0 21%; // Largeur fixe pour chaque bloc avec marges
+    box-sizing: border-box;
+    max-width: 21%;
+
+    h3 {
+      margin-top: 10px;
+      font-size: 1rem; // Taille de police pour mobile
+    }
+  }
 }
 
 .wraper-icon-block {
@@ -994,7 +994,6 @@ body {
   width: 940px;
   display: block;
   margin: 0 auto;
-  vertical-align: top;
   font-size: 0;
 }
 
@@ -1088,4 +1087,125 @@ app-teams {
   display: block;
   width: 100%;
   margin: 0 auto;
+}
+@media (max-width: 769px) {
+  #content {
+    .carousel {
+      height: 200px; // Hauteur réduite pour les appareils mobiles plus petits
+
+      .carousel-inner {
+        .carousel-item {
+          img {
+            height: 200px; // Hauteur des images réduite pour les appareils mobiles
+          }
+        }
+      }
+
+      // Styles pour les contrôles du carousel dans le mobile
+      .carousel-control-prev,
+      .carousel-control-next {
+        display: block; // Afficher les contrôles dans le mobile
+        top: 50%; // Aligner les contrôles verticalement
+        transform: translateY(-50%); // Déplacer les contrôles vers le haut de moitié de leur hauteur
+        width: 50px; // Largeur des contrôles
+        height: 50px; // Hauteur des contrôles
+        background: rgba(0, 0, 0, 0.5); // Fond semi-transparent
+        border-radius: 50%; // Forme circulaire des contrôles
+        border: none; // Pas de bordure
+        z-index: 100; // Assurer que les contrôles sont au-dessus du carousel
+      }
+
+      // Styles pour l'icône des contrôles du carousel
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 30px; // Largeur de l'icône
+        height: 30px; // Hauteur de l'icône
+        background-size: 100%; // Taille de l'icône
+        background-color: transparent; // Fond transparent
+        border: none; // Pas de bordure
+        outline: none; // Pas de contour
+      }
+
+      // Styles pour le texte des contrôles du carousel
+      .visually-hidden {
+        display: none; // Masquer le texte
+      }
+    }
+  }
+  .container {
+    padding: 10px; // Ajoute un espacement autour du contenu dans les mobiles
+    .row {
+      margin-right: -15px; // Compenser la marge négative des colonnes
+      margin-left: -15px; // Compenser la marge négative des colonnes
+    
+      .col-md-3 {
+        width: 100%; // La largeur des colonnes est de 100% pour occuper toute la largeur dans le mobile
+        padding: 0 15px; // Espacement horizontal des colonnes
+        margin-bottom: 15px; // Espacement entre les lignes
+      }
+    
+      .panel {
+        text-align: center; // Centrer le contenu des panneaux
+        width: 95%; // Largeur des contrôles
+        height: 100%; // Hauteur des contrôles
+    
+        a {
+          padding: 10px; // Espacement des liens à l'intérieur des panneaux
+        }
+      }
+    }
+    
+  }
+  .content {
+    .welcome {
+      font-size: 1.5rem; // Taille de police réduite pour les appareils mobiles
+    }
+
+    .typing-effect {
+      .top-ph {
+        font-size: 0.8rem; // Taille de police réduite pour les appareils mobiles
+        a {
+          padding: 8px 16px; // Espacement réduit pour les appareils mobiles
+        }
+      }
+    }
+  }
+
+  .section-services {
+    margin-top: 20px; // Ajoute une marge en haut de la section des services
+  }
+
+  .head-name {
+    font-size: 1.5rem; // Réduit la taille de la police pour les noms de section
+  }
+
+  mat-divider {
+    margin: 20px 0; // Ajoute une marge en haut et en bas du séparateur
+  }
+  .wraper-block {
+    flex-wrap: nowrap;
+    overflow-x: auto; // Activer le défilement horizontal
+    justify-content: flex-start; // Aligner les éléments à gauche
+    text-align: center;
+
+    .wraper-icon-block {
+      flex: 0 0 auto; // Ne pas permettre l'élargissement automatique
+      width: 150px; // Largeur fixe pour chaque bloc
+      max-width: none; // Désactiver la largeur maximale
+      align-items: center;
+    }
+  }
+  .wraper-portfolio .port-top .wraper-top {
+    flex: 0 0 100%; // Une colonne pour mobile
+    max-width: 100%; // Largeur maximale pour mobile
+  }
+
+  .wraper-about-us .about-left,
+  .wraper-about-us .about-right {
+    flex: 0 0 100%; // Une colonne pour mobile
+    max-width: 100%; // Largeur maximale pour mobile
+  }
+  .wraper-about-us {
+    display: none; // Cacher les images circulaires pour mobile
+  }
 }

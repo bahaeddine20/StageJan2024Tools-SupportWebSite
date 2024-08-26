@@ -34,7 +34,7 @@ a, a:hover {
   padding: 50px 20px;
   padding-top: 100px;
   display: flex;
-  /* Removed duplicate 'display: flex;' */
+  
   @media screen and (max-width: 768px) {
     height: auto;
     min-height: 100vh;
@@ -42,10 +42,10 @@ a, a:hover {
   }
 }
 
-.form-card {
+.form-card, .profile-card {
   width: 100%;
   min-height: 460px;
-  margin: auto;
+  margin: 35px auto; /* Adjust margin for space between forms */
   box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
   background: #fff;
   border-radius: 12px;
@@ -53,21 +53,22 @@ a, a:hover {
   position: relative;
 
   &.active {
-    .form-card__cnt {
+    .form-card__cnt, .profile-card__cnt {
       filter: blur(6px);
     }
 
-    .form-card-message,
-    .form-card__overlay {
+    .form-card-message, .profile-card-message,
+    .form-card__overlay, .profile-card__overlay {
       opacity: 1;
       pointer-events: auto;
       transition-delay: .1s;
     }
 
-    .form-card-form {
+    .form-card-form, .profile-card-form {
       transform: none;
       transition-delay: .1s;
     }
+  
   }
 
   &__img {
@@ -401,11 +402,19 @@ a, a:hover {
       outline: 0; // Remove default focus outline
       box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); // Add focus shadow
     }
+  
     input {
+      width: 100%; // Ensure input takes full width
+      padding: 10px 15px; // Adjust padding as needed
+      border: 1px solid #ccc; // Add border for better visibility
+      border-radius: 8px;
+      font-family: 'Quicksand', sans-serif; // Apply font-family
+      color: #324e63; // Text color
+      font-weight: 500; // Font weight
+  
+      @media screen and (max-width: 576px) {
         width: calc(100% - 40px); // Adjust width to make space for icon
-        padding: 10px 15px;
-        border: 1px solid #ccc; // Add border for better visibility
-        border-radius: 8px;
+      }
     }
 
     svg {
@@ -647,7 +656,7 @@ a, a:hover {
       @media screen and (max-width: 768px) {
         width: 50px;
         height: 50px;
-        margin: 10px;
+        margin: 5px;
       }
 
       @media screen and (min-width: 768px){
@@ -903,4 +912,34 @@ a, a:hover {
     transition: all .3s;
   }
 
+}
+.profile-card__txt {
+  font-size: 18px;
+  font-weight: 500;
+  color: #324e63;
+  margin-bottom: 15px;
+  word-wrap: break-word; /* Ensures long words break and wrap */
+}
+
+@media (max-width: 700px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    
+    .profile-details {
+      padding-left: 0;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+  .form-group {
+    input {
+      padding: 8px;
+    }
+  }
+  
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+  }
 }

@@ -20,4 +20,6 @@ public interface AuthorizationRequestRepository extends JpaRepository<Authorizat
     void deleteAllauthById(@Param("ids") List<Long> ids);
     @Transactional
     void deleteByIdIn(List<Long> ids);
+    @Query("SELECT ar FROM AuthorizationRequest ar")
+    List<AuthorizationRequest> findAllAuthorizationRequests();
 }

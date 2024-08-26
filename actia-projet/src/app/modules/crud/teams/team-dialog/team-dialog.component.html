@@ -3,9 +3,9 @@
     <h2>{{ team.name }}</h2>
   </div>
   <div class="dialog-body">
-    <p><strong>Description:</strong> {{ team.description }}</p>
-    <p><strong>Technology:</strong> {{ team.technologie }}</p>
-    <img [src]="getImageUrl(team.teamImages[0])" alt="Team Photo" class="dialog-image">
+    <p><strong>{{ 'DESCRIPTION' | translate }}:</strong> {{ team.description }}</p>
+    <p><strong>{{ 'TECHNOLOGY' | translate }}:</strong> {{ team.technologie }}</p>
+    <img mat-card-image [src]="team.teamImages[0] ? getImageUrl(team.teamImages[0]) : defaultImageUrl" alt="{{ 'TEAM_PHOTO' | translate }}" class="dialog-image">
   </div>
 </mat-dialog-content>
 <mat-dialog-actions class="dialog-actions">
@@ -17,10 +17,10 @@
       <button mat-icon-button color="warn" (click)="deleteTeam(team.id)">
         <mat-icon>delete</mat-icon>
       </button>
-    <button mat-icon-button color="accent" [routerLink]="['/employees', team.id]" (click)="onNoClick()">
-      <mat-icon>visibility</mat-icon>
-    </button>
+      <button mat-icon-button color="accent" [routerLink]="['/employees', team.id]" (click)="onNoClick()">
+        <mat-icon>visibility</mat-icon>
+      </button>
     </span>
   </div>
-  <button mat-button (click)="onNoClick()" class="close-button">Close</button>
+  <button mat-button (click)="onNoClick()" class="close-button">{{ 'CLOSE' | translate }}</button>
 </mat-dialog-actions>

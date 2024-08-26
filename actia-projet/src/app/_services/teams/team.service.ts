@@ -88,4 +88,12 @@ if (formDataEntries) {
     });
     return this.http.get<number>(`http://localhost:8080/team/count`,{ headers });
   }
+
+  checkTeamExists(name: string): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.get<boolean>(`http://localhost:8080/team/checkTeamExists?name=${name}`, { headers });
+  }
+  
 }

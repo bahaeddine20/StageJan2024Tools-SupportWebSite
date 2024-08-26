@@ -1,11 +1,11 @@
 <div class="main-body">
   <mat-form-field class="custom-filter" appearance="fill">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Type to filter...">
+    <mat-label>{{ 'FILTER' | translate }}</mat-label>
+    <input matInput (keyup)="applyFilter($event)" [placeholder]="'TYPE_TO_FILTER' | translate">
   </mat-form-field>  
   <span class="example-spacer" *ngIf="roles.includes('ROLE_ADMIN')">
     <button mat-raised-button class="add-team-btn" (click)="openAddEditTeamForm()">
-      ADD Team
+      {{ 'ADD_TEAM' | translate }}
     </button>
   </span>
   <div class="card-container">
@@ -13,14 +13,13 @@
       <mat-card-header>
         <mat-card-title>{{ team.name }}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="getImageUrl(team.teamImages[0])" alt="Team Photo" class="circular-image">
+      <img mat-card-image [src]="team.teamImages[0] ? getImageUrl(team.teamImages[0]) : defaultImageUrl" alt="{{ 'TEAM_PHOTO' | translate }}" class="circular-image">
       <mat-card-content>
         <p>{{ team.technologie }}</p>
       </mat-card-content>
       <mat-card-actions class="card-actions">
-        <button mat-raised-button color="primary" (click)="$event.stopPropagation(); openTeamDetails(team)">More Details</button>
+        <button mat-raised-button color="primary" (click)="$event.stopPropagation(); openTeamDetails(team)">{{ 'MORE_DETAILS' | translate }}</button>
       </mat-card-actions>
     </mat-card>
   </div>
 </div>
-

@@ -77,10 +77,12 @@ public class EmployeeController {
     @PutMapping("/updateEmployee/{id}")
     public Employee updateEmployee(@PathVariable int id,
                                    @RequestPart("employee") Employee employee,
-                                   @RequestPart(value ="imagePath",required = false) MultipartFile[] files) {
+                                   @RequestPart(value = "imagePath", required = false) MultipartFile[] files) {
         try {
-            Set<ImageModel> images = uploadImage(files); // Convertir le tableau en liste
-            employee.setEmployeeImages(images);
+            if (files != null && files.length > 0) {
+                Set<ImageModel> images = uploadImage(files);
+                employee.setEmployeeImages(images);
+            }
             employee.setId(id);
             return ES.updateEmployee(employee);
         } catch (Exception e) {
@@ -113,9 +115,18 @@ public class EmployeeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image");
         }
     }
+    @PutMapping("/updateEmployeeTeam/{employeeId}/{newTeamId}")
+    public Employee updateEmployeeTeam(@PathVariable int employeeId, @PathVariable int newTeamId) {
+        return ES.updateEmployeeTeam(employeeId, newTeamId);
+    }
 
     @GetMapping("/count")
     public Long countEmployees() {
         return ES.countEmployees();
+    }
+
+    @GetMapping("/checkEmailExists")
+    public boolean checkEmailExists(@RequestParam String email) {
+        return ES.checkEmailExists(email);
     }
 }

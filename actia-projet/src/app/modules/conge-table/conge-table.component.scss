@@ -1,0 +1,88 @@
+.table-container {
+  margin: 20px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-container th {
+  background-color: #f4f4f4;
+}
+
+.day-cell {
+  cursor: pointer;
+}
+
+.selected-day {
+  background-color: #cce5ff;
+}
+
+.confirmed-day {
+  background-color: #d4edda;
+}
+
+.success-message {
+  color: green;
+}
+
+.notification-bar {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.notification-bar button {
+  background: none;
+  border: none;
+  color: #721c24;
+  cursor: pointer;
+}
+.selected-day {
+  background-color: yellow;
+}
+
+.confirmed-day {
+  background-color: green;
+  color: white;
+}
+/* Exemple de CSS */
+.day-selected {
+  background-color: yellow;
+}
+
+.day-confirmed {
+  background-color: green;
+}
+.highlight-selected {
+  background-color: yellow;
+}
+.selected-date {
+  background-color: yellow;
+}
+
+.day-cell {
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+}
+
+.day-selected {
+  border: 2px solid blue;
+}
+
+.day-confirmed {
+  background-color: green;
+  color: white;
+}
+.highlight-yellow {
+  background-color: yellow !important;
+}
+

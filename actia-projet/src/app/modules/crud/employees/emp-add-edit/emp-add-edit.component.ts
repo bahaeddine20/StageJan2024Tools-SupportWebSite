@@ -1,5 +1,5 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { EmployeeService } from '../../../../_services/employees/employee.service';
@@ -22,6 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../../../_services/language/language.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from '../../../../translation/translation.module';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-emp-add-edit',
@@ -45,12 +49,14 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     MatCardModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    TranslationModule
   ],
   templateUrl: './emp-add-edit.component.html',
-  styleUrl: './emp-add-edit.component.scss'
+  styleUrls: ['./emp-add-edit.component.scss']
 })
 export class EmpAddEditComponent implements OnInit {
+  @Output() updateSuccess = new EventEmitter<boolean>();
   @ViewChild('fileInput') fileInput?: ElementRef;
   empForm: FormGroup;
   editMode: boolean = false;
@@ -58,9 +64,8 @@ export class EmpAddEditComponent implements OnInit {
   imageFiles: File[] = [];
   selectedFileName: string | null = null;
   teams: any[] = [];
-
-  
-
+  defaultMaleImage = 'assets/images/profile.webp';
+  defaultFemaleImage = 'assets/images/profilewoman.webp'; 
   constructor(
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
@@ -68,19 +73,21 @@ export class EmpAddEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EmpAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private coreService: CoreService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private languageService: LanguageService,
+    private translate: TranslateService
   ) {
     this.empForm = this.fb.group({
       id: 0,
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email], this.emailValidator.bind(this)],
       gender: ['', Validators.required],
-      phone: ['',[Validators.required, Validators.maxLength(8)]],
-      linkedin:['', [Validators.required]],
-      role:['', Validators.required],
+      phone: ['', [Validators.required, Validators.maxLength(8)]],
+      linkedin: ['', Validators.required],
+      role: ['', Validators.required],
       image: [''],
-      team: ['', Validators.required]
+      team: [null, Validators.required]
     });
 
     if (data && data.employee) {
@@ -95,15 +102,36 @@ export class EmpAddEditComponent implements OnInit {
         lastname: data.employee.lastname,
         email: data.employee.email,
         gender: data.employee.gender,
-        phone:data.employee.phone,
+        phone: data.employee.phone,
         linkedin: data.employee.linkedin,
         role: data.employee.role,
-        team: data.employee.team ? data.employee.team.id : ''
+        team: data.employee.team ? data.employee.team.id : null
       });
 
       if (image) {
         this.imageUrl = this.getImageUrl(image);
       }
+    }
+
+    this.empForm.get('gender')?.valueChanges.subscribe(gender => {
+      this.setDefaultImage(gender);
+    });
+
+    this.setDefaultImage(this.empForm.get('gender')?.value);
+    this.languageService.currentLanguage.subscribe(language => {
+      this.translate.use(language);
+    });
+  }
+  switchLanguage(language: string) {
+    this.languageService.changeLanguage(language);
+  }
+  private setDefaultImage(gender: string): void {
+    if (gender === 'male') {
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.defaultMaleImage);
+    } else if (gender === 'female') {
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.defaultFemaleImage);
+    } else {
+      this.imageUrl = null;
     }
   }
 
@@ -111,7 +139,6 @@ export class EmpAddEditComponent implements OnInit {
     this.loadTeams();
   }
 
-  
   loadTeams(): void {
     this.empService.getTeams().subscribe(
       (teams) => this.teams = teams,
@@ -162,6 +189,8 @@ export class EmpAddEditComponent implements OnInit {
     this.empService.updateEmployee(employeeData.id, employeeData, imageFiles).subscribe(
       (response) => {
         if (response) {
+          const newTeamId = typeof employeeData.team === 'object' ? employeeData.team.id : employeeData.team;
+          this.updateEmployeeTeam(employeeData.id, newTeamId);
           this.showSuccessMessage();
           this.dialogRef.close();
           location.reload();
@@ -171,10 +200,33 @@ export class EmpAddEditComponent implements OnInit {
     );
   }
 
+  updateEmployeeTeam(employeeId: number, newTeamId: number): void {
+    this.empService.updateEmployeeTeam(employeeId, newTeamId).subscribe(
+      () => {
+        console.log('Employee team updated successfully');
+      },
+      (error) => console.error('Error updating employee team:', error)
+    );
+  }
+  emailValidator(control: AbstractControl): Observable<{ [key: string]: any } | null> {
+    const originalEmail = this.data && this.data.employee ? this.data.employee.email : '';
+    const newEmail = control.value;
+  
+    // Check if the email has been modified
+    if (originalEmail !== newEmail) {
+      return this.empService.checkEmailExists(control.value).pipe(
+        map(exists => (exists ? { emailExists: true } : null)),
+        catchError(() => of(null))
+      );
+    } else {
+      // If email has not been modified, return null (no error)
+      return of(null);
+    }
+  }
+  
   onFormSubmit(): void {
     if (this.empForm.valid) {
       const employeeData = this.empForm.value;
-      console.log(employeeData)
       let imageFiles: File[] = [];
 
       if (this.empForm.get('image')?.value instanceof File) {

@@ -2,6 +2,7 @@ package com.bezkoder.springjwt.security.services;
 
 
 import com.bezkoder.springjwt.models.Request;
+import com.bezkoder.springjwt.models.User;
 import com.bezkoder.springjwt.repository.AuthorizationRequestRepository;
 import com.bezkoder.springjwt.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender mailSender;
-    
+
     private final RequestRepository rR;
 
     private final AuthorizationRequestRepository authorizationRequestRepository;
@@ -39,7 +40,7 @@ public class EmailService {
         message.setText(content);
         mailSender.send(message);
     }
-    
+
     public EmailService(JavaMailSender mailSender, RequestRepository rR, AuthorizationRequestRepository authorizationRequestRepository) {
         this.mailSender = mailSender;
         this.rR = rR;
@@ -108,5 +109,8 @@ public class EmailService {
     @Transactional
     public void deleteMultipleAuthorizationRequests(List<Long> ids) {
         authorizationRequestRepository.deleteByIdIn(ids);
+    }
+    public List<Request> getAllNotifications() {
+        return rR.findAll();
     }
 }

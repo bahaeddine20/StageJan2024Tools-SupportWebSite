@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.security.services;
 
+import com.bezkoder.springjwt.models.Team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -40,10 +42,9 @@ public class EmployeeService {
     }
 
     public boolean employeeExists(String email) {
-        boolean exists = ER.findByEmail(email) != null;
-        logger.debug("Employee existence check for email {}: {}", email, exists);
-        return exists;
+        return ER.findByEmail(email).isPresent();
     }
+
 
     public List<Employee> getAllEmployees(){
         List<Employee> employees = new ArrayList<>();
@@ -70,23 +71,53 @@ public class EmployeeService {
 
     public Employee updateEmployee(Employee employee) {
         logger.info("Updating employee ID: {}", employee.getId());
-        Employee existingEMP = ER.findById(employee.getId()).orElse(null);
-        if (existingEMP == null) {
+        Optional<Employee> existingEMPOpt = ER.findById(employee.getId());
+
+        if (!existingEMPOpt.isPresent()) {
             logger.error("Employee not found with ID: {}", employee.getId());
             throw new IllegalArgumentException("Employee not found with ID: " + employee.getId());
-        } else {
-            existingEMP.setFirstname(employee.getFirstname());
-            existingEMP.setLastname(employee.getLastname());
-            existingEMP.setEmail(employee.getEmail());
-            existingEMP.setGender(employee.getGender());
-            existingEMP.setLinkedin(employee.getLinkedin());
-            existingEMP.setRole(employee.getRole());
-            Employee updatedEmployee = ER.save(existingEMP);
-            logger.info("Employee updated successfully: {}", updatedEmployee.getId());
-            return updatedEmployee;
         }
-    }
 
+        Employee existingEMP = existingEMPOpt.get();
+        existingEMP.setFirstname(employee.getFirstname());
+        existingEMP.setLastname(employee.getLastname());
+        existingEMP.setEmail(employee.getEmail());
+        existingEMP.setGender(employee.getGender());
+        existingEMP.setPhone(employee.getPhone());
+        existingEMP.setLinkedin(employee.getLinkedin());
+        existingEMP.setRole(employee.getRole());
+
+        if (employee.getEmployeeImages() != null && !employee.getEmployeeImages().isEmpty()) {
+            existingEMP.setEmployeeImages(employee.getEmployeeImages());
+        }
+
+        Employee updatedEmployee = ER.save(existingEMP);
+        logger.info("Employee updated successfully: {}", updatedEmployee.getId());
+        return updatedEmployee;
+    }
+    public Employee updateEmployeeTeam(int employeeId, int newTeamId) {
+        logger.info("Updating team for employee ID: {}", employeeId);
+        Optional<Employee> employeeOpt = ER.findById(employeeId);
+        Optional<Team> teamOpt = TR.findById(newTeamId);
+
+        if (!employeeOpt.isPresent()) {
+            logger.error("Employee not found with ID: {}", employeeId);
+            throw new IllegalArgumentException("Employee not found with ID: " + employeeId);
+        }
+
+        if (!teamOpt.isPresent()) {
+            logger.error("Team not found with ID: {}", newTeamId);
+            throw new IllegalArgumentException("Team not found with ID: " + newTeamId);
+        }
+
+        Employee employee = employeeOpt.get();
+        Team newTeam = teamOpt.get();
+        employee.setTeam(newTeam);
+
+        Employee updatedEmployee = ER.save(employee);
+        logger.info("Employee updated successfully: {}", updatedEmployee.getId());
+        return updatedEmployee;
+    }
     public List<Employee> addAllEmployees(List<Employee> employees) {
         List<Employee> newEmployees = new ArrayList<>();
         for (Employee employee : employees) {
@@ -131,4 +162,12 @@ public class EmployeeService {
         logger.info("Total number of employees: {}", count);
         return count;
     }
+    public boolean checkEmailExists(String email) {
+        Optional<Employee> employee = ER.findByEmail(email);
+        return employee.isPresent();
+    }
 }
+
+
+
+

@@ -14,7 +14,6 @@ import com.bezkoder.springjwt.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByEmail(String email);
-	Optional<User> findByUsername(String username);
 	Optional<User> findByResetPasswordToken(String resetPasswordToken);  // Ajoutez cette ligne
 	Boolean existsByUsername(String username);
 	Boolean existsByEmail(String email);
@@ -22,5 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> findByRolesName(ERole name);
 	@Query("SELECT u FROM User u JOIN u.roles r WHERE u.email = :email AND r.name = :role")
     Optional<User> findByEmailAndRoleName(@Param("email") String email, @Param("role") ERole role);
-	
+	User findByUsername(String username);
 }

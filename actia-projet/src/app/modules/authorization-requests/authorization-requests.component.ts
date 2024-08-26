@@ -4,6 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TokenStorageService } from '../../_services/loginService/token-storage.service';
 import { AuthorizationRequestsService } from '../../_services/AuthorizationRequests/authorization-requests.service';
+import { futureOrPresentDateValidator, timeRangeValidator } from '../../validator/date.validators';
+import { TranslationModule } from '../../translation/translation.module';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../_services/language/language.service';
 
 @Component({
   selector: 'app-authorization-requests',
@@ -12,7 +16,8 @@ import { AuthorizationRequestsService } from '../../_services/AuthorizationReque
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslationModule
   ],
   templateUrl: './authorization-requests.component.html',
   styleUrls: ['./authorization-requests.component.scss']
@@ -30,13 +35,23 @@ export class AuthorizationRequestsComponent implements OnInit {
   acceptedRequests: Set<number> = new Set();
   rejectedRequests: Set<number> = new Set();
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private tokenStorageService: TokenStorageService, private requestService: AuthorizationRequestsService) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService, 
+    private requestService: AuthorizationRequestsService,
+    private translate: TranslateService, 
+    private languageService: LanguageService
+  ) {
     this.cancelForm = this.fb.group({
       requesterName: ['', Validators.required],
       requesterEmail: ['', [Validators.required, Validators.email]],
       reason: ['', Validators.required],
-      leavingTime: ['', Validators.required],
+      leavingTime: ['', [Validators.required, timeRangeValidator(), futureOrPresentDateValidator()]],
       adminEmail: ['', [Validators.required, Validators.email]]
+    });
+    this.languageService.currentLanguage.subscribe(language => {
+      this.translate.use(language);
     });
   }
 
@@ -46,27 +61,15 @@ export class AuthorizationRequestsComponent implements OnInit {
       this.user = this.tokenStorageService.getUser();
       this.roles = this.user.roles;
 
-      console.log('Is Logged In:', this.isLoggedIn); // Log the login status
-      console.log('Roles:', this.roles); // Log the roles
-
-      // Execute actions specific to the admin role
       if (this.roles.includes('ROLE_ADMIN')) {
-        this.loadRequests(); // Load requests if the user is an admin
+        this.loadRequests(); 
       }
 
-      // Execute actions specific to the user role
       if (this.roles.includes('ROLE_USER') && !this.roles.includes('ROLE_ADMIN')) {
-        this.initializeFormWithUserData(); // Initialize form with user data if only a user
+        this.initializeFormWithUserData(); 
       }
     }
-
-    // Load saved state from localStorage
     this.loadSavedState();
-  }
-
-  saveState() {
-    localStorage.setItem('acceptedRequests', JSON.stringify([...this.acceptedRequests]));
-    localStorage.setItem('rejectedRequests', JSON.stringify([...this.rejectedRequests]));
   }
 
   loadSavedState() {
@@ -122,36 +125,34 @@ export class AuthorizationRequestsComponent implements OnInit {
   getUser() {
     const token = localStorage.getItem('token');
     if (token) {
-      const decoded = JSON.parse(atob(token.split('.')[1])); // Assuming JWT structure
-      return decoded; // Or however you store user details in the token
+      const decoded = JSON.parse(atob(token.split('.')[1])); 
+      return decoded; 
     }
     return null;
   }
 
   submitAuthorizationRequest() {
     if (this.cancelForm.invalid) {
-      // Mark all form fields as touched to trigger validation messages
       Object.values(this.cancelForm.controls).forEach(control => {
         control.markAsTouched();
       });
       alert('Please fill out all required fields.');
-      return; // This return statement exits the function if the form is invalid
+      return;
     }
 
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
     });
 
-    // Send form data to backend
     const formData = this.cancelForm.value;
     this.http.post<any>('http://localhost:8080/submitAuthorizationRequest', formData, { headers })
       .subscribe(
         response => {
-          console.log(response); // Log success message
-          alert(response.message); // Display success message from JSON response
+          console.log(response);
+          alert(response.message); 
           this.cancelForm.get('leavingTime')?.reset();
           this.cancelForm.get('adminEmail')?.reset();
-          this.cancelForm.get('reason')?.reset(); // Reset the form
+          this.cancelForm.get('reason')?.reset(); 
         },
         error => {
           console.error('Error submitting form:', error);
@@ -161,11 +162,9 @@ export class AuthorizationRequestsComponent implements OnInit {
   }
 
   CancelForm() {
-    // Reset the form
     this.cancelForm.reset();
   }
 
-  // Helper method to check if a form control has an error
   hasError(controlName: string, errorName: string) {
     const control = this.cancelForm.get(controlName);
     return control && control.touched && control.hasError(errorName);
@@ -177,7 +176,7 @@ export class AuthorizationRequestsComponent implements OnInit {
     });
     this.http.get<any[]>('http://localhost:8080/getAuthorizationRequests', { headers }).subscribe({
       next: (data) => {
-        console.log('Loaded requests:', data); // Ajoutez ceci pour vérifier les données
+        console.log('Loaded requests:', data);
         this.requests = data;
       },
       error: (error) => {
@@ -187,50 +186,40 @@ export class AuthorizationRequestsComponent implements OnInit {
   }
 
   acceptRequest(requestId: number): void {
-    if (!this.acceptedRequests.has(requestId) && !this.rejectedRequests.has(requestId)) {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${this.tokenStorageService.getToken()}`
-      });
-      this.http.post(`http://localhost:8080/acceptAuthorizationRequest?id=${requestId}`, null, {
-        headers: headers,
-        responseType: 'text'  // Specify that the expected response is plain text
-      })
-      .subscribe({
-        next: (response) => {
-          console.log('Request accepted:', response);
-          this.loadRequests(); // Reload the requests to reflect changes
-          this.acceptedRequests.add(requestId); // Add to accepted requests set
-          this.saveState(); // Save the state to localStorage
-        },
-        error: (error) => {
-          console.error('Error accepting request', error);
-        }
-      });
-    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.tokenStorageService.getToken()}`
+    });
+    this.http.post(`http://localhost:8080/acceptAuthorizationRequest?id=${requestId}`, null, {
+      headers: headers,
+      responseType: 'text'
+    })
+    .subscribe({
+      next: (response) => {
+        console.log('Request accepted:', response);
+        this.loadRequests(); 
+      },
+      error: (error) => {
+        console.error('Error accepting request', error);
+      }
+    });
   }
 
   rejectRequest(requestId: number): void {
-    if (!this.rejectedRequests.has(requestId) && !this.acceptedRequests.has(requestId)) {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${this.tokenStorageService.getToken()}`
-      });
-
-      // Adding responseType: 'text' if the backend returns plain text
-      this.http.post(`http://localhost:8080/rejectAuthorizationRequest?id=${requestId}`, null, {
-        headers: headers,
-        responseType: 'text'
-      }).subscribe({
-        next: (response) => {
-          console.log('Request rejected:', response);
-          this.loadRequests();  // Reload the requests to reflect changes
-          this.rejectedRequests.add(requestId); // Add to rejected requests set
-          this.saveState(); // Save the state to localStorage
-        },
-        error: (error) => {
-          console.error('Error rejecting request', error);
-        }
-      });
-    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.tokenStorageService.getToken()}`
+    });
+    this.http.post(`http://localhost:8080/rejectAuthorizationRequest?id=${requestId}`, null, {
+      headers: headers,
+      responseType: 'text'
+    }).subscribe({
+      next: (response) => {
+        console.log('Request rejected:', response);
+        this.loadRequests();
+      },
+      error: (error) => {
+        console.error('Error rejecting request', error);
+      }
+    });
   }
 
   hasRequests(): boolean {
@@ -238,36 +227,39 @@ export class AuthorizationRequestsComponent implements OnInit {
   }
 
   deleteRequestById(id: number) {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
-    });
-    this.http.delete(`http://localhost:8080/deleteAuthorizationRequestByID/${id}`, { headers })
-      .subscribe({
-        next: () => {
-          this.requests = this.requests.filter(request => request.id !== id);
-          alert('Request deleted successfully');
-        },
-        error: (error) => {
-          console.error('Error deleting request', error);
-          alert('Failed to delete request');
-        }
+    if (confirm('Are you sure you want to delete this request?')) {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
       });
+      this.http.delete(`http://localhost:8080/deleteAuthorizationRequestByID/${id}`, { headers })
+        .subscribe({
+          next: () => {
+            this.requests = this.requests.filter(request => request.id !== id);
+            alert('Request deleted successfully');
+          },
+          error: (error) => {
+            console.error('Error deleting request', error);
+            alert('Failed to delete request');
+          }
+        });
+    }
   }
 
   deleteSelectedRequests(): void {
     const selectedIds = this.requests.filter(req => req.selected).map(req => req.id);
     if (selectedIds.length === 0) {
       alert('No requests selected for deletion.');
-      return; // Exit the method if no requests are selected
+      return;
     }
-    this.requestService.deleteSelectedRequests(selectedIds).subscribe({
-      next: (response) => {
-        console.log('Deleted successfully:', response);
-        // Filter out the deleted requests from the local array to update the UI
-        this.requests = this.requests.filter(req => !selectedIds.includes(req.id));
-      },
-      error: (error) => console.error('Failed to delete requests:', error)
-    });
+    if (confirm('Are you sure you want to delete the selected requests?')) {
+      this.requestService.deleteSelectedRequests(selectedIds).subscribe({
+        next: (response) => {
+          console.log('Deleted successfully:', response);
+          this.requests = this.requests.filter(req => !selectedIds.includes(req.id));
+        },
+        error: (error) => console.error('Failed to delete requests:', error)
+      });
+    }
   }
 
   selectAllRequests(event: any) {

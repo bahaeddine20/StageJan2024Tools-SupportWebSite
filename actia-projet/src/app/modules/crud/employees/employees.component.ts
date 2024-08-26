@@ -28,6 +28,9 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog.component';
 import { TeamService } from '../../../_services/teams/team.service';
 import { ImageawsComponent } from '../../imageaws/imageaws.component';
+import { TranslationModule } from '../../../translation/translation.module';
+import { LanguageService } from '../../../_services/language/language.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-employees',
   standalone: true,
@@ -52,7 +55,8 @@ import { ImageawsComponent } from '../../imageaws/imageaws.component';
     RouterModule,
     CommonModule,
     ConfirmDialogComponent,
-    ImageawsComponent
+    ImageawsComponent,
+    TranslationModule
   ],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.scss'
@@ -73,13 +77,13 @@ export class EmployeesComponent implements OnInit {
     'action',
   ];
   currentTeamId: number | null = null;
-
   faLinkedin = faLinkedin;
   roles: string[] = [];
   isLoggedIn = false;
   team: any;
   members?: any[];
-  
+  defaultMaleImage = 'assets/images/profile.webp';
+  defaultFemaleImage = 'assets/images/profilewoman.webp';
   dataSource!: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -92,20 +96,21 @@ export class EmployeesComponent implements OnInit {
     private _empService: EmployeeService,
     private _coreService: CoreService,
     private _sanitizer: DomSanitizer,
-    private teamService: TeamService
-  ) {}
-  
-  getLinkedInUsername(linkedinUrl: string): string {
-    const matches = linkedinUrl.match(/linkedin\.com\/in\/([^\/]+)/);
-    if (matches) {
-      // Remplace les tirets par des espaces, supprime tous les chiffres et le mot "chiffres"
-      return matches[1].replace(/-/g, ' ').replace(/\d+/g, '').replace(/-\w+$/g, '').trim();
-    }
-    return '';
+    private teamService: TeamService,
+    private languageService: LanguageService,
+    private translate: TranslateService
+  ) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.translate.use(language);
+    });
   }
-
+  switchLanguage(language: string) {
+    this.languageService.changeLanguage(language);
+  }
   
-  
+  isMatrixTeam(): boolean {
+    return this.team?.name.toLowerCase() === 'matrix';
+  }
   
   isTeamLead(member: any): boolean {
     return member.role === 'TEAM_LEAD';
@@ -123,6 +128,10 @@ export class EmployeesComponent implements OnInit {
     this.teamService.getAllTeams().subscribe((data: any[]) => {
       this.members = data; // Stocker les membres de l'équipe dans la variable 'members'
     });
+  }
+  toggleBio(member: any, event: Event) {
+    event.preventDefault();
+    member.showFullBio = !member.showFullBio;
   }
   ngOnInit(): void {
     this.loadMembers();
@@ -233,5 +242,8 @@ export class EmployeesComponent implements OnInit {
       return this._sanitizer.bypassSecurityTrustUrl(imageUrl);
     }
     return null;
+  }
+  getDefaultImage(gender: string): string {
+    return gender === 'male' ? this.defaultMaleImage : this.defaultFemaleImage;
   }
 }

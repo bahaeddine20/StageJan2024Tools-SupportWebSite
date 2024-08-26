@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.controllers;
 
+import com.bezkoder.springjwt.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,14 +57,15 @@ public class TeamController {
                 return null;
             }
         }
-
     @PutMapping("/updateTeam/{id}")
     public Team updateTeam(@PathVariable int id,
                                    @RequestPart("team") Team team,
-                                   @RequestPart(value ="imagePath",required = false) MultipartFile[] files) {
+                                   @RequestPart(value = "imagePath", required = false) MultipartFile[] files) {
         try {
-            Set<ImageModel> images = uploadImage(files); // Convertir le tableau en liste
-            team.setTeamImages(images);
+            if (files != null && files.length > 0) {
+                Set<ImageModel> images = uploadImage(files);
+                team.setTeamImages(images);
+            }
             team.setId(id);
             return TS.updateTeam(team);
         } catch (Exception e) {
@@ -96,4 +98,8 @@ public class TeamController {
         return TS.countTeams();
     }
 
+    @GetMapping("/checkTeamExists")
+    public boolean checkTeamExists(@RequestParam String name) {
+        return TS.checkTeamExists(name);
+    }
 }

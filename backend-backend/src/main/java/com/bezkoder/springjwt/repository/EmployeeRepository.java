@@ -7,6 +7,7 @@ import com.bezkoder.springjwt.models.Gender;
 import com.bezkoder.springjwt.models.Team;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
@@ -16,10 +17,10 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
         List<Employee> findByGender(Gender gender);
 
         // Search by date range
-        Employee findByEmail(String email);
+
         public java.lang.Iterable<Employee> findAllByTeam(Team T);
 
 		Employee getById(int id);
 
-
+        Optional<Employee> findByEmail(String email);
 }

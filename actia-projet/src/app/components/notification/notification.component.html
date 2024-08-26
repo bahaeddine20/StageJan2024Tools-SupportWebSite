@@ -1,0 +1,9 @@
+<ul class="notification-list">
+  <li *ngFor="let notification of notifications" class="notification-item">
+    <div class="notification-content">
+      <strong class="notification-name">{{ notification.name }}</strong>
+      <p class="notification-reason"><b>Reason:</b> {{ notification.reason }}</p>
+      <p class="notification-status"><b>Status:</b> {{ notification.status }}</p>
+    </div>
+  </li>
+</ul>

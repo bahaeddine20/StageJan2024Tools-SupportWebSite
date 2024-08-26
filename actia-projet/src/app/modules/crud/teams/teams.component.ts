@@ -26,6 +26,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { TeamDialogComponent } from './team-dialog/team-dialog.component';
+import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog.component';
+import { LanguageService } from '../../../_services/language/language.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from '../../../translation/translation.module';
 
 @Component({
   selector: 'app-teams',
@@ -50,7 +54,8 @@ import { TeamDialogComponent } from './team-dialog/team-dialog.component';
     HttpClientModule,
     MatCardModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    TranslationModule
   ],
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.scss'
@@ -69,7 +74,7 @@ export class TeamsComponent implements OnInit {
   Team?: Team[];
   dataSource!: MatTableDataSource<any>;
   selectedFileName: string | null = null;
-
+  defaultImageUrl: string = 'assets/images/team.webp';
 
   roles: string[] = [];
   isLoggedIn = false;
@@ -83,9 +88,17 @@ export class TeamsComponent implements OnInit {
     private _dialog: MatDialog,
     private _TeamService: TeamService,
     private _coreService: CoreService,
-    private _sanitizer: DomSanitizer
-  ) {}
-
+    private _sanitizer: DomSanitizer,
+    private languageService: LanguageService,
+    private translate: TranslateService
+  ) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.translate.use(language);
+    });
+  }
+  switchLanguage(language: string) {
+    this.languageService.changeLanguage(language);
+  }
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource();
     this.getTeamList();
@@ -136,17 +149,23 @@ export class TeamsComponent implements OnInit {
   }
 
   deleteTeam(id: number) {
-    this._TeamService.deleteTeam(id).subscribe({
-      next: (res) => {
-        this._coreService.openSnackBar('Team deleted!', 'done');
-        console.log('Calling getTeamList() after deletion...');
-        this.getTeamList();
-      },
-      error: console.error,
+    const dialogRef = this._dialog.open(ConfirmDialogComponent, {
+      data: 'Are you sure you want to delete this team?'
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this._TeamService.deleteTeam(id).subscribe({
+          next: (res) => {
+            this._coreService.openSnackBar('Team deleted!', 'done');
+            this.getTeamList();
+          },
+          error: console.error
+        });
+      }
     });
   }
   
-
   openEditForm(data: any) {
     const dialogRef = this._dialog.open(TeamAddEditComponent, {
       data: { Team: data, selectedFileName: data.image ? data.image : null },

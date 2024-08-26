@@ -8,6 +8,11 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CommonModule } from '@angular/common';
 import { TokenStorageService } from '../../_services/loginService/token-storage.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from '../../translation/translation.module';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { NotificationComponent } from '../notification/notification.component';
+import { RequestService } from '../../_services/Request/request.service';
 
 @Component({
   selector: 'app-header',
@@ -20,12 +25,15 @@ import { TokenStorageService } from '../../_services/loginService/token-storage.
     MatSidenavModule,
     SidenavComponent,
     CommonModule,
-    RouterModule
+    RouterModule,
+    TranslationModule,
+    NotificationComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+  notifications: Notification[] = [];
   title = 'material-responsive-sidenav';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -36,8 +44,23 @@ export class HeaderComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   isSuccessful = false;
+  isMobileDevice = false;
   constructor(private tokenStorageService: TokenStorageService,  
-    private router: Router ) { }
+    private router: Router, private translate: TranslateService,
+    private breakpointObserver: BreakpointObserver,
+    private requestService: RequestService) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape
+    ]).subscribe(result => {
+      this.isMobileDevice = result.matches;
+    });
+     }
+     switchLanguage(language: string) {
+      this.translate.use(language);
+    }
   ngOnInit():void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
@@ -50,6 +73,17 @@ export class HeaderComponent implements OnInit {
 
       this.username = user.username;
     }
+    this.fetchNotifications();
+  }
+  fetchNotifications(): void {
+    this.requestService.getNotifications().subscribe(
+      (notifications) => {
+        this.notifications = notifications;
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
   }
   toggleMenu() {
       this.sidenav.open(); 

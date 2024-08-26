@@ -11,16 +11,19 @@ import { RequestResetPasswordComponent } from './modules/login/request-reset-pas
 import { ResetPasswordGuard } from './_services/reset-password.guard';
 import { ImageawsComponent } from './modules/imageaws/imageaws.component';
 import { AuthorizationRequestsComponent } from './modules/authorization-requests/authorization-requests.component';
+import { AuthGuard } from './_services/loginService/auth.guard';
+import { CongeTableComponent } from './modules/conge-table/conge-table.component';
+import { LeaveRequestListComponent } from './modules/leave-request-list/leave-request-list.component';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
-  
-    // Route pour 'login'
     { path: 'login', component: LoginComponent },
     { path: 'request-reset-password', component: RequestResetPasswordComponent },
     {
         path: '',
-        component: LayoutComponent, // Appliquez AuthGuard au layout
+        component: LayoutComponent,
+        canActivate: [AuthGuard],  // Appliquez AuthGuard au layout
         children: [
             { path: 'home', component: HomeComponent },
             { path: 'profile', component: ProfilComponent },
@@ -31,6 +34,8 @@ export const routes: Routes = [
             { path: 'employees', component: EmployeesComponent },
             { path: 'boutton', component: ImageawsComponent },
             { path: 'authorization', component: AuthorizationRequestsComponent },
+            { path: 'congee', component: CongeTableComponent },
+            { path: 'leave-requests', component: LeaveRequestListComponent }
         ]
     }
 ];

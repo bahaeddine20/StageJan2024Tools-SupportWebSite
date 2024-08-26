@@ -2,6 +2,8 @@ package com.bezkoder.springjwt.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -49,10 +51,13 @@ public class Employee {
             }
     )
     private Set<ImageModel> employeeImages;
-    @ManyToOne(optional = false) 
+
     @JoinColumn(name = "idteam", referencedColumnName = "id")
-    private Team team;
-    public Set<ImageModel> getEmployeeImages() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore  // Ignore during serialization
+	private Team team;
+
+	public Set<ImageModel> getEmployeeImages() {
         return employeeImages;
     }
 

@@ -1,0 +1,64 @@
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    .notification-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+  
+      .notification-content {
+        flex: 1;
+        margin-right: 20px;
+  
+        .notification-name {
+          font-weight: bold;
+          color: #343a40;
+        }
+  
+        .notification-reason,
+        .notification-status {
+          margin: 5px 0;
+          color: #495057;
+        }
+      }
+  
+      .notification-actions {
+        display: flex;
+        gap: 10px;
+  
+        .btn {
+          padding: 5px 10px;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+  
+          &.accept-btn {
+            background-color: #28a745;
+            color: white;
+  
+            &:hover {
+              background-color: #218838;
+            }
+          }
+  
+          &.reject-btn {
+            background-color: #dc3545;
+            color: white;
+  
+            &:hover {
+              background-color: #c82333;
+            }
+          }
+        }
+      }
+    }
+  }
+  
