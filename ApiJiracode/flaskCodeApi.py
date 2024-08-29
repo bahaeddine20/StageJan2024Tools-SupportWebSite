@@ -18,7 +18,7 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
-pat = "TokenJira"
+pat = "Token_Here"
 
 # Specify Jira connection parameters
 jiraOptions = {'server': "https://jira.dt.renault.com"}
@@ -320,19 +320,7 @@ def get_status_from_key(file, key_value):
 
 @app.route('/submit-form/<int:idsprint>', methods=['POST'])
 def submit_form(idsprint):
-    create_table_query = """
-    CREATE TABLE IF NOT EXISTS performanceJira (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        start_date DATE,
-        end_date DATE,
-        sprint_name VARCHAR(255),
-        grouped_bar_chart TEXT,
-        pie_chart TEXT,
-        histogram TEXT,
-        file_data LONGBLOB,
-        idsprint INT
-    )
-    """
+
     print(idsprint)
     from datetime import datetime
 
@@ -569,7 +557,6 @@ def submit_form(idsprint):
 
             if connection.is_connected():
                 cursor = connection.cursor()
-                cursor.execute(create_table_query)
 
                 # SQL statement to create the 'files' table
                 create_table_query = """
@@ -845,7 +832,18 @@ def get_data():
 
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    import subprocess
+    import sys
+
+    # List of packages to install
+    packages = [
+        "Flask", "Flask-Cors", "mysql-connector-python", "paddlepaddle",
+        "paddleocr", "numpy", "jira", "pandas", "matplotlib", "pytz"
+    ]
+
+    # Install each package using pip
+    for package in packages:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
     #install_packages()
 
@@ -856,5 +854,47 @@ if __name__ == '__main__':
     # Your main code here
     print("All packages upgraded successfully!")
     # Initialize PaddleOCR
+    create_database_query = "CREATE DATABASE IF NOT EXISTS actiabackImg"
+    create_table_query = """
+    CREATE TABLE IF NOT EXISTS performanceJira (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        start_date DATE,
+        end_date DATE,
+        sprint_name VARCHAR(255),
+        grouped_bar_chart TEXT,
+        pie_chart TEXT,
+        histogram TEXT,
+        file_data LONGBLOB,
+        idsprint INT
+    )
+    """
+
+    try:
+        # Connect to MySQL without specifying the database
+        connection = mysql.connector.connect(
+            host='localhost',
+            port='3306',
+            user='root',
+            password=''
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+
+            # Check if the database exists and create it if not
+            cursor.execute(create_database_query)
+            print("Database 'actiabackImg' checked/created.")
+
+            # Switch to the newly created database
+            cursor.execute("USE actiabackImg")
+
+            # Check if the table exists and create it if not
+            cursor.execute(create_table_query)
+            print("Table 'performanceJira' checked/created.")
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+    app.run(port=5000)
 
     app.run(debug=True)
