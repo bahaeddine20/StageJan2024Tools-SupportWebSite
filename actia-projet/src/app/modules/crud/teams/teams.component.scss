@@ -49,12 +49,13 @@ $primary-color: #bdd248;
   padding: 20px;
 
   .circular-image {
-    width: 200px;
+    width: 200px; // Taille de base pour les écrans larges
     height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-top: 20px;
+    border-radius: 50%; // Assurez-vous que l'image reste circulaire
+    object-fit: cover; // Pour s'assurer que l'image couvre complètement le conteneur
+    margin-top: 10px; // Espacement autour de l'image
   }
+  
 
   .card-actions {
     margin-top: auto;
@@ -120,5 +121,38 @@ $primary-color: #bdd248;
   left: 0;
   width: 100%;
   display: none; /* Initially hide the footer */
+}
+@media (max-width: 768px) {
+  .main-body {
+    padding-top: 10px; // Exemple d'ajustement de la marge pour les petits écrans
+    margin-bottom: 30px; // Ajustement de la marge inférieure
+  }
+
+  .card-container {
+    justify-content: center; // Centrer les cartes sur mobile
+  }
+
+  .team-card {
+    width: calc(50% - 10px); // Deux cartes par ligne sur mobile avec un peu d'espace entre elles
+    max-width: 100%; // Largeur maximale des cartes sur petits écrans
+    margin-bottom: 20px; // Ajouter un espace entre les cartes
+    .circular-image {
+      width: 80px; // Réduire la taille pour les écrans plus petits
+      height: 80px;
+      margin-top: 5px; // Ajustement pour les petits écrans
+    }
+  }
+  .add-team-btn {
+    margin: 10px auto; // Centrer le bouton sur mobile avec un peu d'espace autour
+    padding: 8px 16px; // Réduire la taille du bouton
+    font-size: 0.9rem; // Réduire la taille de la police du bouton
+  }
+
+  .team-card .card-actions button {
+    margin: 10px auto; // Centrer le bouton d'action sur mobile
+    padding: 8px 16px; // Réduire la taille du bouton
+    font-size: 0.9rem; // Réduire la taille de la police du bouton
+  }
+
 }
 

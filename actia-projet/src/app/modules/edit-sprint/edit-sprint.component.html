@@ -1,0 +1,49 @@
+<form [formGroup]="editSprintForm" (ngSubmit)="onSubmit()">
+  <!-- Form Content -->
+  <div mat-dialog-content class="content" style="padding: 20px;">
+    <!-- Sprint Name Field -->
+    <div class="row" style="margin-bottom: 20px;">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Sprint Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+
+    <!-- Description Field -->
+    <div class="row" style="margin-bottom: 20px;">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+    </div>
+
+    <!-- Date Range Picker Field -->
+    <div class="row" style="margin-bottom: 20px;">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Date Range</mat-label>
+        <mat-date-range-input [formGroup]="dateRangeForm" [rangePicker]="dateRangePicker">
+          <input matStartDate placeholder="Start date" formControlName="startDate">
+          <input matEndDate placeholder="End date" formControlName="endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="dateRangePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker [dateClass]="dateClass" #dateRangePicker></mat-date-range-picker>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Form Actions -->
+  <div mat-dialog-actions class="dialog-actions" style="padding: 10px; display: flex; justify-content: flex-end; gap: 10px;">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<!-- Sprint Cards Section -->
+<div style="display: flex; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap;">
+  <div *ngFor="let sprint of sprints" 
+       [ngStyle]="{'background-color': sprint.color, 'border': '1px solid #ddd', 'border-radius': '8px', 'padding': '15px', 'margin': '10px', 'width': '200px', 'box-shadow': '0 4px 8px rgba(0, 0, 0, 0.1)'}">
+    <h3 style="margin: 0 0 10px; font-size: 1.1em; color: #333; text-align: center;">{{ sprint.name }}</h3>
+    <p style="margin: 0; font-size: 0.9em; color: #666; text-align: center;">{{ sprint.description }}</p>
+  </div>
+</div>

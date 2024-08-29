@@ -1,23 +1,20 @@
 <div *ngIf="user" class="wrapper row">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      <!-- Utiliser le premier élément du tableau s'il existe -->
-      <img *ngIf="user.profileImage && user.profileImage.length > 0" [src]="getImageUrl(user.profileImage[0])" alt="photo {{ user.username }}">
-      <img *ngIf="!user.profileImage || user.profileImage.length === 0"
-           [src]="getImageUrl()"
-           alt="photo {{ user.username }}">
+      <img *ngIf="user.profileImage && user.profileImage.length > 0" [src]="getImageUrl(user.profileImage[0])" [alt]="'PROFILE.PHOTO_ALT' | translate:{username: user.username}">
+      <img *ngIf="!user.profileImage || user.profileImage.length === 0" [src]="getImageUrl()" [alt]="'PROFILE.PHOTO_ALT' | translate:{username: user.username}">
     </div>
     <div class="profile-card__cnt js-profile-cnt">
       <div class="profile-card__name">{{ user.username }}</div>
-      <div class="profile-card__txt">your Email: <strong>{{ user.email }}</strong></div>
-      <div class="profile-card__txt" *ngIf="roles.includes('ROLE_ADMIN')">your Role: <strong> Admin </strong></div>
-      <div class="profile-card__txt">Front-end Developer from <strong>Actia</strong></div>
+      <div class="profile-card__txt" [innerHTML]="'PROFILE.YOUR_EMAIL' | translate:{email: user.email}"></div>
+      <div class="profile-card__txt" *ngIf="roles.includes('ROLE_ADMIN')" [innerHTML]="'PROFILE.YOUR_ROLE_ADMIN' | translate"></div>
+      <div class="profile-card__txt">{{ user.position || 'PROFILE.POSITION_NOT_SPE' | translate}} {{'PROFILE.FROM' | translate}} <strong>Actia</strong></div>
       <div class="profile-card-loc">
         <span class="profile-card-loc__icon">
           <svg class="icon"><use xlink:href="#icon-location"></use></svg>
         </span>
         <span class="profile-card-loc__txt">
-          {{ user.city || 'City not specified' }}
+          {{ user.city || ('PROFILE.CITY_NOT_SPECIFIED' | translate) }}
         </span>
       </div>
       <div class="profile-card-social">
@@ -30,129 +27,138 @@
         <a href="{{ user.personalLink }}" class="profile-card-social__item link" target="_blank">
           <svg class="icon"><use xlink:href="#icon-link"></use></svg>
         </a>
+      
+     
       </div>
       <div class="profile-card-ctr">
-        <button class="profile-card__button button--blue" (click)="openCard()">Edit profile</button>
+        <!-- Conteneur pour centrer le groupe de boutons -->
+        <div class="button-container-wrapper">
+          <!-- Conteneur pour les boutons -->
+            <!-- Premier bouton -->
+            <button class="profile-card__button button--blue" (click)="openCard()">
+              {{ 'PROFILE.EDIT_PROFILE' | translate }}
+            </button>
+      
+            <!-- Deuxième bouton -->
+            <button *ngIf="isAdmin"  class="profile-card__button button--blue" (click)="navigateToImageHome()">
+              {{ 'Edit Images' | translate }}
+            </button>
+           
+        </div>
       </div>
+      
+
+
+
+
+    </div>
     </div>
     <div class="profile-card-message" *ngIf="isCardActive">
       <form class="profile-card-form">
         <div class="profile-card-form__container">
           <textarea placeholder="Say something..."></textarea>
         </div>
-  
-  
       </form>
-  
       <div class="profile-card__overlay" (click)="closeCard()"></div>
-  </div>
+    </div>
   </div>
   <div class="form-card js-form-card" *ngIf="isCardActive">
     <div class="form-card__cnt js-profile-cnt">
-        <div class="profile-card__img">
-          <img *ngIf="user.profileImage && user.profileImage.length > 0" [src]="getImageUrl(user.profileImage[0])" alt="photo {{ user.username }}">
-          <img *ngIf="!user.profileImage || user.profileImage.length === 0"
-               [src]="getImageUrl()"
-               alt="photo {{ user.username }}">
+      <div class="profile-card__img">
+        <img *ngIf="user.profileImage && user.profileImage.length > 0" [src]="getImageUrl(user.profileImage[0])" [alt]="'PROFILE.PHOTO_ALT' | translate:{username: user.username}">
+        <img *ngIf="!user.profileImage || user.profileImage.length === 0" [src]="getImageUrl()" [alt]="'PROFILE.PHOTO_ALT' | translate:{username: user.username}">
+      </div>
+      <div class="form-card__txt" [innerHTML]="'PROFILE.NEW_INFO' | translate:{username: user.username}"></div>
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">{{ 'PROFILE.USERNAME' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="user.username" name="username" id="inputUsername" [placeholder]="'PROFILE.USERNAME' | translate">
         </div>
-        <div class="form-card__txt">Here put your new infos <strong>{{ user.username }}</strong></div>
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Username</label>
-                <input type="text" class="form-control" [(ngModel)]="user.username" name="username" id="inputUsername" placeholder="Enter username (e.g., johndoe)">
-            </div>
-            <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" [(ngModel)]="user.email" name="email" id="inputEmail" placeholder="Enter email (e.g., example@mail.com)">
-            </div>
-            <div class="col-12">
-              <label for="inputPasswordOld" class="form-label">Old Password</label>
-                <div class="password-input-container">
-                  <input  [type]="showPasswordOld ? 'text' : 'password'" class="form-control" [(ngModel)]="passwordChange.oldPassword" name="oldPassword" id="inputPasswordOld" placeholder="Old Password">
-                  <!-- Eye Icon (Show Password) -->
-                  <span class="password-toggle" (click)="togglePasswordVisibilityOld()">
-                  <svg *ngIf="showPasswordOld" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
-                  </svg>
-                  </span>
-                  <!-- Eye-Slash Icon (Hide Password) -->
-                  <span class="password-toggle" (click)="togglePasswordVisibilityOld()">
-                    <svg *ngIf="!showPasswordOld" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                      <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
-                    </svg>
-                  </span>
-                </div>
-            </div>
-            <div class="col-6">
-              <label for="inputPasswordNew" class="form-label">New Password</label>
-              <div class="password-input-container">
-                  <input  [type]="showPasswordNew ? 'text' : 'password'" class="form-control" [(ngModel)]="passwordChange.newPassword" name="newPassword" id="inputPasswordNew" placeholder="New Password">
-                  <!-- Eye Icon (Show Password) -->
-                  <span class="password-toggle" (click)="togglePasswordVisibilityNew()">
-                  <svg *ngIf="showPasswordNew" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
-                  </svg>
-                  </span>
-                  <!-- Eye-Slash Icon (Hide Password) -->
-                  <span class="password-toggle" (click)="togglePasswordVisibilityNew()">
-                  <svg *ngIf="!showPasswordNew" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
-                  </svg>
-                  </span>
-                </div>
-            </div>
-            <div class="col-md-6">
-              <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-              <div class="password-input-container">
-                  <input [type]="showPasswordConfirm ? 'text' : 'password'" class="form-control" [(ngModel)]="passwordChange.confirmPassword" name="confirmPassword" id="inputConfirmPassword" placeholder="Confirm Password">
-                  <!-- Eye Icon (Show Password) -->
-                  <span class="password-toggle" (click)="togglePasswordVisibilityConfirm()">
-                  <svg *ngIf="showPasswordConfirm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
-                  </svg>
-                  </span>
-                  <!-- Eye-Slash Icon (Hide Password) -->
-                  <span class="password-toggle" (click)="togglePasswordVisibilityConfirm()">
-                  <svg *ngIf="!showPasswordConfirm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
-                  </svg>
-                  </span>
-              </div>
-            </div>
-            <div class="col-12">
-                <label for="inputPosition" class="form-label">Position</label>
-                <input type="text" class="form-control" id="inputPosition" [(ngModel)]="user.position" name="position" placeholder=" exp: Developer">
-            </div>
-            <div class="col-12">
-                <label for="inputLinkedIn" class="form-label">LinkedIn Link</label>
-                <input type="text" class="form-control" id="inputLinkedIn" [(ngModel)]="user.linkedInLink" name="linkedInLink" placeholder="LinkedIn Link">
-            </div>
-            <div class="col-6">
-                <label for="inputGitLink" class="form-label">Git Link</label>
-                <input type="text" class="form-control" id="inputGitLink" [(ngModel)]="user.gitLink" name="gitLink" placeholder="Git Link">
-            </div>
-            <div class="col-6">
-                <label for="inputPersonalLink" class="form-label">Personal Link</label>
-                <input type="text" class="form-control" id="inputPersonalLink" [(ngModel)]="user.personalLink" name="personalLink" placeholder="Personal Link">
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity" [(ngModel)]="user.city" name="city" placeholder="City">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPhoto" class="form-label">Photo</label>
-                <input type="file" class="form-control"(change)="onFileSelected($event)" id="inputPhoto" accept="image/*">
-            </div>
-        </form>
-        <div class="profile-card-form__bottom">
-            <button class="profile-card__button button--blue" (click)="updateUser()">Save</button>
-            <button class="profile-card__button button--gray" (click)="closeCard()">Cancel</button>
+        <div class="col-md-6">
+          <label for="inputEmail" class="form-label">{{ 'PROFILE.EMAIL' | translate }}</label>
+          <input type="email" class="form-control" [(ngModel)]="user.email" name="email" id="inputEmail" [placeholder]="'PROFILE.EMAIL' | translate">
         </div>
+        <div class="col-12">
+          <label for="inputPasswordOld" class="form-label">{{ 'PROFILE.OLD_PASSWORD' | translate }}</label>
+          <div class="password-input-container">
+            <input [type]="showPasswordOld ? 'text' : 'password'" class="form-control" [(ngModel)]="passwordChange.oldPassword" name="oldPassword" id="inputPasswordOld" [placeholder]="'PROFILE.OLD_PASSWORD' | translate">
+            <span class="password-toggle" (click)="togglePasswordVisibilityOld()">
+              <svg *ngIf="showPasswordOld" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+              </svg>
+            </span>
+            <span class="password-toggle" (click)="togglePasswordVisibilityOld()">
+              <svg *ngIf="!showPasswordOld" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPasswordNew" class="form-label">{{ 'PROFILE.NEW_PASSWORD' | translate }}</label>
+          <div class="password-input-container">
+            <input [type]="showPasswordNew ? 'text' : 'password'" class="form-control" [(ngModel)]="passwordChange.newPassword" name="newPassword" id="inputPasswordNew" [placeholder]="'PROFILE.NEW_PASSWORD' | translate">
+            <span class="password-toggle" (click)="togglePasswordVisibilityNew()">
+              <svg *ngIf="showPasswordNew" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+              </svg>
+            </span>
+            <span class="password-toggle" (click)="togglePasswordVisibilityNew()">
+              <svg *ngIf="!showPasswordNew" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputConfirmPassword" class="form-label">{{ 'PROFILE.CONFIRM_PASSWORD' | translate }}</label>
+          <div class="password-input-container">
+            <input [type]="showPasswordConfirm ? 'text' : 'password'" class="form-control" [(ngModel)]="passwordChange.confirmPassword" name="confirmPassword" id="inputConfirmPassword" [placeholder]="'PROFILE.CONFIRM_PASSWORD' | translate">
+            <span class="password-toggle" (click)="togglePasswordVisibilityConfirm()">
+              <svg *ngIf="showPasswordConfirm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0-2C6.48 5 2 9.48 2 12s4.48 7 10 7 10-4.48 10-7-4.48-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+              </svg>
+            </span>
+            <span class="password-toggle" (click)="togglePasswordVisibilityConfirm()">
+              <svg *ngIf="!showPasswordConfirm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="m17.069 6.546 2.684-2.359c.143-.125.32-.187.497-.187.418 0 .75.34.75.75 0 .207-.086.414-.254.562l-16.5 14.501c-.142.126-.319.187-.496.187-.415 0-.75-.334-.75-.75 0-.207.086-.414.253-.562l2.438-2.143c-1.414-1.132-2.627-2.552-3.547-4.028-.096-.159-.144-.338-.144-.517s.049-.358.145-.517c2.111-3.39 5.775-6.483 9.853-6.483 1.815 0 3.536.593 5.071 1.546zm2.318 1.83c.967.943 1.804 2.013 2.475 3.117.092.156.138.332.138.507s-.046.351-.138.507c-2.068 3.403-5.721 6.493-9.864 6.493-1.298 0-2.553-.313-3.73-.849l2.624-2.307c.352.102.724.156 1.108.156 2.208 0 4-1.792 4-4 0-.206-.016-.408-.046-.606zm-4.932.467c-.678-.528-1.53-.843-2.455-.843-2.208 0-4 1.792-4 4 0 .741.202 1.435.553 2.03l1.16-1.019c-.137-.31-.213-.651-.213-1.011 0-1.38 1.12-2.5 2.5-2.5.474 0 .918.132 1.296.362z" fill-rule="nonzero"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="inputPosition" class="form-label">{{ 'PROFILE.POSITION' | translate }}</label>
+          <input type="text" class="form-control" id="inputPosition" [(ngModel)]="user.position" name="position" [placeholder]="'PROFILE.POSITION' | translate">
+        </div>
+        <div class="col-12">
+          <label for="inputLinkedIn" class="form-label">{{ 'PROFILE.LINKEDIN_LINK' | translate }}</label>
+          <input type="text" class="form-control" id="inputLinkedIn" [(ngModel)]="user.linkedInLink" name="linkedInLink" [placeholder]="'PROFILE.LINKEDIN_LINK' | translate">
+        </div>
+        <div class="col-6">
+          <label for="inputGitLink" class="form-label">{{ 'PROFILE.GIT_LINK' | translate }}</label>
+          <input type="text" class="form-control" id="inputGitLink" [(ngModel)]="user.gitLink" name="gitLink" [placeholder]="'PROFILE.GIT_LINK' | translate">
+        </div>
+        <div class="col-6">
+          <label for="inputPersonalLink" class="form-label">{{ 'PROFILE.PERSONAL_LINK' | translate }}</label>
+          <input type="text" class="form-control" id="inputPersonalLink" [(ngModel)]="user.personalLink" name="personalLink" [placeholder]="'PROFILE.PERSONAL_LINK' | translate">
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">{{ 'PROFILE.CITY' | translate }}</label>
+          <input type="text" class="form-control" id="inputCity" [(ngModel)]="user.city" name="city" [placeholder]="'PROFILE.CITY' | translate">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPhoto" class="form-label">{{ 'PROFILE.PHOTO' | translate }}</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" id="inputPhoto" accept="image/*">
+        </div>
+      </form>
+      <div class="profile-card-form__bottom">
+        <button class="profile-card__button button--blue" (click)="updateUser()">{{ 'PROFILE.SAVE' | translate }}</button>
+        <button class="profile-card__button button--gray" (click)="closeCard()">{{ 'PROFILE.CANCEL' | translate }}</button>
+      </div>
     </div>
-</div>
+  </div>
 
-  
-  
+ 
 <svg hidden="hidden">
   <defs>
     <symbol id="icon-codepen" viewBox="0 0 32 32">

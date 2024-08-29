@@ -1,61 +1,68 @@
-<div class="form-card js-form-card"  *ngIf="roles.includes('ROLE_USER') && !roles.includes('ROLE_ADMIN')">
+<div class="form-card js-form-card" *ngIf="roles.includes('ROLE_USER') && !roles.includes('ROLE_ADMIN')">
   <div class="form-card__cnt js-profile-cnt">
-    <div class="form-card__name">Please Fill out This Form</div>
+    <div class="form-card__name">{{ 'LEAVE_REQUEST.PLEASE_FILL_FORM' | translate }}</div>
     <form class="leave-request-container" [formGroup]="cancelForm" (ngSubmit)="submitForm()">
       <div class="form-group">
-        <label for="name" class="form-label">Name:</label>
-        <input type="text" id="name"  formControlName="name" class="form-control" required>
+        <label for="name" class="form-label">{{ 'LEAVE_REQUEST.NAME' | translate }}</label>
+        <input type="text" id="name" formControlName="name" class="form-control" required>
+        <div *ngIf="hasError('name', 'required')" class="text-danger">{{ 'LEAVE_REQUEST.NAME_REQUIRED' | translate }}</div>
       </div>
       <div class="form-group">
-        <label for="startDate" class="form-label">Start Date:</label>
+        <label for="startDate" class="form-label">{{ 'LEAVE_REQUEST.START_DATE' | translate }}</label>
         <input type="date" id="startDate" formControlName="startDate" class="form-control" required>
+        <div *ngIf="hasError('startDate', 'required')" class="text-danger">{{ 'LEAVE_REQUEST.START_DATE_REQUIRED' | translate }}</div>
+        <div *ngIf="hasError('startDate', 'pastDate')" class="text-danger">{{ 'LEAVE_REQUEST.START_DATE_PAST' | translate }}</div>
       </div>
       <div class="form-group">
-        <label for="endDate" class="form-label">End Date:</label>
+        <label for="endDate" class="form-label">{{ 'LEAVE_REQUEST.END_DATE' | translate }}</label>
         <input type="date" id="endDate" formControlName="endDate" class="form-control" required>
+        <div *ngIf="hasError('endDate', 'required')" class="text-danger">{{ 'LEAVE_REQUEST.END_DATE_REQUIRED' | translate }}</div>
+        <div *ngIf="hasError('endDate', 'pastDate')" class="text-danger">{{ 'LEAVE_REQUEST.END_DATE_PAST' | translate }}</div>
+        <div *ngIf="cancelForm.hasError('startDateAfterEndDate')" class="text-danger">{{ 'LEAVE_REQUEST.INVALID_DATE_RANGE' | translate }}</div>
       </div>
       <div class="form-group">
-        <label for="employeeEmail" class="form-label">Your Email:</label>
+        <label for="employeeEmail" class="form-label">{{ 'LEAVE_REQUEST.YOUR_EMAIL' | translate }}</label>
         <input type="email" id="employeeEmail" formControlName="employeeEmail" class="form-control" required>
+        <div *ngIf="hasError('employeeEmail', 'required')" class="text-danger">{{ 'LEAVE_REQUEST.EMAIL_REQUIRED' | translate }}</div>
+        <div *ngIf="hasError('employeeEmail', 'email')" class="text-danger">{{ 'LEAVE_REQUEST.INVALID_EMAIL' | translate }}</div>
       </div>
       <div class="form-group">
-        <label for="adminEmail" class="form-label">Admin Email:</label>
+        <label for="adminEmail" class="form-label">{{ 'LEAVE_REQUEST.ADMIN_EMAIL' | translate }}</label>
         <input type="email" id="adminEmail" formControlName="adminEmail" class="form-control" required>
+        <div *ngIf="hasError('adminEmail', 'required')" class="text-danger">{{ 'LEAVE_REQUEST.ADMIN_EMAIL_REQUIRED' | translate }}</div>
+        <div *ngIf="hasError('adminEmail', 'email')" class="text-danger">{{ 'LEAVE_REQUEST.INVALID_EMAIL' | translate }}</div>
       </div>
       <div class="form-group">
-        <label for="reason" class="form-label">Reason:</label>
+        <label for="reason" class="form-label">{{ 'LEAVE_REQUEST.REASON' | translate }}</label>
         <textarea id="reason" formControlName="reason" class="form-control" required></textarea>
+        <div *ngIf="hasError('reason', 'required')" class="text-danger">{{ 'LEAVE_REQUEST.REASON_REQUIRED' | translate }}</div>
       </div>
       <div class="form-card-form__bottom">
-        <button type="submit" class="form-card__button button--blue" [disabled]="cancelForm.invalid">Submit</button>
-        <button type="button" class="form-card__button button--gray" (click)="CancelForm()">Cancel</button>
+        <button type="submit" class="form-card__button button--blue">{{ 'LEAVE_REQUEST.SUBMIT' | translate }}</button>
+        <button type="button" class="form-card__button button--gray" (click)="CancelForm()">{{ 'LEAVE_REQUEST.CANCEL' | translate }}</button>
       </div>
     </form>
   </div>
 </div>
-<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-3">
-  <h2>Leave Requests</h2>
-  <div class="card-custom">
-    <button class="btn custom-btn select-all-btn" (click)="selectAllRequests($event)">
-   Select All
-</button>
 
-<button class="btn custom-btn delete-selected-btn" (click)="deleteSelectedRequests()" [disabled]="isDeleteDisabled()">
-   Delete Selected
-</button>
+<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-3">
+  <h2>{{ 'LEAVE_REQUEST.LEAVE_REQUESTS' | translate }}</h2>
+  <div class="card-custom">
+    <button class="btn custom-btn select-all-btn" (click)="selectAllRequests($event)">{{ 'LEAVE_REQUEST.SELECT_ALL' | translate }}</button>
+    <button class="btn custom-btn delete-selected-btn" (click)="deleteSelectedRequests()" [disabled]="isDeleteDisabled()">{{ 'LEAVE_REQUEST.DELETE_SELECTED' | translate }}</button>
     
     <div class="table-responsive">
       <table class="table table-custom" *ngIf="hasRequests(); else noRequests">
         <thead>
           <tr>
-            <th></th> <!-- Empty header for alignment with rows having checkboxes -->
-            <th>Name</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Email</th>
-            <th>Reason</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th></th>
+            <th scope="col">{{ 'LEAVE_REQUEST.NAME' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.START_DATE' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.END_DATE' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.YOUR_EMAIL' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.REASON' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.STATUS' | translate }}</th>
+            <th scope="col">{{ 'LEAVE_REQUEST.ACTIONS' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -81,14 +88,45 @@
           </tr>
         </tbody>
       </table>
-      <div *ngIf="totalPages > 1">
-        <button (click)="previousPage()" [disabled]="currentPage === 0">Précédent</button>
-        <span>Page {{ currentPage + 1 }} sur {{ totalPages }}</span>
-        <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Suivant</button>
-      </div>      
+    </div>
+    <div class="button-container">
+      <button class="export-button" mat-raised-button color="primary" (click)="exportRequestsToExcel()">Export Requests to Excel</button>
+    </div>    
+    <div class="container mt-3">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <div class="btn-group">
+            <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">{{ 'LEAVE_REQUEST.PREVIOUS' | translate }}</div>
+            <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">{{ 'LEAVE_REQUEST.TODAY' | translate }}</div>
+            <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">{{ 'LEAVE_REQUEST.NEXT' | translate }}</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        </div>
+        <div class="col-md-4">
+          <div class="btn-group">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">{{ 'LEAVE_REQUEST.MONTH' | translate }}</div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">{{ 'LEAVE_REQUEST.WEEK' | translate }}</div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">{{ 'LEAVE_REQUEST.DAY' | translate }}</div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+          (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+          (eventTimesChanged)="eventTimesChanged($event)">
+        </mwl-calendar-day-view>
+      </div>
     </div>
     <ng-template #noRequests>
-      <p class="no-requests">No leave requests found.</p>
+      <p class="no-requests">{{ 'LEAVE_REQUEST.NO_LEAVE_REQUESTS' | translate }}</p>
     </ng-template>
   </div>
 </div>

@@ -1,0 +1,48 @@
+<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="larger-container mt-4">
+  <h2 class="form-title">Indicateur de performance</h2>
+
+  <!-- Form for uploading Excel file -->
+  <form (ngSubmit)="onFileUpload(excelFile, 'excel')" #excelForm="ngForm" class="mt-4">
+    <div class="form-group">
+      <label for="excelFile" class="form-label">{{ 'SPRINT_FORM.UPLOAD_EXCEL' | translate }}</label>
+      <input type="file" id="excelFile" required (change)="onFileChange($event, 'excel')" name="excelFile" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.UPLOAD_EXCEL_BUTTON' | translate }}</button>
+  </form>
+
+  <!-- Form for uploading Velocity file -->
+  <form (ngSubmit)="onFileUpload(velocityFile, 'velocity')" #velocityForm="ngForm" class="mt-4">
+    <div class="form-group">
+      <label for="velocityFile" class="form-label">{{ 'SPRINT_FORM.UPLOAD_VELOCITY' | translate }}</label>
+      <input type="file" id="velocityFile" required (change)="onFileChange($event, 'velocity')" name="velocityFile" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.UPLOAD_VELOCITY_BUTTON' | translate }}</button>
+  </form>
+
+  <!-- Form for uploading Carry file -->
+  <form (ngSubmit)="onFileUpload(carryFile, 'carry')" #carryForm="ngForm" class="mt-4">
+    <div class="form-group">
+      <label for="carryFile" class="form-label">{{ 'SPRINT_FORM.UPLOAD_CARRY' | translate }}</label>
+      <input type="file" id="carryFile" required (change)="onFileChange($event, 'carry')" name="carryFile" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.UPLOAD_CARRY_BUTTON' | translate }}</button>
+  </form>
+</div>
+
+<div *ngIf="imageUrls.length > 0" class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let imageUrl of imageUrls; let i = index">
+      <div class="card shadow-sm h-100">
+        <img [src]="imageUrl" class="card-img-top" [alt]="'SPRINT_FORM.IMAGE_ALT' | translate" (click)="openImage(imageUrl)" style="cursor: pointer;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="imageUrls.length === 0" class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <p>{{ 'SPRINT_FORM.NO_IMAGES_FOUND' | translate }}</p>
+    </div>
+  </div>
+</div>

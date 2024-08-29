@@ -12,7 +12,11 @@ import { RouterLink } from '@angular/router';
     RouterLink,
     CommonModule,
     FormsModule,  // Ensure FormsModule is imported for ngModel
-    HttpClientModule  // Ensure HttpClientModule is imported for http calls
+    
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule  // Ensure HttpClientModule is imported for http calls
   ],
   templateUrl: './request-reset-password.component.html',
   styleUrls: ['./request-reset-password.component.scss']

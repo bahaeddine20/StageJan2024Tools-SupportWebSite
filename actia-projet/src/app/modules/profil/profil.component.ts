@@ -6,15 +6,17 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { ProfileImage, User } from './user';
 import { UserDtoService } from '../../_services/UserDto/user-dto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { AuthService } from '../../_services/loginService/auth.service';
 import { TokenStorageService } from '../../_services/loginService/token-storage.service';
 import { ChangePasswordRequest } from './change-password-request';
-
+import { TranslationModule } from '../../translation/translation.module';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../_services/language/language.service';
 @Component({
   selector: 'app-profil',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslationModule],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.scss'
 })
@@ -32,6 +34,12 @@ export class ProfilComponent implements OnInit {
   showPasswordOld: boolean = false;
   showPasswordNew: boolean = false;
   showPasswordConfirm: boolean = false;
+
+  isAdmin: boolean = false;
+
+
+
+ 
 
 togglePasswordVisibilityOld(): void {
   this.showPasswordOld = !this.showPasswordOld;
@@ -65,10 +73,21 @@ togglePasswordVisibilityConfirm(): void {
     private snackBar: MatSnackBar,
     private tokenStorage: TokenStorageService,
     private fb: FormBuilder,
-  ) {}
+    private router: Router,
+    private authService: AuthService,
+    private translate: TranslateService, // Inject TranslateService
+    private languageService: LanguageService
+  ) {
+    
+    this.languageService.currentLanguage.subscribe(language => {
+      this.translate.use(language);
+    });
+  }
   
   ngOnInit() {
-    const user = this.tokenStorage.getUser();  // Récupérer l'ID de l'utilisateur
+    const user = this.tokenStorage.getUser(); 
+    this.isAdmin = this.tokenStorage.getUser().roles.includes('ROLE_ADMIN');
+    // Récupérer l'ID de l'utilisateur
     if (user && user.id) {
       this.userService.getUserById(user.id).subscribe(data => {
         this.user = data;
@@ -87,6 +106,12 @@ togglePasswordVisibilityConfirm(): void {
       this.roles = user.roles;
     }
   }
+  navigateToImageHome(): void {
+    // Navigue vers la route '/image-home'
+    this.router.navigate(['/ImageUploadComponent']);
+  }
+
+
   getImageUrl(image?: ProfileImage): SafeUrl {
     if (image && image.picByte) {
       const imageUrl = `data:${image.type};base64,${image.picByte}`;
@@ -116,27 +141,40 @@ togglePasswordVisibilityConfirm(): void {
       this.snackBar.open('User ID is undefined.', 'Close', { duration: 3000 });
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('user', new Blob([JSON.stringify(this.user)], { type: 'application/json' }));
     if (this.selectedFile) {
       formData.append('imagePath', this.selectedFile);
     }
-    if (this.passwordChange.oldPassword && this.passwordChange.newPassword && this.passwordChange.confirmPassword) {
+  
+    // Check if the old password is provided
+    if (this.passwordChange.newPassword || this.passwordChange.confirmPassword) {
+      if (!this.passwordChange.oldPassword) {
+        this.snackBar.open('Veuillez entrer votre ancien mot de passe.', 'Close', { duration: 3000 });
+        return;
+      }
       formData.append('passwordChange', new Blob([JSON.stringify(this.passwordChange)], { type: 'application/json' }));
     }
-
+  
     this.userService.updateUser(this.user.id, this.user, this.passwordChange, formData).subscribe({
       next: (response) => {
         this.snackBar.open('Profile updated successfully!', 'Close', { duration: 2000 });
         this.refreshUserData();
       },
       error: (error) => {
-        this.snackBar.open('Failed to update profile: ' + error.error.message, 'Close', { duration: 3000 });
+        let errorMessage = 'Failed to update profile.';
+        if (error && error.error && error.error.message) {
+          errorMessage = error.error.message.includes('Incorrect old password')
+            ? 'Failed to update profile: Incorrect old password.'
+            : 'Failed to update profile: ' + error.error.message;
+        }
+        this.snackBar.open(errorMessage, 'Close', { duration: 3000 });
       }
     });
   }
-  openCard() {
+  
+    openCard() {
     console.log('Opening card...');
     this.isCardActive = true;
   }

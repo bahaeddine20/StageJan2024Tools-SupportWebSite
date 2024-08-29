@@ -1,18 +1,48 @@
+<div *ngIf="isLoggedIn && roles.includes('ROLE_ADMIN')" class="container mt-4">
+  <form (ngSubmit)="onSubmit()" #sprintForm="ngForm">
+    <div class="form-group">
+      <label for="sprintName" class="form-label">{{ 'SPRINT_FORM.SPRINT_NAME' | translate }}</label>
+      <input type="text" id="sprintName" required [(ngModel)]="sprintName" name="sprintName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="carryForwardSp" class="form-label">{{ 'SPRINT_FORM.CARRY_FORWARD_SP' | translate }}</label>
+      <input type="text" id="carryForwardSp" required [(ngModel)]="carryForwardSp" name="carryForwardSp" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="startDate" class="form-label">{{ 'SPRINT_FORM.START_DATE' | translate }}</label>
+      <input type="text" id="startDate" required [(ngModel)]="startDate" name="startDate" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="endDate" class="form-label">{{ 'SPRINT_FORM.END_DATE' | translate }}</label>
+      <input type="text" id="endDate" required [(ngModel)]="endDate" name="endDate" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'SPRINT_FORM.SUBMIT' | translate }}</button>
+  </form>
+
+</div>
+
 <div *ngIf="imageUrls.length > 0" class="container-fluid mt-4">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 mb-4" 
-         *ngFor="let imageUrl of imageUrls; let i = index" 
-         [class.offset-lg-2]="isOddAndLast(i)">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let imageUrl of imageUrls; let i = index">
       <div class="card shadow-sm h-100">
-        <img [src]="imageUrl" class="card-img-top" alt="Image" (click)="openImage(imageUrl)" style="cursor: pointer;">
+        <img [src]="imageUrl" class="card-img-top" [alt]="'SPRINT_FORM.IMAGE_ALT' | translate" (click)="openImage(imageUrl)" style="cursor: pointer;">
       </div>
     </div>
   </div>
 </div>
+
 <div *ngIf="imageUrls.length === 0" class="container-fluid mt-4">
   <div class="row">
-    <div class="col text-center">
-      <p class="text-muted">No images found.</p>
+    <div class="col-12">
+      <p>{{ 'SPRINT_FORM.NO_IMAGES_FOUND' | translate }}</p>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+

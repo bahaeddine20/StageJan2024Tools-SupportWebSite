@@ -42,7 +42,11 @@ import { CommonModule } from '@angular/common';
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
-    HttpClientModule,
+    
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule,
     MatCardModule,
     RouterModule,
     CommonModule
@@ -58,8 +62,8 @@ export class EmpAddEditComponent implements OnInit {
   imageFiles: File[] = [];
   selectedFileName: string | null = null;
   teams: any[] = [];
-
-  
+  defaultMaleImage = 'assets/images/profile.webp';
+  defaultFemaleImage = 'assets/images/profilewoman.webp';
 
   constructor(
     private snackBar: MatSnackBar,
@@ -76,9 +80,9 @@ export class EmpAddEditComponent implements OnInit {
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
-      phone: ['',[Validators.required, Validators.maxLength(8)]],
-      linkedin:['', [Validators.required]],
-      role:['', Validators.required],
+      phone: ['', [Validators.required, Validators.maxLength(8)]],
+      linkedin: ['', Validators.required],
+      role: ['', Validators.required],
       image: [''],
       team: ['', Validators.required]
     });
@@ -95,7 +99,7 @@ export class EmpAddEditComponent implements OnInit {
         lastname: data.employee.lastname,
         email: data.employee.email,
         gender: data.employee.gender,
-        phone:data.employee.phone,
+        phone: data.employee.phone,
         linkedin: data.employee.linkedin,
         role: data.employee.role,
         team: data.employee.team ? data.employee.team.id : ''
@@ -105,13 +109,28 @@ export class EmpAddEditComponent implements OnInit {
         this.imageUrl = this.getImageUrl(image);
       }
     }
+
+    this.empForm.get('gender')?.valueChanges.subscribe(gender => {
+      this.setDefaultImage(gender);
+    });
+
+    this.setDefaultImage(this.empForm.get('gender')?.value);
+  }
+
+  private setDefaultImage(gender: string): void {
+    if (gender === 'male') {
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.defaultMaleImage);
+    } else if (gender === 'female') {
+      this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.defaultFemaleImage);
+    } else {
+      this.imageUrl = null;
+    }
   }
 
   ngOnInit(): void {
     this.loadTeams();
   }
 
-  
   loadTeams(): void {
     this.empService.getTeams().subscribe(
       (teams) => this.teams = teams,
@@ -174,7 +193,6 @@ export class EmpAddEditComponent implements OnInit {
   onFormSubmit(): void {
     if (this.empForm.valid) {
       const employeeData = this.empForm.value;
-      console.log(employeeData)
       let imageFiles: File[] = [];
 
       if (this.empForm.get('image')?.value instanceof File) {

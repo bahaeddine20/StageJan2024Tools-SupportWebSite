@@ -1,0 +1,39 @@
+/* data-perf-jira-details.component.scss */
+.main-body {
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .data-container {
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .data-item {
+    margin-bottom: 20px;
+  }
+  
+  .chart-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+  
+  .chart-date-genere {
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+  }
+  .chart-content {
+    position: relative;
+  }
+  .chart-date {
+    margin-top: 10px;
+  }
+  

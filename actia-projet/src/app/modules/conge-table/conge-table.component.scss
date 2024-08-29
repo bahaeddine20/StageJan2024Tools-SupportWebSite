@@ -1,0 +1,358 @@
+.table-container {
+  margin: 20px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-container th {
+  background-color: #f4f4f4;
+}
+
+.day-cell {
+  cursor: pointer;
+}
+
+
+
+
+.success-message {
+  color: green;
+}
+
+.notification-bar {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.notification-bar button {
+  background: none;
+  border: none;
+  color: #721c24;
+  cursor: pointer;
+}
+.selected-day {
+  background-color: yellow;
+}
+
+.confirmed-day {
+  background-color: green;
+  color: white;
+}
+/* Exemple de CSS */
+.day-selected {
+  background-color: yellow(0, 81, 255);
+}
+
+.day-confirmed {
+  background-color: green;
+}
+.highlight-selected {
+  background-color: yellow;
+}
+.selected-date {
+  background-color: yellow;
+}
+
+.day-cell {
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+}
+
+.day-selected {
+  border: 2px solid blue;
+}
+
+
+.highlight-yellow {
+  background-color: yellow !important;
+}
+.table-container {
+  overflow-x: auto;
+}
+
+.TableStyle {
+  width: 100%;
+  border-collapse: collapse;
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+}
+
+.green {
+  background-color: #ccffcc; // Light green
+}
+
+.grey {
+  background-color: #cccccc; // Grey
+}
+
+.selected {
+  background-color: #ffff99; // Light yellow
+}
+
+.success-message {
+  color: green;
+  background-color: #e6ffe6;
+  border: 1px solid green;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+.dialog-content {
+  text-align: center;
+}
+.notification-bar {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; // Assurez-vous que la notification est au-dessus d'autres éléments
+}
+
+.notification-bar button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #a7b93f;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.notification-bar button:hover {
+  background-color: #85ee94;
+}
+
+
+
+.hoveredDay {
+  outline: 2px solid #a9a8a8; // Black outline for hovered cells
+}
+/* Class to apply gray background to weekend days */
+.weekend-day {
+  background-color: #efeeee; /* Light gray for weekends */
+  color: #000; /* Ensure text is visible */
+}
+
+
+
+/* Style de base pour les boutons */
+.button {
+  background-color: #007bff; /* Couleur de fond bleue */
+  color: white; /* Texte en blanc */
+  border: none; /* Supprime les bordures par défaut */
+  border-radius: 5px; /* Coins arrondis */
+  padding: 10px 20px; /* Espacement intérieur */
+  font-size: 16px; /* Taille de la police */
+  cursor: pointer; /* Curseur de pointeur lors du survol */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Animation pour les transitions */
+  outline: none; /* Supprime le contour par défaut lors de la focalisation */
+  text-align: center; /* Centre le texte dans le bouton */
+  width: 100px; /* Largeur uniforme pour les boutons */
+}
+
+/* Style pour le bouton de confirmation */
+.button-confirm {
+  background-color: #28a745; /* Couleur de fond verte */
+}
+
+.button-confirm:hover {
+  background-color: #218838; /* Couleur de fond plus foncée au survol */
+  transform: scale(1.05); /* Agrandit légèrement le bouton au survol */
+}
+
+/* Style pour le bouton de rejet */
+.button-reject {
+  background-color: #dc3545; /* Couleur de fond rouge */
+}
+
+.button-reject:hover {
+  background-color: #c82333; /* Couleur de fond plus foncée au survol */
+  transform: scale(1.05); /* Agrandit légèrement le bouton au survol */
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.button {
+  padding: 15px 20px;
+  font-size: 16px; /* Smaller font size */
+  font-weight: normal;
+  color: #ffffff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.button:active {
+  background-color: #004085;
+  transform: scale(0.95);
+}
+
+.button-confirm {
+  background-color: #28a745;
+}
+
+.button-confirm:hover {
+  background-color: #218838;
+}
+
+.button-confirm:active {
+  background-color: #1e7e34;
+}
+
+.button-reject {
+  background-color: #dc3545;
+}
+
+.button-reject:hover {
+  background-color: #c82333;
+}
+
+.button-reject:active {
+  background-color: #bd2130;
+}
+/* Add some spacing and styling for the form */
+form {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sprint-interface {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sprint-interface label {
+  display: block;
+  margin: 5px 0;
+}
+
+.sprint-interface input {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.team-info-container {
+  background-color: #f0f4f8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.team-tech {
+  font-size: 16px;
+  color: #555;
+  margin: 5px 0 0;
+}
+
+.team-tech span {
+  font-weight: bold;
+  color: #2a9d8f;
+}
+
+.add-sprint-button {
+  margin-bottom: 20px;
+}
+
+.sprint-table {
+  width: 100%;
+  margin-top: 20px;
+}
+.sprint-item {
+  transition: all 0.3s ease;
+}
+
+.sprint-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.table-container2 {
+  overflow-x: auto; /* Allows horizontal scrolling */
+}
+
+.calendar-table th,
+.calendar-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+.calendar-table th.sticky,
+.calendar-table td.sticky {
+  position: sticky;
+  left: 0;
+  background-color: white; /* Ensure the sticky column has a background */
+  z-index: 1;
+}
+
+.calendar-table th.sticky-month,
+.calendar-table th.sticky-week,
+.calendar-table th.sticky-day {
+  position: sticky;
+  top: 0;
+  background-color: #f4f4f4; /* Background color for header */
+  z-index: 2;
+}
+
+.calendar-table th.sticky-month {
+  left: 100px; /* Adjust based on your layout */
+}
+
+.calendar-table th.sticky-week {
+  left: 150px; /* Adjust based on your layout */
+}
+
+.calendar-table th.sticky-day {
+  left: 200px; /* Adjust based on your layout */
+}
+
+.calendar-table th:first-child,
+.calendar-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background-color: white; /* Sticky name column background */
+}

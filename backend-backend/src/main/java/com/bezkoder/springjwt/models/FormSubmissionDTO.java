@@ -2,19 +2,23 @@ package com.bezkoder.springjwt.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.FutureOrPresent;
 import java.util.Date;
-
+//form submission
 public class FormSubmissionDTO {
     private String name;
+
+    @FutureOrPresent(message = "Start date cannot be in the past")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
+
+    @FutureOrPresent(message = "End date cannot be in the past")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+
     private String employeeEmail;
     private String adminEmail;
     private String reason;
-
-    // getters and setters
 
     // Constructors
     public FormSubmissionDTO() {

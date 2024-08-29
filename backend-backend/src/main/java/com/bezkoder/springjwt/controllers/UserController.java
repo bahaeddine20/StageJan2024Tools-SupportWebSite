@@ -32,7 +32,7 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
+
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable Long id) {
 	    try {
@@ -42,7 +42,21 @@ public class UserController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 	                             .body("Error retrieving user: " + e.getMessage());
 	    }
+	}public UserController(UserService userService) {
+		this.userService = userService;
 	}
+
+	@GetMapping("/employee-id/{id}")
+	public ResponseEntity<?> getEmployeeIdByUserId(@PathVariable Long id) {
+		try {
+			Integer employeeId = userService.getEmployeeIdByUserId(id);
+			return ResponseEntity.ok(employeeId);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error retrieving employee ID: " + e.getMessage());
+		}
+	}
+
 	@PutMapping("/{id}")
 	public ResponseEntity<?> updateUser(@PathVariable long id,
 	                                     @RequestPart("user") String userJson,
@@ -107,5 +121,5 @@ public class UserController {
 	    return imageModels;
 	}
 
-	
+
 }

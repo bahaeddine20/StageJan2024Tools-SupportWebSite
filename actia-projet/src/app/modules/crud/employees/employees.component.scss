@@ -10,12 +10,12 @@
     font-size: 3rem;
     font-weight: 700;
     color: #BDD248;
+  }
 
-    &:hover::before,
-    &:hover::after {
-      width: 60%;
-      transition: width 0.3s ease;
-    }
+  .team-section-title:hover::before,
+  .team-section-title:hover::after {
+    width: 60%;
+    transition: width 0.3s ease;
   }
 
   .team-description {
@@ -32,84 +32,68 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 10px;
-      height: 100%;
-      z-index: -1;
-    }
-
-    &::before {
-      left: -4px;
-      background-color: #84fab0;
-    }
-
-    &::after {
-      right: -4px;
-      background-color: #8fd3f4;
-    }
-
-    &:hover::before,
-    &:hover::after {
-      width: 20px;
-    }
-
-    h3 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-
-    p {
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      list-style-position: inside;
-      padding-left: 0;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    a {
-      text-decoration: underline;
-      color: #007bff;
-      transition: color 0.3s;
-
-      &:hover {
-        color: #0056b3;
-      }
-    }
   }
 
-  .team-filter {
-    margin-top: 30px;
+  .team-description::before,
+  .team-description::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    z-index: -1;
+  }
 
-    .mat-form-field {
-      width: 100%;
-    }
+  .team-description::before {
+    left: -4px;
+    background-color: #84fab0;
+  }
+
+  .team-description::after {
+    right: -4px;
+    background-color: #8fd3f4;
+  }
+
+  .team-description:hover::before,
+  .team-description:hover::after {
+    width: 20px;
+  }
+
+  .team-description h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .team-description p {
+    margin-bottom: 1rem;
+  }
+
+  .team-description ul {
+    list-style-position: inside;
+    padding-left: 0;
+  }
+
+  .team-description li {
+    margin-bottom: 0.5rem;
+  }
+
+  .team-description a {
+    text-decoration: underline;
+    color: #007bff;
+    transition: color 0.3s;
+  }
+
+  .team-description a:hover {
+    color: #0056b3;
   }
 
   .team-grid {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .team-members {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: stretch;
     gap: 30px;
+    justify-content: center;
   }
 
   .team-member-card {
@@ -176,48 +160,67 @@
         font-size: 1.2rem;
         font-weight: 600;
         margin-bottom: 5px;
+      }
 
-        mat-icon {
-          margin-right: 5px;
-          font-size: 1.4rem;
-        }
+      .team-member-name mat-icon {
+        margin-right: 5px;
+        font-size: 1.4rem;
+      }
+
+      .team-member-phone {
+        display: flex;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .team-member-phone mat-icon {
+        margin-right: 5px;
+        font-size: 1.4rem;
       }
 
       .team-member-bio {
         display: flex;
         align-items: center;
+        justify-content: center;
         font-size: 0.9rem;
         color: #666;
+        line-height: 1.4;
 
         img {
           width: 24px;
           height: 24px;
           object-fit: contain;
         }
-
-        mat-icon {
-          margin-right: 5px;
-          font-size: 1.2rem;
-        }
-
-        a {
-          color: #007bff;
-          text-decoration: none;
-          font-weight: 500;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
       }
+
+      .team-member-bio mat-icon {
+        margin-right: 5px;
+        font-size: 1.2rem;
+      }
+
+      .team-member-bio a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .team-member-bio a:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .linkedin-container {
+      display: flex;
+      justify-content: center;
 
       .linkedin-link {
         display: flex;
         align-items: center;
 
-        span {
-          margin-right: 5px;
-          font-size: 0.9rem;
+        img {
+          width: 103px;
+          height: 103px;
+          object-fit: contain;
         }
       }
     }
@@ -237,16 +240,11 @@
     }
   }
 
-  .add-employee-button {
+  .team-filter {
     margin-top: 30px;
 
-    button {
-      background-color: #007bff;
-      color: white;
-
-      &:hover {
-        background-color: darken(#007bff, 10%);
-      }
+    .mat-form-field {
+      width: 100%;
     }
   }
 
@@ -255,10 +253,20 @@
     background-color: transparent;
     color: #333;
   }
-
+  /* Responsive Styles */
   @media (max-width: 768px) {
+    .team-section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .team-grid {
+      flex-direction: column;
+    }
+
     .team-member-card {
-      flex-basis: calc(50% - 30px);
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     h3 {
@@ -276,30 +284,32 @@
       color: #666;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
+    .team-members {
+      display: flex;
+      flex-direction: column; /* Afficher les cartes en colonne */
+      align-items: center; /* Centrer les cartes horizontalement */
+      gap: 20px; /* Espacement entre les cartes */
+    }
   }
-}
 
-.team-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-.team-members {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: stretch;
-  gap: 30px;
-}
-
-.team-member-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 250px;
+  .team-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    
+  }
+  .team-members {
+    display: flex;
+    align-items: center; /* Centrer les cartes horizontalement */
+    gap: 20px; /* Espacement entre les cartes */
+  }
+  .team-member-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
     background-color: #ffffff;
     border-radius: 12px;
     padding: 20px;
@@ -327,9 +337,8 @@
       font-size: 0.8em;
       z-index: 1;
       border: 3px solid #bdd248;
-    }
-
-    .circular-image {
+    }   
+ .circular-image {
       width: 100px;
       height: 100px;
       border-radius: 50%;
@@ -361,16 +370,31 @@
         margin-right: 5px;
         font-size: 1.4rem; /* Ajustez la taille de l'icône selon vos besoins */
       }
-      
+      .team-member-phone {
+        display: flex;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+      p{
+        
+        align-items: center;
+      }
+      .team-member-phone mat-icon {
+        margin-right: 5px;
+        font-size: 1.4rem; /* Ajustez la taille de l'icône selon vos besoins */
+      }
       .team-member-bio {
         display: flex;
-        align-items: center;
+        align-items: center;  /* Vertically aligns the child items in the center */
+        justify-content: center;  /* Horizontally aligns the child items in the center */
         font-size: 0.9rem;
         color: #666;
+      
+        line-height: 1.4;
         img {
           width: 24px;
           height: 24px;
-          object-fit: contain;
+          object-fit: contain;  /* Ensures the image keeps its aspect ratio */
         }
       }
       
@@ -387,21 +411,25 @@
       
       .team-member-bio a:hover {
         text-decoration: underline;
-      }
+      }      
       
+    }
+    .linkedin-container {
+      display: flex;
+      justify-content: center; /* Center the LinkedIn icon */
+      align-items: center;
+
       .linkedin-link {
         display: flex;
         align-items: center;
-      }
-      
-      .linkedin-link span {
-        margin-right: 5px;
-        font-size: 0.9rem; /* Ajustez la taille de police si nécessaire */
-      }
-      
-      
-    }
 
+        img {
+          width: 103px; /* Increase the size of the LinkedIn icon */
+          height: 103px;
+          object-fit: contain;
+        }
+      }
+    }
     .team-member-actions {
       display: flex;
       justify-content: space-evenly;
@@ -417,18 +445,6 @@
     }
   }
 
-  .add-employee-button {
-    margin-top: 30px;
-
-    button {
-      background-color: #007bff;
-      color: white;
-
-      &:hover {
-        background-color: darken(#007bff, 10%);
-      }
-    }
-  }
 
   .team-filter {
     margin-top: 30px;
@@ -437,10 +453,31 @@
       width: 100%;
     }
   }
-
+}
 
 .mat-paginator {
   margin-top: 30px;
   background-color: transparent;
   color: #333;
+}
+.button-container {
+  display: flex;
+  align-items: center; /* Aligner les boutons au centre verticalement */
+  gap: 19px; /* Espacement entre les boutons */
+  margin-top: 30px; /* Appliquer la marge à la container */
+  margin-left: 500px;
+  .add-employee-button, .perfermance-button {
+    button {
+      background-color: #BDD248;
+      color: white;
+
+      &:hover {
+        background-color: darken(#BDD248, 10%);
+      }
+
+      mat-icon {
+        font-size: 24px; /* Taille de l'icône, ajustez selon vos besoins */
+      }
+    }
+  }
 }

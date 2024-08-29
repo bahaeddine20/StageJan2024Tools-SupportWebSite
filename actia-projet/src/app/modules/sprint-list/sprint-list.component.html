@@ -1,0 +1,63 @@
+<div class="team-info-container">
+  <h2 class="team-name">Team : {{ team?.name }}</h2>
+  <p class="team-tech">Technology: <span>{{ team?.technologie }}</span></p>
+</div>
+
+<button mat-raised-button color="primary" class="add-sprint-button" (click)="navigateToAddSprint()">Add Sprint</button>
+
+<table mat-table [dataSource]="sprints" class="mat-elevation-z8 sprint-table">
+
+  <!-- Stats Icon Column -->
+  <ng-container matColumnDef="stats">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let sprint">
+      <button mat-icon-button color="accent" (click)="navigateToStats(sprint.id)">
+        <mat-icon>insert_chart</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let sprint">{{ sprint.id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let sprint">{{ sprint.name }}</td>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let sprint">{{ sprint.description }}</td>
+  </ng-container>
+
+  <!-- Start Date Column -->
+  <ng-container matColumnDef="date_Debut">
+    <th mat-header-cell *matHeaderCellDef>Start Date</th>
+    <td mat-cell *matCellDef="let sprint">{{ sprint.date_Debut | date }}</td>
+  </ng-container>
+
+  <!-- End Date Column -->
+  <ng-container matColumnDef="date_Fin">
+    <th mat-header-cell *matHeaderCellDef>End Date</th>
+    <td mat-cell *matCellDef="let sprint">{{ sprint.date_Fin | date }}</td>
+  </ng-container>
+
+  <!-- Edit Button Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let sprint">
+      <button mat-icon-button color="primary" (click)="navigateToEditSprint(sprint.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Header and Row Definitions -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

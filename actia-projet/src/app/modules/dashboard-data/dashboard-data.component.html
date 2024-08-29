@@ -1,0 +1,34 @@
+<div class="main-body">
+  <div class="data-container">
+    <div *ngIf="data.length > 0">
+      <div *ngFor="let item of data; let i = index" class="data-item">
+        <p><strong>Start Date:</strong> {{ item.start_date }}</p>
+        <p><strong>End Date:</strong> {{ item.end_date }}</p>
+        <p><strong>Sprint Name:</strong> {{ item.sprint_name }}</p>
+        
+        <!-- Grouped Bar Chart -->
+        <div #chartContainer>
+          <canvasjs-chart [options]="chartOptionsList[i]"></canvasjs-chart>
+        </div>
+        
+        <!-- Pie Chart -->
+        <div #pieChartContainer>
+          <canvasjs-chart [options]="pieChartOptionsList[i]"></canvasjs-chart>
+        </div>
+        
+        <!-- Histogram -->
+        <div #histogramContainer>
+          <canvasjs-chart [options]="histogramOptionsList[i]"></canvasjs-chart>
+        </div>
+        
+        <!-- Download Button -->
+        <button (click)="downloadCharts(i)">Download Charts</button>
+        
+        <hr>
+      </div>
+    </div>
+    <div *ngIf="data.length === 0">
+      <p>No data available.</p>
+    </div>
+  </div>
+</div>

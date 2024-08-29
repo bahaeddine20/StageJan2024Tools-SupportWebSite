@@ -1,21 +1,51 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenStorageService } from '../loginService/token-storage.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Employee } from '../../modules/crud/employees/employee';
+import { catchError, of, throwError } from 'rxjs';
+import { SaveDatesRequest } from '../../modules/conge-table/SaveDatesRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  private baseUrl = 'http://localhost:8080/api/leaves';
+  private baseUrls = 'http://localhost:8080/api/users';
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService) {}
-
+   
   getEmployeeById(id: number): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
     });
     return this.http.get(`http://localhost:8080/emp/getEmployeeByID/${id}`, { headers });
+  }
+   // Method to get employee ID by user ID
+   getEmployeeIdByUserId(userId: number): Observable<number> {
+    const url = `${this. baseUrls }/employee-id/${userId}`;
+
+    // Retrieve the token from your token storage service
+    const token = this.tokenStorageService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<number>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  private handleError(error: any): Observable<never> {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(() => new Error(errorMessage));
   }
 
   getAllEmployees(): Observable<any> {
@@ -60,7 +90,12 @@ export class EmployeeService {
     // Make the HTTP request
     return this.http.put<Employee>(`http://localhost:8080/emp/updateEmployee/${id}`, formData, { headers });
   }
-
+  updateEmployeeTeam(employeeId: number, newTeamId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.put(`http://localhost:8080/emp/updateEmployeeTeam/${employeeId}/${newTeamId}`, {}, { headers });
+  }
   
   
   deleteEmployee(id: number): Observable<any> {
@@ -92,5 +127,107 @@ export class EmployeeService {
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
     });
     return this.http.get<number>(`http://localhost:8080/emp/count`,{ headers });
+  }
+
+  checkEmailExists(email: string): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.get<boolean>(`http://localhost:8080/emp/checkEmailExists?email=${email}`,{ headers });
+  }
+
+  requestLeave(leaveRequest: any) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.post<any>(`${this.baseUrl}/request`, leaveRequest,{ headers });
+  }
+
+  confirmLeave(requestId: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.baseUrl}/confirm/${requestId}`,{}, { headers });
+  }
+  rejectLeave(requestId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.baseUrl}/reject/${requestId}`, {}, { headers });
+  }
+  
+  submitLeaveRequest(employeeId: number, dates: Date[]): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+
+    const leaveRequest = {
+      employeeId,
+      selectedDates: dates
+    };
+
+    return this.http.post<any>(`${this.baseUrl}/leave-request`, leaveRequest, { headers })
+      .pipe(
+        catchError(error => {
+          console.error('Erreur lors de la soumission de la demande de congés:', error);
+          return throwError(error);
+        })
+      );
+  }
+  // Méthode pour obtenir toutes les demandes de congés
+  getAllLeaveRequests(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(`${this.baseUrl}/all`, { headers });
+  }
+
+  getSelectedDatesForEmployee(employeeId: number): Observable<string[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<string[]>(`${this.baseUrl}/selected-dates/${employeeId}`, { headers })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          // Handle error response here
+          console.error('Error fetching selected dates for employee:', error);
+          return throwError(error);
+        })
+      );
+  }
+  saveSelectedDates(request: SaveDatesRequest): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.baseUrl}/save-selected-dates`, request, { headers });
+  }
+  getSelectedDates(employeeId: number): Observable<string[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<string[]>(`${this.baseUrl}/selected-dates/${employeeId}`, { headers });
+  }
+
+  getConfirmedDaysForEmployee(employeeId: number): Observable<Date[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<Date[]>(`${this.baseUrl}/${employeeId}/confirmed-days`,{ headers });
+  }
+
+  getLeaveRequests(): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any[]>('http://localhost:8080/api/leave-requests',{ headers });
   }
 }

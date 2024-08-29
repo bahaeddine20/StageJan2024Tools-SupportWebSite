@@ -2,6 +2,9 @@ package com.bezkoder.springjwt.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -44,7 +47,13 @@ public class Team {
         private Set<ImageModel> teamImages;
 
         @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<Employee> employees;
+        @JsonIgnore  // Ignore during serialization
+        private Set<Employee> employees = new HashSet<>();
+
+          @OneToMany(cascade = CascadeType.ALL, mappedBy="team")
+        private Set<Sprint> sprints;
+
+
     public Team(int id, String name, String description, String technologie) {
         this.id = id;
         this.name = name;
@@ -99,4 +108,11 @@ public class Team {
         this.technologie = technologie;
     }
 
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
 }

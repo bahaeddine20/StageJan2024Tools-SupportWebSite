@@ -1,58 +1,84 @@
 <header class="header-container">
-    <mat-toolbar class="mat-elevation-z3">
-      <mat-toolbar-row>
-        <!-- Use a conditional expression to change the icon based on the sidebar state -->
-        <button mat-icon-button (click)="toggleMenu()">
-          <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+  <mat-toolbar class="mat-elevation-z3">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="toggleMenu()" class="menu-button" *ngIf="!isMobileDevice">
+        <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+      </button>
+      <img src="assets/images/logo-actia1.png" alt="ACTIA" class="toolbar-logo">
+      <h1>{{ 'HEADER.TITLE' | translate }}</h1>
+      <div class="toolbar-buttons" fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+        <!-- Icons for larger screens -->
+        <ul class="desktop-buttons" fxLayout="row" fxLayoutGap="20px">
+          <li class="notification-icon">
+            <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+              <mat-icon>notifications</mat-icon>
+              <span *ngIf="notifications.length" class="notification-badge">{{ notifications.length }}</span>
+            </button>
+            <mat-menu #notificationMenu="matMenu">
+              <app-notification></app-notification>
+            </mat-menu>
+          </li>
+          <li>
+            <button mat-icon-button>
+              <mat-icon>settings</mat-icon>
+            </button>
+          </li>
+          <li>
+            <button mat-icon-button>
+              <mat-icon>help_outline</mat-icon>
+            </button>
+          </li>
+          <li>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>person_outline</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
+                {{ 'HEADER.SIGN_UP' | translate }}
+              </button>
+              <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
+                {{ 'HEADER.LOGIN' | translate }}
+              </button>
+              <button mat-menu-item *ngIf="isLoggedIn" routerLink="profile">
+                {{ username }}
+              </button>
+              <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
+                {{ 'HEADER.LOGOUT' | translate }}
+              </button>
+            </mat-menu>
+          </li>
+        </ul>
+        <!-- Menu button for mobile screens -->
+        <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobileMenu">
+          <mat-icon>more_vert</mat-icon>
         </button>
-        <!-- Replace the span with an img tag -->
-        <img src="assets/images/logo-actia1.png" alt="ACTIA" class="toolbar-logo">
-        <!-- Rest of the toolbar content -->
-        <h1>Tools and Support activity</h1>
-        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
-          <ul fxLayout="row" fxLayoutGap="20px">
-            <li>
-              <button mat-icon-button>
-                <mat-icon>settings</mat-icon>
-              </button>
-            </li>
-            <li>
-              <button mat-icon-button>
-                <mat-icon>help_outline</mat-icon>
-              </button>
-            </li>
-            <li>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>person_outline</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
-                  Sign Up
-                </button>
-                <button mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
-                  Login
-                </button>
-                <button mat-menu-item *ngIf="isLoggedIn" routerLink="profile">
-                  {{ username }}
-                </button>
-                <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
-                  Log out
-                </button>
-              </mat-menu>
-            </li>
-          </ul>
-        </div>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    </header>
-    <mat-sidenav-container>
-      <mat-sidenav opened [mode]="isCollapsed ? 'side' : 'over'" [style.width]="isCollapsed ? '65px' : '250px'" [ngClass]="!isCollapsed ? 'expanded' : ''" >
-        <app-sidenav [isCollapsed]="isCollapsed"></app-sidenav>
-      </mat-sidenav>
-      <mat-sidenav-content class="content" [style.margin-left]="isCollapsed ? '65px' : '250px'" >
-        <div class="sidenav-header">
-          <router-outlet></router-outlet>
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-    
+        <mat-menu #mobileMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>help_outline</mat-icon>
+            <span>Help</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="menu">
+            <mat-icon>person_outline</mat-icon>
+            <span>Profile</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
+
+<mat-sidenav-container>
+  <mat-sidenav opened [mode]="isCollapsed ? 'side' : 'over'" [style.width]="isCollapsed ? '65px' : '250px'" [ngClass]="!isCollapsed ? 'expanded' : ''">
+    <app-sidenav [isCollapsed]="isCollapsed"></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="isCollapsed ? '65px' : '250px'">
+    <div class="sidenav-header">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

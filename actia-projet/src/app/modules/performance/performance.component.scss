@@ -1,0 +1,98 @@
+.container {
+  max-width: 1600px;
+  margin: auto;
+}
+
+.larger-container {
+  width: 1000px; /* Augmente la largeur du formulaire */
+  margin: 0 auto; /* Centre le conteneur */
+}
+
+.form-title {
+  text-align: center;
+  font-size: 3rem; /* Augmente la taille de la police */
+  margin-bottom: 20px;
+  color: #6c6868;
+  font-family: 'Georgia', serif; /* Change la police pour une plus originale */
+  font-weight: bold; /* Rend le texte en gras */
+}
+
+.form-container {
+  margin-left: 20rem;
+  margin-top: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments horizontalement */
+}
+
+.form-group {
+
+  margin-bottom: 1.5rem; /* Ajoute plus d'espace entre les groupes de formulaires */
+  width: 100%; /* Assure que le groupe de formulaire prend toute la largeur disponible */
+  max-width: 600px; /* Limite la largeur du groupe de formulaire */
+}
+
+.form-label {
+  font-weight: bold;
+  color: #333;
+  display: block; /* Assure que le label occupe toute la largeur disponible */
+  text-align: left; /* Aligne le texte du label à gauche */
+  margin-bottom: 0.5rem;
+  margin-left: 20rem; /* Ajoute un espacement entre le label et le champ de formulaire */
+}
+
+.form-control {
+  margin-right: 15rem;
+  margin-left: 15rem;
+  border-radius: 0.25rem;
+  padding: 1.5rem; /* Augmente l'espace intérieur des champs de formulaire */
+  width: 100%; /* Assure que le champ occupe toute la largeur disponible du conteneur */
+  max-width: 500px;
+  max-height: 20px; /* Limite la hauteur du champ de formulaire */
+  overflow: auto; /* Ajoute une barre de défilement si le contenu dépasse la hauteur */
+  box-sizing: border-box; /* Inclut la bordure et le padding dans la largeur totale */ /* Limite la largeur maximale pour une meilleure présentation */
+}
+
+
+.btn-primary {
+  margin-left: 20rem;
+  background-color: #BDD248;
+  border-color: #BDD248;
+  &:hover {
+    background-color: #c6d85e;
+    border-color: #c6d85e;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centre les boutons horizontalement */
+  width: 100%; /* Assure que le conteneur de boutons prend toute la largeur disponible */
+}
+
+.card {
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.card-img-top {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+@media (max-width: 576px) {
+  .container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.button-left {
+  margin-right: 1rem; /* Adds space between the buttons */
+}
+
+.button-right {
+  margin-left: auto; /* Aligns the button to the right */
+}

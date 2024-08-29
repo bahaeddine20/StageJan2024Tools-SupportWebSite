@@ -1,0 +1,132 @@
+<div class="team-info-container">
+  <h2 class="team-name">Team: {{ team?.name }}</h2>
+  <p class="team-tech">Technology: <span>{{ team?.technologie }}</span></p>
+</div>
+
+<div class="table-container">
+  <!-- Table des légendes -->
+  <div class="table-container2">
+
+  
+
+  <!-- Table des congés -->
+  <table class="calendar-table">
+    <thead>
+      <!-- Month Header -->
+      <tr>
+        <th class="sticky sticky-month">Month</th>
+        <ng-container *ngFor="let month of months">
+          <th [attr.colspan]="month.days">{{ month.name }} - {{ month.year }}</th>
+        </ng-container>
+      </tr>
+  
+      <!-- Week Header -->
+      <tr>
+        <th class="sticky sticky-week">Week</th>
+        <ng-container *ngFor="let month of months">
+          <ng-container *ngFor="let weekIndex = index; let week of month.weeks">
+            <th colspan="7">Week {{ getOverallWeekNumber(month, weekIndex) }}</th>
+          </ng-container>
+        </ng-container>
+      </tr>
+  
+      <!-- Day Header -->
+      <tr>
+        <th class="sticky sticky-day">Day</th>
+        <ng-container *ngFor="let month of months">
+          <ng-container *ngFor="let week of month.weeks">
+            <ng-container *ngFor="let day of week">
+              <th [ngStyle]="{'background-color': getDayColor2(day, month, month.year)}">
+                {{ day }}
+              </th>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tr>
+  
+      <!-- Sprint Name Row -->
+      <tr>
+        <th class="sticky sticky-sprint">Sprint</th>
+        <ng-container *ngFor="let month of months">
+          <ng-container *ngFor="let week of month.weeks">
+            <ng-container *ngFor="let group of groupDaysBySprint(week, month, month.year)">
+              <th [attr.colspan]="group.colspan" [ngStyle]="{'background-color': getDayColor2(group.startDay, month, month.year)}">
+                {{ group.sprintName }}
+              </th>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let row of rows">
+        <td class="sticky">{{ row.label }}</td> <!-- Sticky name column -->
+        <ng-container *ngFor="let month of months">
+          <ng-container *ngFor="let weekIndex = index; let week of month.weeks">
+            <ng-container *ngFor="let day of week">
+              <td 
+                [ngClass]="{
+                  'day-cell': true,
+                  'weekend-day': isWeekend(row.data[month.name][getWeekName(weekIndex)][day]),
+                  'selected-day': isSelectedDay(row.label, month, weekIndex, day),
+                  'confirmed-day': isConfirmedDay(day, month, month.year, row.employeeId)
+                }"
+                (click)="toggleDaySelection(row.label, month, weekIndex, day)"
+                (mouseover)="hoveredDay = { row: row.label, month: month.name, week: getWeekName(weekIndex), day: day }"
+                (mouseout)="hoveredDay = null">
+                {{ row.data[month.name][getWeekName(weekIndex)][day] }}
+              </td>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+<div class="button-container">
+  <button class="button button-confirm" (click)="confirmLeaveRequest()">Leave Request</button>
+
+</div>
+<div style="display: flex; justify-content: flex-end;">
+  <div *ngFor="let sprint of sprints" 
+       [ngStyle]="{'background-color': sprint.color, 'border': '1px solid #ddd', 'border-radius': '8px', 'padding': '10px', 'margin': '5px', 'width': '200px', 'box-shadow': '0 4px 8px rgba(0, 0, 0, 0.05)'}">
+    <h3 style="margin: 0; font-size: 1.1em; color: #333; text-align: center;">{{ sprint.name }}</h3>
+    <p style="margin: 5px 0 0; font-size: 0.9em; color: #666; text-align: center;">{{ sprint.description }}</p>
+  </div>
+</div>
+
+
+  <div *ngIf="isAdmin" class="leave-requests">
+    <h2>Leave Requests</h2>
+    <table class="requests-table">
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>Selected Dates</th>
+          <th>Confirmed</th>
+          <th>Actions</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let request of leaveRequests">
+          <tr *ngIf="!request.confirmed">
+            <td>{{ request.employee.firstname + " " + request.employee.lastname }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let date of request.selectedDates">{{ date | date: 'dd-MM-yyyy' }}</li>
+              </ul>
+            </td>
+            <td>{{ request.confirmed ? 'Yes' : 'No' }}</td>
+            <td class="actions">
+              <!-- Buttons for confirming or rejecting the request -->
+              <button class="button button-confirm" (click)="confirmRequest(request.id)">Confirm</button>
+              <button class="button button-reject" (click)="rejectRequest(request.id)">Reject</button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

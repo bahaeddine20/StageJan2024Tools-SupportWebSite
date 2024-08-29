@@ -1,0 +1,212 @@
+<div class="upload-container">
+  <button class="back-button" (click)="navigateBack()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+      <path d="M15 18l-6-6 6-6"></path>
+    </svg>
+    <span class="visually-hidden">Back</span>
+  </button>
+
+  <!-- Conteneur Flex pour la ligne de téléchargement et le bouton Upload -->
+  <div class="upload-section">
+    <div class="file-upload-line">
+      <label for="file-upload" class="custom-file-upload">
+        Choose File
+      </label>
+      <input id="file-upload" type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <button (click)="uploadImage()" class="upload-button">Upload</button>
+  </div>
+
+  <!-- Alerte pour message de succès -->
+  <div *ngIf="message" class="alert alert-success" role="alert">
+    {{ message }}
+  </div>
+
+  <div *ngIf="uploadProgress">
+    <p>Upload Progress: {{ uploadProgress }}%</p>
+  </div>
+
+  <div *ngIf="images.length > 0; else noImages">
+    <table>
+      
+      <tbody>
+        <tr *ngFor="let image of images">
+          <td class="image-cell">
+            <img [src]="getImageUrl(image.id)" alt="{{ image.nom }}" />
+          </td>
+          <td class="delete-cell">
+            <button (click)="deleteImage(image.id)" class="delete-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+                <path d="M3 6h18M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M4 6h16L20 21H4L4 6z"></path>
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noImages>
+    <p>No images found.</p>
+  </ng-template>
+</div>
+
+<style>
+/* Style pour le titre h2 */
+.upload-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #bdd248;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 2px solid #bdd248;
+  padding-bottom: 10px;
+}
+
+/* Style pour le bouton de retour */
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-left: -6px;
+  display: flex;
+  align-items: center;
+}
+
+.back-button svg {
+  color: #bdd248;
+  width: 24px;
+  height: 24px;
+}
+
+.back-button:hover svg {
+  color: #bdd248;
+}
+
+.back-button .visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Conteneur Flex pour aligner la ligne de téléchargement et le bouton Upload */
+.upload-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espace entre le champ de téléchargement et le bouton */
+}
+
+/* Conteneur de la ligne de téléchargement */
+.file-upload-line {
+  display: flex;
+  align-items: center;
+}
+
+/* Masquer l'input de type file */
+input[type="file"] {
+  display: none;
+}
+
+/* Style pour le label personnalisé */
+.custom-file-upload {
+  padding: 10px 20px;
+  border: 2px dashed #bdd248;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.custom-file-upload:hover {
+  background: #f4f4f4;
+}
+
+/* Style pour le bouton d'upload */
+.upload-button {
+  padding: 10px 20px;
+  border: none;
+  background: #bdd248;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background: #9fbf3b;
+}
+
+/* Style pour les alertes */
+.alert {
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.alert-success {
+  background-color:#a5c107;
+}
+
+p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style de la table */
+table {
+  width: 100%;
+  margin-top: 80px;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* Suppression de la ligne verticale entre les cellules */
+.image-cell {
+  border-right: none;
+}
+
+.delete-cell {
+  border-left: none;
+}
+
+img {
+  max-width: 100px;
+  border-radius: 4px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.delete-button svg {
+  color: #bdd248;
+  width: 24px;
+  height: 24px;
+}
+
+.delete-button:hover svg {
+  color: #9fbf3b;
+}
+</style>

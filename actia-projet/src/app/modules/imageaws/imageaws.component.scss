@@ -1,58 +1,50 @@
-// Define colors and variables for reuse
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$light-color: #f8f9fa;
-$dark-color: #343a40;
-$shadow-color: rgba(0, 0, 0, 0.1);
-$hover-scale: 1.05;
+.container {
+  max-width: 600px;
+  margin: auto;
+}
 
-.container-fluid {
-  margin-top: 1.5rem;
+.form-group {
+  margin-bottom: 1rem;
+}
 
-  .row {
-    .col-lg-3,
-    .col-md-4,
-    .col-sm-6 {
-      margin-bottom: 1.5rem;
+.form-label {
+  font-weight: bold;
+  color: #333;
+}
 
-      .card {
-        box-shadow: 0 4px 8px $shadow-color;
-        border: none;
-        border-radius: 0.5rem;
-        transition: transform 0.2s ease-in-out;
+.form-control {
+  border-radius: 0.25rem;
+}
 
-        &:hover {
-          transform: scale($hover-scale);
-        }
-
-        .card-img-top {
-          border-top-left-radius: 0.5rem;
-          border-top-right-radius: 0.5rem;
-          cursor: pointer;
-          max-width: 100%;
-          height: auto;
-        }
-
-        .card-body {
-          text-align: center;
-
-          .card-text {
-            margin: 0;
-            color: $dark-color;
-            font-weight: 500;
-          }
-        }
-      }
-    }
-
-    .col {
-      text-align: center;
-
-      .text-muted {
-        color: $secondary-color;
-        font-size: 1.2rem;
-        font-style: italic;
-      }
-    }
+.btn-primary {
+  background-color: #BDD248;
+  border-color: #BDD248;
+  &:hover {
+    background-color: #c6d85e;
+    border-color: #c6d85e;
   }
+}
+
+.card {
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.card-img-top {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+@media (max-width: 576px) {
+  .container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+.button-left {
+  margin-right: 1rem; /* Adds space between the buttons */
+}
+.button-right {
+  margin-left: auto; /* Aligns the button to the right */
 }

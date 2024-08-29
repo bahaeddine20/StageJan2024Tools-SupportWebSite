@@ -21,7 +21,15 @@ public class UserService {
         return userRepository.findById(id)
             .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
     }
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
+    public Integer getEmployeeIdByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+        return user.getEmployeeId();
+    }
     public User updateUser(User User) {
         logger.info("Updating User ID: {}", User.getId());
         User existingEMP = userRepository.findById(User.getId()).orElse(null);

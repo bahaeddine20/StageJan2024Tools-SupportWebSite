@@ -28,6 +28,8 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog.component';
 import { TeamService } from '../../../_services/teams/team.service';
 import { ImageawsComponent } from '../../imageaws/imageaws.component';
+
+
 @Component({
   selector: 'app-employees',
   standalone: true,
@@ -79,7 +81,8 @@ export class EmployeesComponent implements OnInit {
   isLoggedIn = false;
   team: any;
   members?: any[];
-  
+  defaultMaleImage = 'assets/images/profile.webp';
+  defaultFemaleImage = 'assets/images/profilewoman.webp';
   dataSource!: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -95,17 +98,9 @@ export class EmployeesComponent implements OnInit {
     private teamService: TeamService
   ) {}
   
-  getLinkedInUsername(linkedinUrl: string): string {
-    const matches = linkedinUrl.match(/linkedin\.com\/in\/([^\/]+)/);
-    if (matches) {
-      // Remplace les tirets par des espaces, supprime tous les chiffres et le mot "chiffres"
-      return matches[1].replace(/-/g, ' ').replace(/\d+/g, '').replace(/-\w+$/g, '').trim();
-    }
-    return '';
+  isMatrixTeam(): boolean {
+    return this.team?.name.toLowerCase() === 'matrix';
   }
-
-  
-  
   
   isTeamLead(member: any): boolean {
     return member.role === 'TEAM_LEAD';
@@ -233,5 +228,21 @@ export class EmployeesComponent implements OnInit {
       return this._sanitizer.bypassSecurityTrustUrl(imageUrl);
     }
     return null;
+  }
+  getDefaultImage(gender: string): string {
+    return gender === 'male' ? this.defaultMaleImage : this.defaultFemaleImage;
+  }
+
+  redirectToSprintCreate() {
+    if (this.currentTeamId !== null) {
+      this.router.navigate([`/sprints/${this.currentTeamId}`]);
+    }
+  }
+  
+
+  redirectCongee() {
+    if (this.currentTeamId !== null) {
+      this.router.navigate([`/congee/${this.currentTeamId}`]);
+    }
   }
 }

@@ -12,11 +12,15 @@ import { TokenStorageService } from '../../_services/loginService/token-storage.
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ProfileImage, User } from '../../modules/profil/user';
 import { UserDtoService } from '../../_services/UserDto/user-dto.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationModule } from '../../translation/translation.module';
+
 export type MenuItem = {
   icon: string;
   label: string;
   route: string;
 };
+
 @Component({
   selector: 'app-sidenav',
   standalone: true,
@@ -28,20 +32,21 @@ export type MenuItem = {
     MatMenuModule,
     MatListModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    TranslationModule
   ],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
-export class SidenavComponent implements OnInit{
-  username?: string; // Initialisez les propriétés ou déclarez-les comme optionnelles en ajoutant ? après leur nom
+export class SidenavComponent implements OnInit {
+  username?: string;
   email?: string;
   profilePicUrl?: string = "assets/images/user.png";
   roles: string[] = [];
   isLoggedIn = false;
   sideNavCollapsed = signal(false);
   @Input() set isCollapsed(val: boolean){
-    this.sideNavCollapsed.set(val)
+    this.sideNavCollapsed.set(val);
   }
   user: User = {
     id: this.tokenStorageService.getUser(), // example id
@@ -56,61 +61,71 @@ export class SidenavComponent implements OnInit{
   @observable menuItems: MenuItem[] = [
     {
       icon: 'home',
-      label: 'Home',
+      label: 'HOME',
       route: 'home'
     },
     {
       icon: 'person',
-      label: 'Profil',
+      label: 'PROFILE',
       route: 'profile'
     },
     {
       icon: 'list',
-      label: 'List',
+      label: 'LIST',
       route: 'list'
     },
     {
       icon: 'preview',
-      label: 'Leave Request',
+      label: 'LEAVE_REQUEST',
       route: 'congé'
     },
     {
-      icon: 'access_time', // Utilisation de l'icône Material Icons
-      label: 'Authorization',
+      icon: 'access_time',
+      label: 'AUTHORIZATION',
       route: 'authorization'
     },
     {
       icon: 'maps',
-      label: 'Map',
+      label: 'MAP',
       route: 'maps'
+    },
+    {
+      icon: 'access_time',
+      label: 'AUTHORIZATION',
+      route: 'congee'
     }
   ];
-  profilePicSize = computed(() => this.sideNavCollapsed() ? '50' : '100')
-  constructor(private tokenStorageService: TokenStorageService, private sanitizer: DomSanitizer,private userService: UserDtoService
+  profilePicSize = computed(() => this.sideNavCollapsed() ? '50' : '100');
+
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private sanitizer: DomSanitizer,
+    private userService: UserDtoService,
+    private translate: TranslateService
   ) {}
+
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
       this.profilePicUrl = user.profilePicUrl;
       this.username = user.username;
-      this.email = user.email
-
+      this.email = user.email;
     }
-      const user = this.tokenStorageService.getUser();  // Récupérer l'ID de l'utilisateur
-      if (user && user.id) {
-        this.userService.getUserById(user.id).subscribe(data => {
-          this.user = data;
-          console.log('User data loaded', data);
-        }, error => {
-          console.error('Failed to fetch user:', error);
-        });
-      } else {
-        console.error('No user ID found');
-      }
+    const user = this.tokenStorageService.getUser();
+    if (user && user.id) {
+      this.userService.getUserById(user.id).subscribe(data => {
+        this.user = data;
+        console.log('User data loaded', data);
+      }, error => {
+        console.error('Failed to fetch user:', error);
+      });
+    } else {
+      console.error('No user ID found');
+    }
   }
+
   getProfileImage(image?: ProfileImage): SafeUrl {
     if (image && image.picByte) {
       const imageUrl = `data:${image.type};base64,${image.picByte}`;

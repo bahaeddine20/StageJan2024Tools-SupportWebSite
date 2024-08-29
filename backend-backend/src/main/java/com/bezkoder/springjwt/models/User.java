@@ -66,6 +66,9 @@ public class User {
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee_id", referencedColumnName = "id")
+	private Employee employee;
 
 	public User() {
 	}
@@ -74,6 +77,17 @@ public class User {
 		this.username = username;
 		this.email = email;
 		this.password = password;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Integer getEmployeeId() {
+		return employee != null ? employee.getId() : null;
 	}
 
 	public Long getId() {
