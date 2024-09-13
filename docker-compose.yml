@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./actia-projet
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200 # Expose Angular app on port 4200
+
+  flask-backend:
+    build:
+      context: ./ApiJiracode
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000 # Expose Flask app on port 5000
+    environment:
+      FLASK_ENV: development
+    depends_on:
+      - mysqldb
+
+  spring-boot-backend:
+    build:
+      context: ./backend-backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080 # Expose Spring Boot app on port 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/actiaback19?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:  # Leave empty if no password
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+      
+
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+    - 8081:80 # Expose phpMyAdmin on port 8081
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 300M
+    depends_on:
+      - mysqldb
+    volumes:
+     - ./php.ini:/usr/local/etc/php/php.ini
+
+
+volumes:
+  db:
+    driver: local

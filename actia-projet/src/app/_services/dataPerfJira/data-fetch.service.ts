@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DataPerfJira } from '../_services/dataPerfJira/dataPerfJira';
+import { DataPerfJira } from './dataPerfJira';
 
 @Injectable({
   providedIn: 'root'

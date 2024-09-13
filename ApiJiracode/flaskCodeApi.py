@@ -3,14 +3,13 @@ import json
 
 import io
 
-
+import os
 import datetime
 import mysql.connector
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from mysql.connector import Error
 
-from paddleocr import PaddleOCR, draw_ocr # main OCR dependencies
 import numpy as np
 
 from jira import JIRA
@@ -18,12 +17,21 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
-pat = "Token_Here"
+pat = "token here"  #  When running locally
+#pat = os.getenv('PAT')   #  When using Docker
+
+
+
+#serverdb='mysqldb'  #When using Docker
+serverdb='localhost'  # When running locally
+
+
+
+
 
 # Specify Jira connection parameters
 jiraOptions = {'server': "https://jira.dt.renault.com"}
 jira = JIRA(options=jiraOptions, token_auth=pat)
-
 def get_board_id_by_project(project_key):
     """Retrieve the board ID associated with a project key."""
     boards = jira.boards()
@@ -85,7 +93,6 @@ tz = pytz.UTC
 
 from datetime import datetime
 import pytz
-
 def calculate_points_excluding_weekends(start_time, end_time, points_per_hour, start_sprint, end_sprint):
     """Calculate points excluding weekends between two timezone-aware datetimes."""
     if not isinstance(start_time, datetime) or not isinstance(end_time, datetime):
@@ -112,6 +119,11 @@ def calculate_points_excluding_weekends(start_time, end_time, points_per_hour, s
         start_time = start_sprint
     if end_time > end_sprint:
         end_time = end_sprint
+
+    # Adjust start_time if it is after 17h
+    if start_time.hour >= 17:
+        start_time = start_time + timedelta(days=1)
+        start_time = start_time.replace(hour=9, minute=0)
 
     # Ensure start_time is before end_time
     if start_time >= end_time:
@@ -247,7 +259,7 @@ CORS(app)  # Enable CORS for the entire application
 def get_db_connection():
     try:
         connection = mysql.connector.connect(
-            host='localhost',
+            host=serverdb,
             port='3306',
             database='actiabackImg',
             user='root',
@@ -317,6 +329,8 @@ def get_status_from_key(file, key_value):
 
     # Return the status of the issue
     return issue_row['Status'].values[0]
+def arrondir_a_025(valeur):
+    return round(valeur * 4) / 4
 
 @app.route('/submit-form/<int:idsprint>', methods=['POST'])
 def submit_form(idsprint):
@@ -358,9 +372,6 @@ def submit_form(idsprint):
         else:
             print("No file received")
 
-        # Initialize PaddleOCR
-        ocr_model = PaddleOCR(lang='en')
-
 
 
 
@@ -394,7 +405,6 @@ def submit_form(idsprint):
 
 
         data = pd.read_excel(file, header=None)
-
         # Find the header row by checking for the expected header pattern
         for i, row in data.iterrows():
             if 'Key' in row.values and 'Issue Type' in row.values:  # Adjust conditions based on unique header columns
@@ -486,7 +496,7 @@ def submit_form(idsprint):
                     #'Story Points': story_points,
                     'Sprint': sprint,
 
-                    'consumed Story Points': consumed_story_points,
+                    'consumed Story Points': arrondir_a_025(consumed_story_points),
 
                 })
 
@@ -548,7 +558,7 @@ def submit_form(idsprint):
         try:
             # Connect to MySQL
             connection = mysql.connector.connect(
-                host='localhost',
+                host=serverdb,
                 port='3306',
                 database='actiabackImg',
                 user='root',
@@ -595,7 +605,7 @@ def submit_form(idsprint):
         try:
             # Connect to MySQL
             connection = mysql.connector.connect(
-                host='localhost',
+                host=serverdb,
                 port='3306',
                 database='actiabackImg',
                 user='root',
@@ -636,7 +646,7 @@ def submit_form(idsprint):
         try:
             # Connect to MySQL
             connection = mysql.connector.connect(
-                host='localhost',
+                host=serverdb,
                 port='3306',
                 database='actiabackImg',
                 user='root',
@@ -723,7 +733,7 @@ def download_xlsx(file_id):
     try:
         # Connect to MySQL
         connection = mysql.connector.connect(
-            host='localhost',
+            host=serverdb,
             port='3306',
             database='actiabackImg',
             user='root',
@@ -837,13 +847,12 @@ if __name__ == '__main__':
 
     # List of packages to install
     packages = [
-        "Flask", "Flask-Cors", "mysql-connector-python", "paddlepaddle",
-        "paddleocr", "numpy", "jira", "pandas", "matplotlib", "pytz"
+        "Flask", "Flask-Cors", "mysql-connector-python", "paddlepaddle", "numpy", "jira", "pandas", "matplotlib", "pytz"
     ]
 
     # Install each package using pip
-    for package in packages:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    #for package in packages:
+     #   subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
     #install_packages()
 
@@ -853,10 +862,9 @@ if __name__ == '__main__':
 
     # Your main code here
     print("All packages upgraded successfully!")
-    # Initialize PaddleOCR
     create_database_query = "CREATE DATABASE IF NOT EXISTS actiabackImg"
     create_table_query = """
-    CREATE TABLE IF NOT EXISTS performanceJira (
+       CREATE TABLE IF NOT EXISTS performanceJira (
         id INT AUTO_INCREMENT PRIMARY KEY,
         start_date DATE,
         end_date DATE,
@@ -865,14 +873,16 @@ if __name__ == '__main__':
         pie_chart TEXT,
         histogram TEXT,
         file_data LONGBLOB,
-        idsprint INT
-    )
-    """
+        idsprint INT,
+        date_genere TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+        """
 
     try:
         # Connect to MySQL without specifying the database
         connection = mysql.connector.connect(
-            host='localhost',
+            host=serverdb,
             port='3306',
             user='root',
             password=''
@@ -895,6 +905,6 @@ if __name__ == '__main__':
         if connection.is_connected():
             cursor.close()
             connection.close()
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
     app.run(debug=True)

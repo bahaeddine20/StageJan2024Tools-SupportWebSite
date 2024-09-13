@@ -5,7 +5,9 @@
           <p><strong>Start Date:</strong> {{ data.start_date | date: 'dd MMM yyyy' }}</p>
           <p><strong>End Date:</strong> {{ data.end_date | date: 'dd MMM yyyy' }}</p>
           <p><strong>Sprint Name:</strong> {{ data.sprint_name }}</p>
-          
+          <!-- Add this button inside your data display, where it makes sense -->
+<button (click)="downloadExcelFile()">Download Excel File</button>
+
           <!-- Grouped Bar Chart -->
 <div class="chart-container" *ngIf="chartOptions" #groupedBarChartContainer>
     <div class="chart-content">

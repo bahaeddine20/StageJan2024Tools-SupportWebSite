@@ -542,7 +542,7 @@ loadEmployeeData(teamId:string): void {
   
     while (currentDate <= endDate) {
       currentWeek.push(dateFns.format(currentDate, 'd', { locale: fr }));
-      if (dateFns.getDay(currentDate) === 6) {
+      if (dateFns.getDay(currentDate) === 0) {
         weeks.push(currentWeek);
         currentWeek = [];
       }
@@ -570,6 +570,8 @@ loadEmployeeData(teamId:string): void {
     return `Week ${index + 1}`;
   }
 
+
+  
   getOverallWeekNumber(month: any, weekIndex: number): number {
     let overallWeekNumber = weekIndex + 1;
   
@@ -666,6 +668,40 @@ isConfirmedDay(day: number, month: any, year: number, employeeId: number): boole
 
   // Normalize date format in confirmedDates
   const isConfirmed = this.confirmedDates.some(cd => {
+    const confirmedDate = new Date(cd.date).toISOString().split('T')[0];
+    return cd.employeeId === employeeId && confirmedDate === date;
+  });
+
+  return isConfirmed;
+}
+isNotConfirmedDay(day: number, month: any, year: number, employeeId: number): boolean {
+  // Map French month names to their index
+  const monthIndexMap: { [key: string]: number } = {
+    'janvier': 0, 'février': 1, 'mars': 2, 'avril': 3, 'mai': 4,
+    'juin': 5, 'juillet': 6, 'août': 7, 'septembre': 8, 'octobre': 9,
+    'novembre': 10, 'décembre': 11
+  };
+
+  // Get the month index from month.name
+  const monthIndex = monthIndexMap[month.name.toLowerCase()];
+  if (monthIndex === undefined) {
+    console.error(`Invalid month name: ${month.name}`);
+    return false;
+  }
+
+  // Validate day and year
+  const dayNumber = Number(day);
+  const yearNumber = Number(year);
+  if (isNaN(dayNumber) || isNaN(yearNumber) || dayNumber < 1 || dayNumber > 31) {
+    console.error(`Invalid values - Day: ${dayNumber}, Year: ${yearNumber}`);
+    return false;
+  }
+
+  // Create date object in YYYY-MM-DD format
+  const date = new Date(yearNumber, monthIndex, dayNumber).toISOString().split('T')[0];
+
+  // Normalize date format in confirmedDates
+  const isConfirmed = this.unconfirmedDates.some(cd => {
     const confirmedDate = new Date(cd.date).toISOString().split('T')[0];
     return cd.employeeId === employeeId && confirmedDate === date;
   });

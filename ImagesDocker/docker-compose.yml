@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: bahaeddinesomrani/frontend:latest
+    ports:
+      - 4200:4200
+    depends_on:
+      - spring-boot-backend
+      - flask-backend
+    networks:
+      - app-network
+
+  flask-backend:
+    image: bahaeddinesomrani/flask-backend:latest
+    ports:
+      - 5000:5000
+    env_file:
+      - .env
+    environment:
+      FLASK_ENV: development
+      PAT: ${PAT}
+
+    depends_on:
+      - mysqldb
+    networks:
+      - app-network
+
+  spring-boot-backend:
+    image: bahaeddinesomrani/spring-boot-backend:latest
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/actiaback19?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    depends_on:
+      - mysqldb
+    networks:
+      - app-network
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - app-network
+    restart: on-failure # Automatically restart on failure
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 300M
+    depends_on:
+      - mysqldb
+    volumes:
+      - ./php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - app-network
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

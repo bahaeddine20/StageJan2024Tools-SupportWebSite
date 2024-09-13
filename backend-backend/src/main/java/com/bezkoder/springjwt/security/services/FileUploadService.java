@@ -16,16 +16,16 @@ import java.io.IOException;
 @Service
 public class FileUploadService {
 
-    @Value("${aws.s3.bucket-name}")
+    @Value("test")
     private String bucketName;
 
-    @Value("${aws.accessKey}")
+    @Value("test")
     private String accessKey;
 
-    @Value("${aws.secretKey}")
+    @Value("test")
     private String secretKey;
 
-    @Value("${region}")
+    @Value("test")
     private String region;
 
     public String uploadFile(MultipartFile file, String keyName) {

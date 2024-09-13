@@ -68,8 +68,11 @@
               <td 
                 [ngClass]="{
                   'day-cell': true,
-                  'weekend-day': isWeekend(row.data[month.name][getWeekName(weekIndex)][day]),
+                  'selected-day2': isNotConfirmedDay(day, month, month.year, row.employeeId),
+
                   'selected-day': isSelectedDay(row.label, month, weekIndex, day),
+
+                  'weekend-day': isWeekend(row.data[month.name][getWeekName(weekIndex)][day]),
                   'confirmed-day': isConfirmedDay(day, month, month.year, row.employeeId)
                 }"
                 (click)="toggleDaySelection(row.label, month, weekIndex, day)"

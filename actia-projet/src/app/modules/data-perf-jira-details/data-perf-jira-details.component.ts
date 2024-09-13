@@ -6,6 +6,8 @@ import html2canvas from 'html2canvas';
 import { DataPerfJira } from '../../_services/dataPerfJira/dataPerfJira';
 import { DataFetchService } from '../../_services/dataFetch/data-fetch.service';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { HttpClient } from '@angular/common/http';
+import saveAs from 'file-saver';
 
 
 @Component({
@@ -27,7 +29,8 @@ export class DataPerfJiraDetailsComponent implements OnInit {
 
   constructor(
     private dataFetchService: DataFetchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,    private http: HttpClient // Inject HttpClient
+
   ) {}
 
   ngOnInit(): void {
@@ -157,6 +160,24 @@ export class DataPerfJiraDetailsComponent implements OnInit {
     };
   }
 
+  downloadExcelFile(): void {
+    const fileId = this.data.id; // Assuming data.id contains the file ID
+    this.http.get(`http://localhost:5000/download-xlsx/${fileId}`, {
+        responseType: 'blob', // Set the response type to blob to handle binary data
+      })
+      .subscribe(
+        (response: Blob) => {
+          // Use FileSaver.js to save the file
+          saveAs(response, `performanceJira_${fileId}.xlsx`);
+        },
+        (error) => {
+          console.error('Error downloading the file:', error);
+        }
+      );
+  }
+
+
+
   downloadChart(chartType: string): void {
     let chartContentContainer: HTMLElement | undefined;
     let fileName = '';
@@ -190,4 +211,6 @@ export class DataPerfJiraDetailsComponent implements OnInit {
       });
     }
   }
+
+  
 }

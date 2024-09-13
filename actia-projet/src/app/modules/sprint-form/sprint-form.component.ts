@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SprintService } from '../../_services/sprint/sprint.service';
+import { dirname } from 'node:path';
 
 
 @Component({
@@ -78,9 +79,11 @@ export class SprintFormComponent implements OnInit {
       formData.append('sprintName', this.sprintForm.get('sprintName')?.value);
       formData.append('startDate', this.sprintForm.get('startDate')?.value);
       formData.append('endDate', this.sprintForm.get('endDate')?.value);
+      console.log(this.sprintForm.get('startDate')?.value)
 
       const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
       if (fileInput && fileInput.files) {
+        fileInput.name="bahaaaaaaaaaaa";
         formData.append('file', fileInput.files[0]);
       }
 
@@ -100,7 +103,10 @@ export class SprintFormComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       console.log('Selected file:', file);
+      
+
     }
+    
   }
 
   onCancel() {
