@@ -1,28 +1,42 @@
 import base64
-import json
-
-import io
-
-import os
 import datetime
-import mysql.connector
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-from mysql.connector import Error
-
-import numpy as np
-
-from jira import JIRA
-import pandas as pd
-
+import io
+import json
+import tempfile
+import zipfile
+import os
 import matplotlib.pyplot as plt
+import mysql.connector
+import numpy as np
+import pandas as pd
+from flask import Flask, request
+from flask_cors import CORS
+from jira import JIRA
+from mysql.connector import Error
+from flask import request, send_file, abort
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
+import os
+from flask import request
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill, Font, Border, Alignment
+import xlwings as xw
+from numpy import save
+from openpyxl import Workbook
+from openpyxl.chart import PieChart3D, Reference
+from openpyxl.chart.label import DataLabelList
+from openpyxl.chart.marker import DataPoint
 
-pat = "token here"  #  When running locally
+
+pat = ""  #  When running locally
 #pat = os.getenv('PAT')   #  When using Docker
 
 
 
 #serverdb='mysqldb'  #When using Docker
+#test
+
 serverdb='localhost'  # When running locally
 
 
@@ -52,14 +66,12 @@ def search_issues_by_sprint(sprint_id):
     return issues
 
 
-from datetime import datetime, timedelta
-
 def is_weekend(dt):
     """Check if the given datetime is on a weekend (Saturday or Sunday)."""
     return dt.weekday() >= 5  # 5 is Saturday, 6 is Sunday
 
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 def calculate_duration_excluding_weekends(start_time, end_time):
     """Calculate duration in hours between two datetime objects, excluding weekends."""
@@ -170,7 +182,9 @@ def calculate_consumed_story_points(issue,start_sprint,end_sprint):
     total_points = 0
     points_per_hour = 1/8
     in_progress_start_time = None
-
+    # Convertir start_sprint et end_sprint en offset-aware
+    start_sprint = start_sprint.astimezone(pytz.utc)
+    end_sprint = end_sprint.astimezone(pytz.utc)
 
     for change in status_changes:
         from_status = change['from']
@@ -179,15 +193,46 @@ def calculate_consumed_story_points(issue,start_sprint,end_sprint):
 
         if from_status != 'In Progress' and to_status == 'In Progress':
             in_progress_start_time = current_time
+            if start_sprint < in_progress_start_time < end_sprint:
+                logged=True
+            else:
+                logged=False
+
 
         elif from_status == 'In Progress' and to_status != 'In Progress':
+            if start_sprint < in_progress_start_time < end_sprint:
+                logged=True
+            else:
+                logged=False
+
+
             if in_progress_start_time:
                 total_points += calculate_points_excluding_weekends(in_progress_start_time, current_time, points_per_hour,start_sprint,end_sprint)
                 in_progress_start_time = None
 
+
     if in_progress_start_time:
         current_time = datetime.now(pytz.utc)
         total_points += calculate_points_excluding_weekends(in_progress_start_time, current_time, points_per_hour,start_sprint,end_sprint)
+
+    time_estimate = issue.fields.timeoriginalestimate
+    time_spent = issue.fields.timespent
+
+    if time_estimate:
+        time_estimate_hours = time_estimate / 3600  # Convertir en heures
+        print(f"Estimated Time: {time_estimate_hours} hours")
+    else:
+        print("Estimated Time: Not provided")
+
+    if time_spent:
+        time_spent_hours = time_spent / 3600  # Convertir en heures
+        if logged:
+            total_points=time_spent_hours/8
+            print("Use Logged")
+
+        print(f"Logged Time: {time_spent_hours} hours")
+    else:
+        print("Logged Time: Not provided")
 
     return total_points
 
@@ -210,7 +255,7 @@ def generate_velocity_chart(sprint_data, filename):
     plt.close()
 
 
-def print_issue_details(issues,start_sprint,end_sprint):
+def print_issue_details(issues, start_sprint, end_sprint):
     """Print details of the issues."""
     for issue in issues:
         print(f"Issue Key: {issue.key}")
@@ -231,9 +276,28 @@ def print_issue_details(issues,start_sprint,end_sprint):
         print(f"Status: {issue.fields.status.name}")
         print(f"Created: {issue.fields.created}")
         print(f"Updated: {issue.fields.updated}")
-        print(f"Consumed Story Points: {calculate_consumed_story_points(issue,start_sprint,end_sprint)}")
-        print("\nHistory:\n")
 
+        # Consumed Story Points
+        print(f"Consumed Story Points: {calculate_consumed_story_points(issue, start_sprint, end_sprint)}")
+
+        # Suivi du temps (temps estimé et temps enregistré)
+        time_estimate = issue.fields.timeoriginalestimate
+        time_spent = issue.fields.timespent
+
+        if time_estimate:
+            time_estimate_hours = time_estimate / 3600  # Convertir en heures
+            print(f"Estimated Time: {time_estimate_hours} hours")
+        else:
+            print("Estimated Time: Not provided")
+
+        if time_spent:
+            time_spent_hours = time_spent / 3600  # Convertir en heures
+            print(f"Logged Time: {time_spent_hours} hours")
+        else:
+            print("Logged Time: Not provided")
+
+        # Affichage de l'historique des transitions
+        print("\nHistory:\n")
         for history in issue.changelog.histories:
             transition_items = [item for item in history.items if item.field == 'status']
             if transition_items:
@@ -241,6 +305,7 @@ def print_issue_details(issues,start_sprint,end_sprint):
                 for item in transition_items:
                     print(f"Changed {item.field.capitalize()}: From '{item.fromString}' To '{item.toString}'")
                 print("-" * 20)
+
         print("\n" + "=" * 20 + "\n")
 
 def get_issue_by_key(issue_key):
@@ -355,6 +420,7 @@ def submit_form(idsprint):
 
         # Extract file data
         file = request.files.get('file')
+
         file_data = None
         if file:
             file_data = file.read()
@@ -362,17 +428,19 @@ def submit_form(idsprint):
             print(f"File size: {len(file_data)} bytes")
             print(f"File type: {file.mimetype}")
 
-        # Print extracted data to the terminal
+
+
+
+        # Print extracted sprint details
         print(f"Sprint Name: {sprint_name}")
         print(f"Start Date: {start_date}")
         print(f"End Date: {end_date}")
         print(f"Carry Forward SP: {carry_forward_sp}")
+
         if file:
             print("File received")
         else:
             print("No file received")
-
-
 
 
 
@@ -430,6 +498,7 @@ def submit_form(idsprint):
 
         # Iterate through each issue key from the Excel file
         for issues_key in data["Key"]:
+
             issue = get_issue_by_key(issues_key)
             print(f"Issue Key: {issue.key}")
             print(f"Summary: {issue.fields.summary}")
@@ -453,6 +522,20 @@ def submit_form(idsprint):
             print(f"Updated: {issue.fields.updated}")
             print(f"Consumed Story Points: {calculate_consumed_story_points(issue,start_sprint,end_sprint)}")
             print("\nHistory:\n")
+            time_estimate = issue.fields.timeoriginalestimate
+            time_spent = issue.fields.timespent
+
+            if time_estimate:
+                time_estimate_hours = time_estimate / 3600  # Convertir en heures
+                print(f"Estimated Time: {time_estimate_hours} hours")
+            else:
+                print("Estimated Time: Not provided")
+
+            if time_spent:
+                time_spent_hours = time_spent / 3600  # Convertir en heures
+                print(f"Logged Time: {time_spent_hours} hours")
+            else:
+                print("Logged Time: Not provided")
 
             # Display the issue's history (changelog)
             for history in issue.changelog.histories:
@@ -500,10 +583,13 @@ def submit_form(idsprint):
 
                 })
 
+        results = [result for result in results if result['Issue Type'] != 'Epic' and result['consumed Story Points'] != 0]
+
         # Export to Excel
         output_file = 'jira_issues_with_history.xlsx'
         df = pd.DataFrame(results)
         df.to_excel(output_file, index=False)
+
         # Use 'Story Points' column instead of generating random values
         #df['Treated task'] = np.random.randint(0, 5, df.shape[0])
 
@@ -691,7 +777,7 @@ def submit_form(idsprint):
     except Exception as e:
         print(f"Error processing form data: {e}")
         return jsonify({"error": "Failed to process form data"}), 500
-from flask import Flask, jsonify, send_file
+from flask import jsonify
 
 
 @app.route('/data/<int:idsprint>', methods=['GET'])
@@ -765,6 +851,552 @@ def download_xlsx(file_id):
     except Error as e:
         return jsonify({"error": str(e)}), 500
 
+
+# Charger la présentation existante
+prs = Presentation("MATRIX-Presentation.pptx")
+
+# Obtenir la date actuelle avec le mois en majuscule (par exemple, "SEPTEMBER2024")
+date_actuelle = date_actuelle = datetime.now().strftime("%Y/%m/%d")
+
+date_actuelle2 = datetime.now().strftime("%B%Y").upper()  # Cela donne "SEPTEMBER2024", "NOVEMBER2024", etc.
+
+
+def remplacer_textes(slide,sprintname):
+    # Remplacer la dernière occurrence de "PI" par "PMT"
+    if "PI" in sprintname:
+        sprintname = sprintname.rsplit("PI", 1)  # Diviser la chaîne en deux parties
+        sprintname = sprintname[0] + "PMT" + sprintname[1]  # Reconstituer la chaîne avec "PMT"
+
+    # Afficher le résultat
+    print(sprintname)
+
+    for shape in slide.shapes:
+        if not shape.has_text_frame:
+            continue
+        for paragraph in shape.text_frame.paragraphs:
+            full_text = "".join([run.text for run in paragraph.runs])
+            # Remplacer la date actuelle
+            if "2024/09/05" in full_text:
+                for run in paragraph.runs:
+                    run.text = run.text.replace("2024/09/05", date_actuelle)
+            # Remplacer le texte spécifique avec un match plus flexible
+            if "MATRIX - sEPTEMBER2024 – PMt24.3-3" in full_text:
+                new_text = f"MATRIX - {date_actuelle2} – "+sprintname
+                for run in paragraph.runs:
+                    run.text = run.text.replace("MATRIX - sEPTEMBER2024 – PMt24.3-3", new_text)
+
+
+            if "MATRIX - SEPTEMBER2024- Pmt24.3-3" in full_text:
+                new_text = f"MATRIX - {date_actuelle2} – "+sprintname
+                for run in paragraph.runs:
+                    run.text = run.text.replace("MATRIX - SEPTEMBER2024- Pmt24.3-3", new_text)
+
+            if "PMT24.3-3 September2024" in full_text:
+                new_text2 = f"{sprintname} {date_actuelle2}"
+                for run in paragraph.runs:
+                    run.text = run.text.replace("PMT24.3-3 September2024", new_text2)
+
+# Fonction pour remplacer l'image sur une slide donnée
+
+def remplacer_image(slide, image_path, image_size=(5,4)):
+    slide_width = prs.slide_width  # Largeur de la diapositive
+    slide_height = prs.slide_height  # Hauteur de la diapositive
+
+    # Calculer les positions pour centrer l'image
+    left = (slide_width - Inches(image_size[0])) / 2
+    top = (slide_height - Inches(image_size[1])) / 2
+
+    # Supprimer les anciennes images de la diapositive
+    for shape in slide.shapes:
+        if shape.shape_type == 13:  # 13 correspond à un type "image"
+            sp = shape
+            slide.shapes._spTree.remove(sp._element)
+
+    # Ajouter une nouvelle image centrée
+    slide.shapes.add_picture(image_path, left, top, Inches(image_size[0]), Inches(image_size[1]))
+
+sum_by_status=None
+@app.route('/download-presentation/<int:file_id>', methods=['POST'])
+def download_presentation(file_id):
+    carry_forward_sp = request.form.get('capacity')
+    sprintName = request.form.get('sprintName')
+    file = request.files.get('file')
+    file_vi = None
+
+    fileexel = request.files.get('fileexel')
+
+    import mysql.connector
+    import io
+    from openpyxl import load_workbook
+
+    try:
+        # Connexion à MySQL
+        connection = mysql.connector.connect(
+            host=serverdb,
+            port='3306',
+            database='actiabackImg',
+            user='root',
+            password=''
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+
+            if fileexel:
+                print("Fichier Excel reçu")
+
+                # Lire les données du fichier
+                file_data = fileexel.read()
+
+                # Charger le fichier Excel avec openpyxl
+                workbookexel = load_workbook(filename=io.BytesIO(file_data))
+
+                sheet = workbookexel.active  # Ou sélectionner une autre feuille si nécessaire
+
+                # Extraire les en-têtes (première ligne)
+                headers = [cell.value for cell in sheet[1]]
+
+                # Vérifier la présence de la colonne 'consumed Story Points'
+                if 'consumed Story Points' in headers:
+                    print("La colonne 'consumed Story Points' est présente.")
+
+                    # Requête pour mettre à jour les données dans MySQL
+                    update_data_query = """
+                        UPDATE performanceJira
+                        SET file_data = %s
+                        WHERE id = %s
+                    """
+
+                    # Exécution de la requête avec les données correspondantes
+                    cursor.execute(update_data_query, (
+                        file_data,  # Utiliser le fichier Excel uploadé
+                        file_id  # Assurez-vous que file_id est défini avant
+                    ))
+
+                    # Commit des changements pour valider la mise à jour
+                    connection.commit()
+
+                    print(f"Les données ont été mises à jour avec succès pour l'ID {file_id}.")
+                else:
+                    print("La colonne 'consumed Story Points' est absente. Aucune mise à jour effectuée.")
+
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+            query = """
+                SELECT file_data
+                FROM performanceJira 
+                WHERE id = %s
+            """
+            cursor.execute(query, (file_id,))
+            result = cursor.fetchone()
+
+            if result:
+                file_data = result[0]
+
+
+                # Créer un fichier en mémoire à partir des données Excel
+                file_stream = io.BytesIO(file_data)
+
+                # Lire le fichier Excel en utilisant pandas
+                try:
+                    excel_data = pd.read_excel(file_stream)
+
+                    # Vérifier si la colonne 'Consumed Story Points' existe
+                    if 'consumed Story Points' not in excel_data.columns:
+                        return jsonify(
+                            {"error": "La colonne 'Consumed Story Points' n'existe pas dans le fichier Excel."}), 400
+
+                    # Calculer la somme de 'Consumed Story Points'
+                    sum_by_status = excel_data.groupby('Status')['consumed Story Points'].sum().reset_index()
+                    filtered_status = sum_by_status[sum_by_status['Status'].isin(['Integrated', 'Closed'])]
+                    total_sum = filtered_status['consumed Story Points'].sum()
+
+                    excel_data['Status'] = excel_data['Status'].str.strip()
+
+                    # Grouping by 'Status' and summing 'Story Points'
+                    sum_by_status = excel_data.groupby('Status')['consumed Story Points'].sum().reset_index()
+                    sum_by_status = excel_data.groupby('Status')['consumed Story Points'].sum().reset_index()
+                    # sum_treated_task = df.groupby(['Issue Type', 'Status'])['Treated task'].sum().reset_index()
+                    # count_status = df.groupby('Issue Type')['Status'].value_counts().unstack().reset_index()
+
+                    # Filtering statuses for 'Integrated' and 'Closed'
+                    filtered_status = sum_by_status[sum_by_status['Status'].isin(['Integrated', 'Closed'])]
+
+                    # Summing the 'Story Points' for the filtered statuses
+                    total_sum = filtered_status['consumed Story Points'].sum()
+
+                    # Convert the result to JSON
+                    json_result_sum_by_status = sum_by_status.to_json(orient='records')
+                    print(json_result_sum_by_status)
+
+                    # Counting issues by 'Issue Type'
+                    issue_counts = excel_data["Issue Type"].value_counts().reset_index()
+                    issue_counts.columns = ['Issue Type', 'Count']
+
+                    # Convert the issue counts DataFrame to JSON
+                    json_result_histogram = issue_counts.to_json(orient='records')
+                    print(json_result_histogram)
+
+
+
+                    # Identifying treated issues with 'Integrated' or 'Closed' status
+                    excel_data['Treated issues (Integrated or Closed)'] = excel_data['Status'].apply(
+                        lambda status: status if status in ['Closed', 'Integrated'] else np.nan
+                    )
+
+                    treated_counts = excel_data.groupby('Issue Type')['Treated issues (Integrated or Closed)'].apply(
+                        lambda x: x.notna().sum()
+                    ).reset_index()
+
+                    treated_counts.columns = ['Issue Type', 'Treated issues (Integrated or Closed)']
+
+                    # Merging the counts with treated issues
+                    issue_df = pd.merge(issue_counts, treated_counts, on='Issue Type', how='left')
+
+                    # Convert the merged DataFrame to JSON
+                    json_result_grouped_bar_chart = issue_df.to_json(orient='records')
+                    print(json_result_grouped_bar_chart)
+                    data_grouped_bar_chart = json.loads(json_result_grouped_bar_chart)
+
+                    issue_types = [item['Issue Type'] for item in data_grouped_bar_chart]
+                    all_issues = [item['Count'] for item in data_grouped_bar_chart]
+                    treated_issues = [item['Treated issues (Integrated or Closed)'] for item in data_grouped_bar_chart]
+                    print(total_sum)
+                    issue_types = [item['Issue Type'] for item in data_grouped_bar_chart]
+                    all_issues = [item['Count'] for item in data_grouped_bar_chart]
+                    treated_issues = [item['Treated issues (Integrated or Closed)'] for item in data_grouped_bar_chart]
+
+                    update_data_query2 = """
+                        UPDATE performanceJira
+                        SET grouped_bar_chart = %s, pie_chart = %s, histogram = %s
+                        WHERE id = %s
+                    """
+
+                    # Exécution de la requête avec les données correspondantes et l'ID de la ligne à mettre à jour
+                    cursor.execute(update_data_query2, (
+                        json.dumps(json_result_grouped_bar_chart),  # Sérialisation en JSON du graphe groupé
+                        json.dumps(json_result_sum_by_status),  # Sérialisation en JSON du graphique en camembert
+                        json.dumps(json_result_histogram),  # Sérialisation en JSON de l'histogramme
+                        file_id  # Assurez-vous que file_id (l'ID de l'enregistrement) est défini
+                    ))
+
+                    # Commit des changements pour appliquer la mise à jour
+                    connection.commit()
+
+                    print("Les données ont été mises à jour avec succès pour l'ID", file_id)
+
+                    # Create a figure and axis
+                    fig, ax = plt.subplots()
+
+                    # Define the position of the bars on the y-axis
+                    index = np.arange(len(issue_types))
+
+                    # Define the bar width
+                    bar_width = 0.35
+
+                    # Plot the bars: One for All Issues and one for Treated Issues
+                    bar1 = ax.barh(index - bar_width / 2, all_issues, bar_width, label='All Issues', color='lightcoral')
+                    bar2 = ax.barh(index + bar_width / 2, treated_issues, bar_width,
+                                   label='Treated Issues (Integrated or Closed)',
+                                   color='lightgreen')
+
+                    # Add chart title and labels
+                    ax.set_title(sprintName+' MATRIX Status By Issue Type')
+                    ax.set_xlabel('Number of Issues')
+                    ax.set_yticks(index)
+                    ax.set_yticklabels(issue_types)
+                    ax.invert_yaxis()  # Invert y-axis to match the order of issue types (optional)
+
+                    # Set x-ticks to display 0, 2, 4, 6, 8, etc.
+                    ax.set_xticks(np.arange(0, max(all_issues)+4, 2))  # Customize the range and step (0 to 20, step 2)
+
+                    # Add grid lines for readability
+                    ax.grid(True, which='both', axis='x', linestyle='--', linewidth=0.5)
+
+                    # Add a legend
+                    ax.legend()
+
+                    # Save the plot to a file
+                    plt.tight_layout()
+                    plt.savefig("image1.png")
+                    plt.savefig("image2.png")
+                    print(f"Chart saved as image1.png")
+                    # Handle the charts (grouped_bar_chart and pie_chart) if needed here
+                    # For example, you can convert them to JSON if they are stored in a compatible format
+                    # or return them as part of the response
+
+                except Exception as e:
+                    return jsonify({"error": f"Erreur lors de la lecture du fichier Excel: {str(e)}"}), 500
+            else:
+                return jsonify({"error": "Le fichier avec l'ID spécifié n'existe pas."}), 404
+
+
+    except mysql.connector.Error as e:
+        return jsonify({"error": f"Erreur de connexion à la base de données: {str(e)}"}), 500
+
+    except Exception as e:
+        return jsonify({"error": f"Erreur inattendue: {str(e)}"}), 500
+
+        # Initialize the new structure with headers
+
+    # Initialize the workbook and sheet
+    from openpyxl import Workbook
+    from openpyxl.chart import PieChart3D, Reference
+    from openpyxl.chart.label import DataLabelList
+
+    # Créer un ordre personnalisé pour les statuts
+    custom_order = [
+        "test",
+        "In Progress",
+        "Implemented",
+        "Integrated",
+        "Closed",
+        "In Review",
+        "Blocked"
+    ]
+
+    # Ajouter une valeur spéciale pour gérer les autres statuts (pas dans custom_order)
+    sum_by_status['sort_key'] = sum_by_status['Status'].apply(
+        lambda x: custom_order.index(x) if x in custom_order else len(custom_order)
+    )
+
+    # Trier le DataFrame en fonction de cet ordre
+    sum_by_status = sum_by_status.sort_values(by='sort_key')
+
+    # Supprimer la colonne de clé de tri après le tri
+    sum_by_status = sum_by_status.drop(columns=['sort_key'])
+
+    # Créer le fichier Excel et le graphique
+    workbook = Workbook()
+    sheet = workbook.active
+
+    data = [['Status', 'Consumed Story Points']]
+    data.append(['test',10])
+    # Remplir la liste de données
+    for index, row in sum_by_status.iterrows():
+        status = row['Status']
+        consumed_story_points = row['consumed Story Points']
+        data.append([status, consumed_story_points])
+
+    # Écrire les données dans la feuille
+    for row in data:
+        sheet.append(row)
+
+    # Créer un diagramme circulaire 3D
+    pie = PieChart3D()
+
+    # Définir les plages de données pour les valeurs et les étiquettes
+    labels = Reference(sheet, min_col=1, min_row=3, max_row=len(data) + 1)
+    data_values = Reference(sheet, min_col=2, min_row=2, max_row=len(data) + 1)
+
+    # Ajouter les données et les catégories au graphique
+    pie.add_data(data_values, titles_from_data=True)
+    pie.set_categories(labels)
+    pie.title = sprintName + " MATRIX Story Points Status"
+
+    # Ajouter des étiquettes de données
+    pie.dLbls = DataLabelList()
+    pie.dLbls.showVal = True
+    pie.dLbls.showSerName = False
+    pie.dLbls.showPercent = False
+    pie.dLbls.showCatName = True
+    pie.dLbls.dLblPos = 'bestFit'  # Positionner les étiquettes à l'extérieur du graphique
+    pie.legend.position = 'b'
+
+    # Définir le style et ajuster la taille
+    pie.style = 26
+    pie.height = 10
+    pie.width = 18
+
+    # Appliquer des couleurs spécifiques aux segments du diagramme
+    color_mapping = {
+        "Implemented": "99FF99",  # Vert clair
+        "Closed": "336633",  # Vert foncé
+        "Integrated": "339933",  # Vert moyen
+        "Blocked": "999999",  # Gris
+        "In Progress": "FFFF66",  # Jaune
+        "Backlog Refinement": "FFCC99",  # Beige / Orange clair
+        "In Review": "FF9966",  # Orange clair
+        "Ready": "66CCFF"  # Bleu clair
+    }
+
+    # Appliquer les couleurs aux points de données
+    for i, status in enumerate(sum_by_status['Status']):
+        point = DataPoint(i)
+        point.graphicalProperties.solidFill = color_mapping.get(status, "CCCCCC")  # Couleur par défaut si non trouvé
+        pie.series[0].data_points.append(point)
+
+    # Positionner le graphique dans la feuille Excel
+    sheet.add_chart(pie, "E2")
+
+    # Enregistrer le fichier Excel avec le graphique
+    workbook.save("exelPie.xlsx")
+
+    print(sprintName)
+    # Extract file data
+    file = request.files.get('file')
+    file_vi = None
+    if file:
+        file_vi = file.read()
+        # Optionally print file size or type
+        print(f"File size: {len(file_vi)} bytes")
+        print(f"File type: {file.mimetype}")
+
+    # Load the Excel workbook from binary data
+    wb = load_workbook(filename=io.BytesIO(file_vi))
+
+    # Charger le fichier Excel
+
+    ws = wb.active
+
+    # Trouver la dernière colonne
+    max_col = ws.max_column  # Index de la dernière colonne
+    new_col_index = max_col + 1  # Index de la nouvelle colonne
+
+    # Dupliquer la dernière colonne dans la nouvelle colonne
+    for row in range(1, ws.max_row + 1):  # Inclure toutes les lignes (y compris l'en-tête)
+        old_cell = ws.cell(row=row, column=max_col)
+        new_cell = ws.cell(row=row, column=new_col_index, value=old_cell.value)
+
+        # Copier les propriétés de style individuellement (remplissage, police, bordure, alignement)
+        if old_cell.fill:
+            new_cell.fill = PatternFill(
+                start_color=old_cell.fill.start_color,
+                end_color=old_cell.fill.end_color,
+                fill_type=old_cell.fill.fill_type
+            )
+
+        if old_cell.font:
+            new_cell.font = Font(
+                name=old_cell.font.name,
+                size=old_cell.font.size,
+                bold=old_cell.font.bold,
+                italic=old_cell.font.italic,
+                vertAlign=old_cell.font.vertAlign,
+                underline=old_cell.font.underline,
+                strike=old_cell.font.strike,
+                color=old_cell.font.color
+            )
+
+        if old_cell.border:
+            new_cell.border = Border(
+                left=old_cell.border.left,
+                right=old_cell.border.right,
+                top=old_cell.border.top,
+                bottom=old_cell.border.bottom
+            )
+
+        if old_cell.alignment:
+            new_cell.alignment = Alignment(
+                horizontal=old_cell.alignment.horizontal,
+                vertical=old_cell.alignment.vertical,
+                text_rotation=old_cell.alignment.text_rotation,
+                wrap_text=old_cell.alignment.wrap_text,
+                shrink_to_fit=old_cell.alignment.shrink_to_fit,
+                indent=old_cell.alignment.indent
+            )
+
+    # Maintenant modifier les valeurs dans la nouvelle colonne
+    new_col_values = [sprintName, int(carry_forward_sp), total_sum]  # Valeurs à mettre dans la nouvelle colonne
+    for row, value in enumerate(new_col_values, start=1):  # Commencer à la première ligne
+        ws.cell(row=row, column=new_col_index, value=value)
+
+    # Sauvegarder le fichier modifié
+
+
+    excel_output = io.BytesIO()
+    wb.save(excel_output)
+    excel_output.seek(0)
+    df1 = pd.read_excel(excel_output)
+
+    # Check the structure of the data
+    print(df1.head())  # To make sure we have the correct structure
+
+    # Transpose the DataFrame to switch rows with columns
+    df1 = df1.transpose()
+
+    # Set the first row (which contains 'Capacity' and 'Velocity') as the new column names
+    df1.columns = df1.iloc[0]
+
+    # Drop the first row since it's now the header
+    df1 = df1.drop(df1.index[0])
+
+    # Convert the values to numeric (if necessary)
+    df1['Capacity'] = pd.to_numeric(df1['Capacity'], errors='coerce')
+    df1['Velocity'] = pd.to_numeric(df1['Velocity'], errors='coerce')
+
+    # Plot the graph
+    plt.figure(figsize=(10, 6))
+    plt.plot(df1.index, df1['Capacity'], marker='o', label='Capacity', color='blue', linewidth=2)
+    plt.plot(df1.index, df1['Velocity'], marker='o', label='Velocity', color='yellow', linewidth=2)
+
+    # Adding titles and labels
+    plt.title('MATRIX Velocity In PIs')
+    plt.xlabel('PIs')
+
+    # Display legend
+    plt.legend()
+
+    # Display grid
+    plt.grid(True)
+
+    # Rotate x-axis labels for better readability
+    plt.xticks(rotation=90)
+
+    # Add value labels above each point for Capacity using iloc for safe positional indexing
+    for i in range(len(df1)):
+        plt.text(df1.index[i], df1['Capacity'].iloc[i] + 1, str(df1['Capacity'].iloc[i]),
+                 ha='center', fontsize=9, color='blue')
+
+    # Add value labels above each point for Velocity using iloc for safe positional indexing
+    for i in range(len(df1)):
+        plt.text(df1.index[i], df1['Velocity'].iloc[i] + 1, str(df1['Velocity'].iloc[i]),
+                 ha='center', fontsize=9, color='black')
+
+    # Show the plot with value labels
+    plt.tight_layout()
+    plt.savefig('matrix_velocity_plot.png')  # Saves the plot as a .png file with 300 DPI
+
+    # Reste de la création de la présentation PowerPoint...
+    try:
+        for slide in prs.slides:
+            remplacer_textes(slide,sprintName)
+
+        # Optionnel : Remplacer les images sur les slides spécifiques
+        images = ["story_points_pie_chart_image2.png", "image1.png", "matrix_velocity_plot.png"]
+        slides_to_modify = [3, 4, 5]  # Indices de diapositive (les indices commencent à 0)
+
+        for i, slide_idx in enumerate(slides_to_modify):
+            slide = prs.slides[slide_idx]
+            remplacer_image(slide, images[i], image_size=(5, 4))  # Images de 4x3 pouces centrées
+
+        # Enregistrer la présentation modifiée
+        prs.save("votre_presentation_modifiee.pptx")
+
+        with tempfile.NamedTemporaryFile(delete=False) as temp_zip:
+            with zipfile.ZipFile(temp_zip, 'w') as zipf:
+                # Ajouter le fichier Excel à l'archive ZIP
+                zipf.writestr(f'vilocity_{sprintName}.xlsx', excel_output.getvalue())
+                zipf.write('exelPie.xlsx', arcname=f'{sprintName}_Pie.xlsx')
+                zipf.write('votre_presentation_modifiee.pptx', arcname=f'{sprintName}_presentation.pptx')
+
+                # Ajouter le fichier PowerPoint à l'archive ZIP
+
+
+            temp_zip_path = temp_zip.name
+
+        # Envoyer le fichier PowerPoint
+        return send_file(
+            temp_zip_path,
+            as_attachment=True,
+            download_name=f'presentation_and_excel_{file_id}.zip',
+            mimetype='application/zip'
+        )
+
+    except Exception as e:
+        return jsonify({"error": f"Erreur lors de la création de la présentation: {str(e)}"}), 500
+
 @app.route('/data/stats/<int:id>', methods=['GET'])
 def get_data_by_id(id):
     connection = get_db_connection()
@@ -795,6 +1427,37 @@ def get_data_by_id(id):
     except Error as e:
         print(f"Error fetching data from MySQL: {e}")
         return jsonify({"error": "Failed to fetch data from the database"}), 500
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+
+from flask import jsonify, request
+from mysql.connector import Error
+
+
+@app.route('/data-perf-jira/<int:id>', methods=['DELETE'])
+def delete_data_perf_jira(id):
+    connection = get_db_connection()
+    if not connection:
+        return jsonify({"error": "Failed to connect to the database"}), 500
+
+    try:
+        cursor = connection.cursor()
+
+        # Requête pour supprimer l'entrée de la base de données
+        query = "DELETE FROM performanceJira WHERE id = %s"
+        cursor.execute(query, (id,))
+        connection.commit()
+
+        if cursor.rowcount == 0:
+            return jsonify({"error": "No DataPerfJira found with this ID"}), 404
+
+        return jsonify({"message": "DataPerfJira deleted successfully"}), 200
+    except Error as e:
+        print(f"Error deleting data from MySQL: {e}")
+        return jsonify({"error": "Failed to delete data from the database"}), 500
     finally:
         if connection.is_connected():
             cursor.close()
@@ -842,8 +1505,6 @@ def get_data():
 
 
 if __name__ == '__main__':
-    import subprocess
-    import sys
 
     # List of packages to install
     packages = [

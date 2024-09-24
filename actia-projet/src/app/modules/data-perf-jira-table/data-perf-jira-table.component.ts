@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SprintService } from '../../_services/sprint/sprint.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-data-perf-jira-table',
@@ -15,14 +16,14 @@ import { SprintService } from '../../_services/sprint/sprint.service';
     CommonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
+    MatSortModule,MatIconModule 
   ],
   templateUrl: './data-perf-jira-table.component.html',
   styleUrls: ['./data-perf-jira-table.component.scss']
 })
 export class DataPerfJiraTableComponent implements OnInit {
   dataSource = new MatTableDataSource<DataPerfJira>();
-  displayedColumns: string[] = ['start_date', 'end_date', 'sprint_name', 'date_genere'];
+  displayedColumns: string[] = ['start_date', 'end_date', 'sprint_name', 'date_genere', 'actions'];
   idsprint!: number;  // Capture the parameter from the route
   sprint: any;
 
@@ -41,6 +42,22 @@ export class DataPerfJiraTableComponent implements OnInit {
       this.getSprintData(this.idsprint)
     });
   }
+  deleteDataPerfJira(row: DataPerfJira): void {
+    this.dataFetchService.deleteDataPerfJira(row.id).subscribe(
+      () => {
+        // Marquer l'élément comme supprimé
+        row.isDeleted = true;
+  
+        // Si vous voulez également retirer l'élément de l'affichage :
+        this.dataSource.data = this.dataSource.data.filter(item => item.id !== row.id);
+      },
+      (error) => {
+        console.error('Error deleting DataPerfJira', error);
+      }
+    );
+  }
+  
+  
   getSprintData(sprintId: number) {
     this.sprintService.getSprintById(sprintId).subscribe(data => {
       this.sprint = data; // Assurez-vous que la propriété 'team' est définie dans votre composant

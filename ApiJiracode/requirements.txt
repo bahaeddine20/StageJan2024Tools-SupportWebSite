@@ -1,5 +1,6 @@
 Flask
 flask-cors
+xlwings
 mysql-connector-python
 numpy
 jira
@@ -8,3 +9,4 @@ matplotlib
 pytz
 openpyxl
 python-dotenv
+python-pptx

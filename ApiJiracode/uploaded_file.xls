@@ -1,0 +1,1067 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<title>MATRIX_24.2-1 (||> JIRA Software -!- Alliance Environment <||)</title>
+<style type="text/css">
+table {
+    mso-displayed-decimal-separator:"\.";
+    mso-displayed-thousand-separator:"\,";
+}
+body
+{
+    margin: 0px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color:black;
+}
+
+</style>
+<META HTTP-EQUIV="Content-Type" Content="application/vnd.ms-excel; charset=UTF-8">
+<!-- JRA-7598 - ensure fields (e.g. description) occupy only one cell - even fields containing newlines. -->
+<!--
+Vertical align all cells to the top, in order to align all issue rows of issuetable to the top,
+since Excel does not use or save the css files it is hardcoded here.
+-->
+<style>
+@page
+{
+mso-page-orientation:landscape;
+margin:.25in .25in .5in .25in;
+mso-header-margin:.5in;
+mso-footer-margin:.25in;
+mso-footer-data:"&R&P of &N";
+mso-horizontal-page-align:center;
+mso-vertical-page-align:center;
+}
+
+td.issuekey,
+td.issuetype,
+td.status {
+    mso-style-parent: "";
+    mso-number-format: \@;
+    text-align: left;
+}
+br
+{
+    mso-data-placement:same-cell;
+}
+
+td
+{
+    vertical-align: top;
+}
+</style>
+
+<!--[if gte mso 9]><xml>
+<x:ExcelWorkbook>
+<x:ExcelWorksheets>
+<x:ExcelWorksheet>
+<x:Name>general_report</x:Name>
+<x:WorksheetOptions>
+<x:Print>
+<x:ValidPrinterInfo/>
+</x:Print>
+</x:WorksheetOptions>
+</x:ExcelWorksheet>
+</x:ExcelWorksheets>
+</x:ExcelWorkbook>
+</xml><![endif]-->
+</head>
+<body>
+
+<table border="1">
+    <tr bgcolor="#0747a6" height="60">
+        <td colspan="12">
+            <img src="https://jira.dt.renault.com/jira-logo-scaled.png" width="121" height="60" border="0" alt="MATRIX_24.2-1 (||> JIRA Software -!- Alliance Environment <||)">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="12">
+            <a href="https://jira.dt.renault.com/issues/?filter=151047">MATRIX_24.2-1 (||> JIRA Software -!- Alliance Environment <||)</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="12">
+            Displaying <strong>34</strong> issues at <strong>16/Apr/24 3:18 PM</strong>.
+        </td>
+    </tr>
+</table>
+
+
+
+
+                            <issuetable-web-component data-content="issues">
+                <table id="issuetable"  border="1" cellpadding="3" cellspacing="1" width="100%">
+                        <thead>
+        <tr class="rowHeader">
+            
+                                                            <th class="colHeaderLink headerrow-issuetype" data-id="issuetype">
+                            Issue Type
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-issuekey" data-id="issuekey">
+                            Key
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-summary" data-id="summary">
+                            Summary
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-assignee" data-id="assignee">
+                            Assignee
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-reporter" data-id="reporter">
+                            Reporter
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-status" data-id="status">
+                            Status
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-created" data-id="created">
+                            Created
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-components" data-id="components">
+                            Component/s
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10006" data-id="customfield_10006">
+                            Story Points
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10005" data-id="customfield_10005">
+                            Sprint
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-labels" data-id="labels">
+                            Labels
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-updated" data-id="updated">
+                            Updated
+                                                    </th>
+                                                                    </tr>
+    </thead>
+    <tbody>
+                    
+
+                <tr id="issuerow6436900" rel="6436900" data-issuekey="MATRIX-81484" class="issuerow">
+                                            <td class="issuetype">    Sub-task
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81484" href="https://jira.dt.renault.com/browse/MATRIX-81484">MATRIX-81484</a>
+</td>
+                                            <td class="summary"><p>
+            <span class="parentIssue">MATRIX-81308</span>
+                [Enabler] Centralize Artifactory Token Management for Matrix Projects
+    </p>
+</td>
+                                            <td class="assignee">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 15/Apr/24 11:42 PM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.2_W19</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 15/Apr/24 11:42 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6436592" rel="6436592" data-issuekey="MATRIX-81482" class="issuerow">
+                                            <td class="issuetype">    Sub-task
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81482" href="https://jira.dt.renault.com/browse/MATRIX-81482">MATRIX-81482</a>
+</td>
+                                            <td class="summary"><p>
+            <span class="parentIssue">MATRIX-81308</span>
+                [Development] Implement token Handling for Matrix docker images in CI Environment
+    </p>
+</td>
+                                            <td class="assignee">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is ready for Dev
+Move issue in this status will trigger transition as a post-function which trigger jenkins job WorkFlowControl which move the issue in AUTO&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is ready for Dev
+Move issue in this status will trigger transition as a post-function which trigger jenkins job WorkFlowControl which move the issue in AUTO&lt;/span&gt;">Ready</span>    </td>
+                                            <td class="created"> 15/Apr/24 11:31 PM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.2_W19</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 15/Apr/24 11:39 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6377320" rel="6377320" data-issuekey="MATRIX-81425" class="issuerow">
+                                            <td class="issuetype">    Sub-task
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81425" href="https://jira.dt.renault.com/browse/MATRIX-81425">MATRIX-81425</a>
+</td>
+                                            <td class="summary"><p>
+            <span class="parentIssue">MATRIX-81308</span>
+                [Development] Implement Automated token regeneration and Matrix base docker images rebuilding solution
+    </p>
+</td>
+                                            <td class="assignee">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Implemented&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Implemented&lt;/span&gt;">Implemented</span>    </td>
+                                            <td class="created"> 03/Apr/24 10:18 AM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.2_W19</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 15/Apr/24 11:26 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6346481" rel="6346481" data-issuekey="MATRIX-81401" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81401" href="https://jira.dt.renault.com/browse/MATRIX-81401">MATRIX-81401</a>
+</td>
+                                            <td class="summary"><p>
+                Create llk for dumpsys car_service garage-mode
+    </p>
+</td>
+                                            <td class="assignee">            diviya.shanmuganathan-extern@rntbci.com
+    </td>
+                                            <td class="reporter">            roxana.munteanu@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 28/Mar/24 10:12 AM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006">    3
+</td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="labels">    24.2.1, RNTBCI_CH, SUBC_GR2_CCS2_REL, reliability_created</td>
+                                            <td class="updated"> 16/Apr/24 6:04 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6334824" rel="6334824" data-issuekey="MATRIX-81393" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81393" href="https://jira.dt.renault.com/browse/MATRIX-81393">MATRIX-81393</a>
+</td>
+                                            <td class="summary"><p>
+                Checking Text in Image not able to get elements separately in the status bar
+    </p>
+</td>
+                                            <td class="assignee">            maneesh.kone@rntbci.com
+    </td>
+                                            <td class="reporter">            maneesh.kone@rntbci.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 26/Mar/24 4:52 PM </td>
+                                            <td class="components">                        TKD            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005"></td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 09/Apr/24 5:04 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6329861" rel="6329861" data-issuekey="MATRIX-81367" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81367" href="https://jira.dt.renault.com/browse/MATRIX-81367">MATRIX-81367</a>
+</td>
+                                            <td class="summary"><p>
+                customer discussion and use case identification
+    </p>
+</td>
+                                            <td class="assignee">            farah.BENRAYANAA@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            mohamedaymen.SIALA@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 26/Mar/24 9:30 AM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    MATRIX_PI</td>
+                                            <td class="updated"> 15/Apr/24 10:04 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6325162" rel="6325162" data-issuekey="MATRIX-81309" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81309" href="https://jira.dt.renault.com/browse/MATRIX-81309">MATRIX-81309</a>
+</td>
+                                            <td class="summary"><p>
+                [SOME/IP - SDV] Study and Understanding of E2E Profile 4 in SOME/IP
+    </p>
+</td>
+                                            <td class="assignee">            Eya.Abdelhedi@celadodc-rswl.com
+    </td>
+                                            <td class="reporter">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 25/Mar/24 3:04 PM </td>
+                                            <td class="components">                        Canakin            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    MATRIX_PI</td>
+                                            <td class="updated"> 15/Apr/24 12:01 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6324884" rel="6324884" data-issuekey="MATRIX-81308" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81308" href="https://jira.dt.renault.com/browse/MATRIX-81308">MATRIX-81308</a>
+</td>
+                                            <td class="summary"><p>
+                [Development] Implement Token Regeneration and Configuration Update for Matrix
+    </p>
+</td>
+                                            <td class="assignee">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            mohamedaymen.SIALA@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 25/Mar/24 2:24 PM </td>
+                                            <td class="components">                        Framework,                     Services            </td>
+                                            <td class="customfield_10006">    8
+</td>
+                                            <td class="customfield_10005">MATRIX_24.2.2_W19</td>
+                                            <td class="labels">    MATRIX_PI</td>
+                                            <td class="updated"> 03/Apr/24 10:19 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6324882" rel="6324882" data-issuekey="MATRIX-81307" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81307" href="https://jira.dt.renault.com/browse/MATRIX-81307">MATRIX-81307</a>
+</td>
+                                            <td class="summary"><p>
+                [Enabler] Investigation: Implementing Token Regeneration and Configuration Update for MATRIX Docker Images
+    </p>
+</td>
+                                            <td class="assignee">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            mohamedaymen.SIALA@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 25/Mar/24 2:23 PM </td>
+                                            <td class="components">                        Framework,                     Services            </td>
+                                            <td class="customfield_10006">    3
+</td>
+                                            <td class="customfield_10005">MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    MATRIX_PI</td>
+                                            <td class="updated"> 03/Apr/24 10:13 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6299440" rel="6299440" data-issuekey="MATRIX-81266" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81266" href="https://jira.dt.renault.com/browse/MATRIX-81266">MATRIX-81266</a>
+</td>
+                                            <td class="summary"><p>
+                io.appium.uiautomator2.common.exceptions.InvalidSelectorException: java.lang.IllegalArgumentException: Unable to compile 
+    </p>
+</td>
+                                            <td class="assignee">            roxana.munteanu@randstaddigital.com
+    </td>
+                                            <td class="reporter">            roxana.munteanu@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 20/Mar/24 8:50 AM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    MATRIX_PI, SUBC_GR2_CCS2_REL, reliability_created</td>
+                                            <td class="updated"> 25/Mar/24 1:56 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6297700" rel="6297700" data-issuekey="MATRIX-81263" class="issuerow">
+                                            <td class="issuetype">    Epic
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81263" href="https://jira.dt.renault.com/browse/MATRIX-81263">MATRIX-81263</a>
+</td>
+                                            <td class="summary"><p>
+                [gPTP] Propose a solution to support gPTP for SDV in MATRIX
+    </p>
+</td>
+                                            <td class="assignee">            farah.BENRAYANAA@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            guillaume.escoffre@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 19/Mar/24 5:16 PM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.4_W25</td>
+                                            <td class="labels">    SDV_PMT_PI24.2</td>
+                                            <td class="updated"> 02/Apr/24 3:50 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6275051" rel="6275051" data-issuekey="MATRIX-81253" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81253" href="https://jira.dt.renault.com/browse/MATRIX-81253">MATRIX-81253</a>
+</td>
+                                            <td class="summary"><p>
+                Namespace with prefix &#39;com.google.android.apps.maps&#39; has not been declared.
+    </p>
+</td>
+                                            <td class="assignee">            roxana.munteanu@randstaddigital.com
+    </td>
+                                            <td class="reporter">            roxana.munteanu@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 14/Mar/24 1:22 PM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    MATRIX_PI, SUBC_GR2_CCS2_REL, reliability_created</td>
+                                            <td class="updated"> 29/Mar/24 9:17 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6254394" rel="6254394" data-issuekey="MATRIX-81235" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81235" href="https://jira.dt.renault.com/browse/MATRIX-81235">MATRIX-81235</a>
+</td>
+                                            <td class="summary"><p>
+                Appium Driver creation issue [Connection Reset to Peer]
+    </p>
+</td>
+                                            <td class="assignee">            anupriya.vivekanandan-extern@rntbci.com
+    </td>
+                                            <td class="reporter">            anupriya.vivekanandan-extern@rntbci.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 11/Mar/24 5:34 AM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 03/Apr/24 10:49 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6242811" rel="6242811" data-issuekey="MATRIX-81228" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81228" href="https://jira.dt.renault.com/browse/MATRIX-81228">MATRIX-81228</a>
+</td>
+                                            <td class="summary"><p>
+                [Cirrus][FOTAlib] Tuple wrong defined
+    </p>
+</td>
+                                            <td class="assignee">            marper3877@ctag.com
+    </td>
+                                            <td class="reporter">            marper3877@ctag.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 07/Mar/24 2:22 PM </td>
+                                            <td class="components">                        Cirrus            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    bug, ctag</td>
+                                            <td class="updated"> 12/Apr/24 8:06 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6197264" rel="6197264" data-issuekey="MATRIX-81141" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81141" href="https://jira.dt.renault.com/browse/MATRIX-81141">MATRIX-81141</a>
+</td>
+                                            <td class="summary"><p>
+                Uiautomator2 crash observed upon switch to another IVI user profile.
+    </p>
+</td>
+                                            <td class="assignee">            vernon.long@renault.com
+    </td>
+                                            <td class="reporter">            vernon.long@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 27/Feb/24 2:37 PM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    SUBC_GR2_CCS2_DBG, reliability_created</td>
+                                            <td class="updated"> 26/Mar/24 10:10 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow6179209" rel="6179209" data-issuekey="MATRIX-81131" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81131" href="https://jira.dt.renault.com/browse/MATRIX-81131">MATRIX-81131</a>
+</td>
+                                            <td class="summary"><p>
+                [IVI] Change file owner issue on IVI: chown: Unknown option &#39;preserve-root
+    </p>
+</td>
+                                            <td class="assignee">            silviu.nicola@randstaddigital.com
+    </td>
+                                            <td class="reporter">            silviu.nicola@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 23/Feb/24 11:48 AM </td>
+                                            <td class="components">                        Ivi_Test_Service            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.2_W09, MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 11/Apr/24 1:52 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6139322" rel="6139322" data-issuekey="MATRIX-81029" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-81029" href="https://jira.dt.renault.com/browse/MATRIX-81029">MATRIX-81029</a>
+</td>
+                                            <td class="summary"><p>
+                [ivi] AttributeError: &#39;NoneType&#39; object has no attribute &#39;get_ivi_date&#39; or &#39;set_ivi_date&#39;
+    </p>
+</td>
+                                            <td class="assignee">            alexandra.farcasiu@randstaddigital.com
+    </td>
+                                            <td class="reporter">            alexandra.farcasiu@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 15/Feb/24 1:53 PM </td>
+                                            <td class="components">                        Ivi_Test_Service            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.2_W09</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 01/Apr/24 3:25 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6110517" rel="6110517" data-issuekey="MATRIX-80976" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-80976" href="https://jira.dt.renault.com/browse/MATRIX-80976">MATRIX-80976</a>
+</td>
+                                            <td class="summary"><p>
+                Adapt gitlab-ci.yaml to run through pipeline a training based on Outlinr icons with the new mechanism
+    </p>
+</td>
+                                            <td class="assignee">            elyes.LABIDI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            helia.correia@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;">Backlog Refinement</span>    </td>
+                                            <td class="created"> 09/Feb/24 10:37 AM </td>
+                                            <td class="components">                        TKD            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">MATRIX_24.2.4_W25</td>
+                                            <td class="labels">    MATRIX_PI</td>
+                                            <td class="updated"> 09/Apr/24 5:30 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6083714" rel="6083714" data-issuekey="MATRIX-80950" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-80950" href="https://jira.dt.renault.com/browse/MATRIX-80950">MATRIX-80950</a>
+</td>
+                                            <td class="summary"><p>
+                [Run_campain][TKD] : TKD detection throw Queue stuck error during Run_Camapin 
+    </p>
+</td>
+                                            <td class="assignee">            Roua.NAILI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            Roua.NAILI@CELADODC-RSWL.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 05/Feb/24 11:19 AM </td>
+                                            <td class="components">                        Framework,                     SAT,                     TKD            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.2_W09</td>
+                                            <td class="labels">    HMI, SAT_PI23.2</td>
+                                            <td class="updated"> 16/Apr/24 1:29 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow6029183" rel="6029183" data-issuekey="MATRIX-80918" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-80918" href="https://jira.dt.renault.com/browse/MATRIX-80918">MATRIX-80918</a>
+</td>
+                                            <td class="summary"><p>
+                Investigate and fix demoCI job regarding RHL on top of KMR
+    </p>
+</td>
+                                            <td class="assignee">            helia.correia@renault.com
+    </td>
+                                            <td class="reporter">            guillaume.escoffre@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Blocked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Blocked&lt;/span&gt;">Blocked</span>    </td>
+                                            <td class="created"> 24/Jan/24 5:39 PM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.1_W06, MATRIX_24.1.2_W09, MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 03/Apr/24 9:33 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5980504" rel="5980504" data-issuekey="MATRIX-80886" class="issuerow">
+                                            <td class="issuetype">    Epic
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-80886" href="https://jira.dt.renault.com/browse/MATRIX-80886">MATRIX-80886</a>
+</td>
+                                            <td class="summary"><p>
+                [FWK][Enabler] Matrix docker builds should not take artifactory tokens as arguments
+    </p>
+</td>
+                                            <td class="assignee">            wissem.MANSOURI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            guillaume.escoffre@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 16/Jan/24 5:43 PM </td>
+                                            <td class="components">                        Framework,                     Services            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.2_W19</td>
+                                            <td class="labels">    SDV_PMT_PI24.2</td>
+                                            <td class="updated"> 03/Apr/24 10:17 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5936759" rel="5936759" data-issuekey="MATRIX-80796" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-80796" href="https://jira.dt.renault.com/browse/MATRIX-80796">MATRIX-80796</a>
+</td>
+                                            <td class="summary"><p>
+                LLK Canakin Wait And Authenticate Skey Request needs improvement
+    </p>
+</td>
+                                            <td class="assignee">            orlando.curuti@randstaddigital.com
+    </td>
+                                            <td class="reporter">            miroslav.velich@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 09/Jan/24 1:52 PM </td>
+                                            <td class="components">                        Canakin,                     Support            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.1_W06, MATRIX_24.1.2_W09, MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 12/Apr/24 8:41 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5924457" rel="5924457" data-issuekey="MATRIX-80771" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-80771" href="https://jira.dt.renault.com/browse/MATRIX-80771">MATRIX-80771</a>
+</td>
+                                            <td class="summary"><p>
+                Tap actions on phone are failing even after successful driver creation
+    </p>
+</td>
+                                            <td class="assignee">            kiran-kumar.nagarakatte-parameswarappa@rntbci.com
+    </td>
+                                            <td class="reporter">            kiran-kumar.nagarakatte-parameswarappa@rntbci.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 05/Jan/24 11:33 AM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.1_W06, MATRIX_24.1.2_W09</td>
+                                            <td class="labels">    HMI</td>
+                                            <td class="updated"> 09/Apr/24 1:23 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow5747753" rel="5747753" data-issuekey="MATRIX-79608" class="issuerow">
+                                            <td class="issuetype">    Epic
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-79608" href="https://jira.dt.renault.com/browse/MATRIX-79608">MATRIX-79608</a>
+</td>
+                                            <td class="summary"><p>
+                [Logmon] Refactor handling of purely offline monitor classes
+    </p>
+</td>
+                                            <td class="assignee">            pius-xavier.felix-xavier@rntbci.com
+    </td>
+                                            <td class="reporter">            alexandru-rudi.matau@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 10/Nov/23 7:57 PM </td>
+                                            <td class="components">                        Logmon            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.2.4_W25</td>
+                                            <td class="labels">    SDV_PMT_PI24.2, SDV_PMT_PI24.3</td>
+                                            <td class="updated"> 02/Apr/24 1:33 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow5617794" rel="5617794" data-issuekey="MATRIX-79278" class="issuerow">
+                                            <td class="issuetype">    Bug
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-79278" href="https://jira.dt.renault.com/browse/MATRIX-79278">MATRIX-79278</a>
+</td>
+                                            <td class="summary"><p>
+                [RELIABILITY] Appium library should recover when encountering server-side errors 
+    </p>
+</td>
+                                            <td class="assignee">            ramona.racz@randstaddigital.com
+    </td>
+                                            <td class="reporter">            ramona.racz@randstaddigital.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="created"> 13/Oct/23 1:02 PM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.3_W12</td>
+                                            <td class="labels">    SUBC_GR2_CCS2_DBG, reliability_created</td>
+                                            <td class="updated"> 04/Apr/24 11:45 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5552691" rel="5552691" data-issuekey="MATRIX-79144" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-79144" href="https://jira.dt.renault.com/browse/MATRIX-79144">MATRIX-79144</a>
+</td>
+                                            <td class="summary"><p>
+                support to get images of an element which covers status bar, zone2, zone3
+    </p>
+</td>
+                                            <td class="assignee">            maneesh.kone@rntbci.com
+    </td>
+                                            <td class="reporter">            maneesh.kone@rntbci.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 28/Sep/23 9:10 AM </td>
+                                            <td class="components">                        Appium,                     Framework            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    HMI</td>
+                                            <td class="updated"> 04/Apr/24 9:35 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5499319" rel="5499319" data-issuekey="MATRIX-79086" class="issuerow">
+                                            <td class="issuetype">    Technical Debt
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-79086" href="https://jira.dt.renault.com/browse/MATRIX-79086">MATRIX-79086</a>
+</td>
+                                            <td class="summary"><p>
+                [Canakin] Improve grpc tests execution consistency by replacing usages of time.sleep() with threading.Condition
+    </p>
+</td>
+                                            <td class="assignee">            stephen-samuel.rathnakumar@rntbci.com
+    </td>
+                                            <td class="reporter">            alexandru-rudi.matau@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;">Backlog Refinement</span>    </td>
+                                            <td class="created"> 15/Sep/23 1:30 PM </td>
+                                            <td class="components">                        Canakin            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    </td>
+                                            <td class="updated"> 03/Apr/24 9:33 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5342414" rel="5342414" data-issuekey="MATRIX-78779" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-78779" href="https://jira.dt.renault.com/browse/MATRIX-78779">MATRIX-78779</a>
+</td>
+                                            <td class="summary"><p>
+                [Matrix][Cirrus]Implement FOTA LLKs in Matrix
+    </p>
+</td>
+                                            <td class="assignee">            cyril.nivelle@renault.com
+    </td>
+                                            <td class="reporter">            fred.ojo3685@ctag.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="created"> 01/Aug/23 9:58 AM </td>
+                                            <td class="components">                        Cirrus            </td>
+                                            <td class="customfield_10006">    8
+</td>
+                                            <td class="customfield_10005">MATRIX_23.4.1_W45, MATRIX_23.4.2_W48, MATRIX_23.4.3_W51, MATRIX_24.1.2_W09, MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    MATRIX_PI23.4, ctag</td>
+                                            <td class="updated"> 11/Apr/24 9:58 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5160698" rel="5160698" data-issuekey="MATRIX-77928" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-77928" href="https://jira.dt.renault.com/browse/MATRIX-77928">MATRIX-77928</a>
+</td>
+                                            <td class="summary"><p>
+                Automatic pipeline Trig when outliner is updated
+    </p>
+</td>
+                                            <td class="assignee">            elyes.LABIDI@CELADODC-RSWL.com
+    </td>
+                                            <td class="reporter">            guillaume.escoffre@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;">Backlog Refinement</span>    </td>
+                                            <td class="created"> 15/Jun/23 11:06 AM </td>
+                                            <td class="components">                        Framework            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">MATRIX_24.2.4_W25</td>
+                                            <td class="labels">    MATRIX_PI</td>
+                                            <td class="updated"> 09/Apr/24 5:29 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow4883118" rel="4883118" data-issuekey="MATRIX-74436" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-74436" href="https://jira.dt.renault.com/browse/MATRIX-74436">MATRIX-74436</a>
+</td>
+                                            <td class="summary"><p>
+                [CTAG] Working on the pipeline and bench intro for IVI only
+    </p>
+</td>
+                                            <td class="assignee">            vernon.long@renault.com
+    </td>
+                                            <td class="reporter">            cyril.nivelle@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is ready for Dev
+Move issue in this status will trigger transition as a post-function which trigger jenkins job WorkFlowControl which move the issue in AUTO&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is ready for Dev
+Move issue in this status will trigger transition as a post-function which trigger jenkins job WorkFlowControl which move the issue in AUTO&lt;/span&gt;">Ready</span>    </td>
+                                            <td class="created"> 30/Mar/23 11:32 AM </td>
+                                            <td class="components">                        Services            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">SAT_23.2.1_W16, SAT_23.2.2_W19, SAT_23.2.3_W22, SAT_23.2.4_W25, SAT_23.3.1_W29, MATRIX_23.4.2_W48, MATRIX_23.4.3_W51, MATRIX_23.4.4_W02</td>
+                                            <td class="labels">    MATRIX_PI23.4, SAT_PI23.2, SAT_PI23.3</td>
+                                            <td class="updated"> 04/Apr/24 3:00 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow4882662" rel="4882662" data-issuekey="MATRIX-74435" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-74435" href="https://jira.dt.renault.com/browse/MATRIX-74435">MATRIX-74435</a>
+</td>
+                                            <td class="summary"><p>
+                [CTAG] Working on the pipeline and bench intro for IVC only
+    </p>
+</td>
+                                            <td class="assignee">            vernon.long@renault.com
+    </td>
+                                            <td class="reporter">            cyril.nivelle@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is ready for Dev
+Move issue in this status will trigger transition as a post-function which trigger jenkins job WorkFlowControl which move the issue in AUTO&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is ready for Dev
+Move issue in this status will trigger transition as a post-function which trigger jenkins job WorkFlowControl which move the issue in AUTO&lt;/span&gt;">Ready</span>    </td>
+                                            <td class="created"> 30/Mar/23 11:10 AM </td>
+                                            <td class="components">                        Services            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">SAT_23.2.2_W19, SAT_23.2.3_W22, SAT_23.2.4_W25, SAT_23.3.1_W29, MATRIX_23.4.3_W51, MATRIX_23.4.4_W02</td>
+                                            <td class="labels">    MATRIX_PI23.4, SAT_PI22.3, SAT_PI23.2</td>
+                                            <td class="updated"> 04/Apr/24 3:00 PM </td>
+                    </tr>
+
+
+                <tr id="issuerow4755799" rel="4755799" data-issuekey="MATRIX-73864" class="issuerow">
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="MATRIX-73864" href="https://jira.dt.renault.com/browse/MATRIX-73864">MATRIX-73864</a>
+</td>
+                                            <td class="summary"><p>
+                element_should_be_visible LLK is not working based on visibility
+    </p>
+</td>
+                                            <td class="assignee">            Thavamani.Thirunavukkarasu@rntbci.com
+    </td>
+                                            <td class="reporter">            Thavamani.Thirunavukkarasu@rntbci.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Backlog Refinement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Backlog Refinement&lt;/span&gt;">Backlog Refinement</span>    </td>
+                                            <td class="created"> 01/Mar/23 12:37 PM </td>
+                                            <td class="components">                        Appium            </td>
+                                            <td class="customfield_10006"></td>
+                                            <td class="customfield_10005">MATRIX_24.1.3_W12, MATRIX_24.2.1_W16</td>
+                                            <td class="labels">    RNTBCI_CH, hmi</td>
+                                            <td class="updated"> 03/Apr/24 9:33 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5969909" rel="5969909" data-issuekey="CCSEXT-159491" class="issuerow">
+                                            <td class="issuetype">    Task
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CCSEXT-159491" href="https://jira.dt.renault.com/browse/CCSEXT-159491">CCSEXT-159491</a>
+</td>
+                                            <td class="summary"><p>
+                Enable App crawler 
+    </p>
+</td>
+                                            <td class="assignee">            Eya.Abdelhedi@celadodc-rswl.com
+    </td>
+                                            <td class="reporter">            nicolas.conte-extern@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Review&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Review&lt;/span&gt;">In Review</span>    </td>
+                                            <td class="created"> 15/Jan/24 4:06 PM </td>
+                                            <td class="components">                        HMI-Delivery            </td>
+                                            <td class="customfield_10006">    5
+</td>
+                                            <td class="customfield_10005">HMI PI21 Sprint 1, HMI PI21 Sprint 2, HMI PI21 Sprint 3, HMI PI21 Sprint 4, HMI PI22 Sprint 1</td>
+                                            <td class="labels">    HMI, HMI-Delivery</td>
+                                            <td class="updated"> 15/Apr/24 9:02 AM </td>
+                    </tr>
+
+
+                <tr id="issuerow5579252" rel="5579252" data-issuekey="CCSEXT-148612" class="issuerow">
+                                            <td class="issuetype">    Task
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CCSEXT-148612" href="https://jira.dt.renault.com/browse/CCSEXT-148612">CCSEXT-148612</a>
+</td>
+                                            <td class="summary"><p>
+                Test module plugin - E2E Testings in dedicated test modules of the repo
+    </p>
+</td>
+                                            <td class="assignee">            Eya.Abdelhedi@celadodc-rswl.com
+    </td>
+                                            <td class="reporter">            nicolas.conte-extern@renault.com
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Implemented&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Implemented&lt;/span&gt;">Implemented</span>    </td>
+                                            <td class="created"> 04/Oct/23 5:02 PM </td>
+                                            <td class="components">                        HMI-Delivery            </td>
+                                            <td class="customfield_10006">    8
+</td>
+                                            <td class="customfield_10005">HMI PI20 Sprint 3, HMI PI20 Sprint 4</td>
+                                            <td class="labels">    HMI, HMI-Delivery</td>
+                                            <td class="updated"> 02/Apr/24 3:44 PM </td>
+                    </tr>
+                </tbody>
+    </table>
+    </issuetable-web-component>
+    <div class="end-of-stable-message"></div>
+            <table border="1" >
+<tr>
+    <td bgcolor="#dddddd" colspan="12"><font size="1">
+        Generated at Tue Apr 16 13:18:30 UTC 2024 by mohamedaymen.SIALA@CELADODC-RSWL.com using Jira 9.4.18#940018-sha1:32a59db0b032756f9bbd6a22c656d21edb3fb41f.
+    </font></td>
+</tr>
+</table>
+
+</body>
+</html>

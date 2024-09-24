@@ -1,13 +1,17 @@
 package com.bezkoder.springjwt.controllers;
 
+import com.bezkoder.springjwt.models.Employee;
 import com.bezkoder.springjwt.models.Sprint;
 import com.bezkoder.springjwt.security.services.SprintService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/sprints")
@@ -17,7 +21,32 @@ public class SprintController {
     @Autowired
     private SprintService sprintService;
 
-    // Create a new Sprint
+
+       @GetMapping("/employees/{sprintId}")
+    public ResponseEntity<Set<Employee>> getEmployeesBySprint(@PathVariable int sprintId) {
+        Set<Employee> employees = sprintService.getEmployeesBySprintId(sprintId);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+
+@GetMapping("/{sprintId}/congee")
+public ResponseEntity<Integer> getTotalConfirmedLeaveDays(
+        @PathVariable int sprintId,
+        @RequestParam String start,
+        @RequestParam String end) throws ParseException {
+
+    // Update the format to match the incoming date string format
+    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
+
+    Date startDate = dateFormat.parse(start.trim());
+    Date endDate = dateFormat.parse(end.trim());
+
+    int totalLeaveDays = sprintService.CoutCongee(sprintId, startDate, endDate);
+    return ResponseEntity.ok(totalLeaveDays);
+}
+
+
+
    @PostMapping("/create/{teamId}")
     public ResponseEntity<Sprint> createSprint(@PathVariable int teamId, @RequestBody Sprint sprint) {
        System.out.println(sprint);

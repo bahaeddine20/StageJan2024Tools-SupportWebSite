@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.controllers;
 
+import com.bezkoder.springjwt.models.User;
+import com.bezkoder.springjwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import com.bezkoder.springjwt.security.services.EmployeeService;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -24,6 +27,8 @@ public class EmployeeController {
     @Autowired
     private EmployeeService ES;
 
+    @Autowired
+    private UserRepository userRepository;
     // Get all employees
     @GetMapping("/getAllEmployees")
     private List<Employee> getAllEmployees() {
@@ -47,7 +52,14 @@ public class EmployeeController {
             employee.setEmployeeImages(images);
 
             System.out.println(files.length);
-            return ES.addEmployee(employee);
+            Employee e =ES.addEmployee(employee);
+            Optional<User> optionalUser = userRepository.findByEmail(employee.getEmail());
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                user.setEmployee(e);
+                userRepository.save(user);
+            } else {
+}            return e;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

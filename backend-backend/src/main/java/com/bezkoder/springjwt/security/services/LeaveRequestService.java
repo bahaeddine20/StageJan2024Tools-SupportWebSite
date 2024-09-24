@@ -14,7 +14,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class LeaveRequestService {
+public class
+LeaveRequestService {
 
     @Autowired
     private LeaveRequestRepository leaveRequestRepository;

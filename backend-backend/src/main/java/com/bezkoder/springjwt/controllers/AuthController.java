@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import com.bezkoder.springjwt.models.*;
 import com.bezkoder.springjwt.security.services.EmailService;
+import com.bezkoder.springjwt.security.services.EmployeeService;
 import com.bezkoder.springjwt.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -42,6 +43,10 @@ public class AuthController {
 	AuthenticationManager authenticationManager;
 	@Autowired
 	UserRepository userRepository;
+
+
+	@Autowired
+	EmployeeService employeeService ;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -132,8 +137,9 @@ public class AuthController {
 				}
 			});
 		}
-
+		user.setEmployee(employeeService.employeebyemail(signUpRequest.getEmail()));
 		user.setRoles(roles);
+
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

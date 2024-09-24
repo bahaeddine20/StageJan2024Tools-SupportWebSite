@@ -12,6 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SprintService } from '../../_services/sprint/sprint.service';
 import { dirname } from 'node:path';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @Component({
@@ -19,7 +21,7 @@ import { dirname } from 'node:path';
   templateUrl: './sprint-form.component.html',
   styleUrls: ['./sprint-form.component.scss'],
   standalone: true,
-  imports: [
+  imports: [MatProgressSpinnerModule ,
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -72,27 +74,36 @@ export class SprintFormComponent implements OnInit {
     const endDate = group.get('endDate')?.value;
     return startDate && endDate && startDate > endDate ? { dateInvalid: true } : null;
   }
+  isLoading = false; // Propriété pour suivre l'état de chargement
+  successMessage: string | null = null; // Propriété pour le message de succès
+  errorMessage: string | null = null; // Propriété pour le message d'erreur
 
   onSubmit() {
     if (this.sprintForm.valid) {
+      this.isLoading = true; // Démarrer le chargement
       const formData = new FormData();
       formData.append('sprintName', this.sprintForm.get('sprintName')?.value);
       formData.append('startDate', this.sprintForm.get('startDate')?.value);
       formData.append('endDate', this.sprintForm.get('endDate')?.value);
-      console.log(this.sprintForm.get('startDate')?.value)
+      console.log(this.sprintForm.get('startDate')?.value);
 
       const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
       if (fileInput && fileInput.files) {
-        fileInput.name="bahaaaaaaaaaaa";
         formData.append('file', fileInput.files[0]);
       }
 
       this.sprintService.submitForm(this.idsprint, formData).subscribe({
         next: (response) => {
-          console.log('Form submitted successfully', response);
+          this.isLoading = false; // Arrêter le chargement
+          this.successMessage = 'Form submitted successfully'; // Message de succès
+          console.log(this.successMessage, response);
           this.router.navigate(['/data-table']);
         },
-        error: (err) => console.error('Error submitting form', err)
+        error: (err) => {
+          this.isLoading = false; // Arrêter le chargement
+          this.errorMessage = 'Server error, please try again later.'; // Message d'erreur
+          console.error('Error submitting form', err);
+        }
       });
     } else {
       console.error('Form is invalid');

@@ -22,7 +22,7 @@ export class SprintListComponent implements OnInit {
   team: any;
 
   // Add the 'stats' column to the displayed columns array
-  displayedColumns: string[] = ['stats', 'id', 'name', 'description', 'date_Debut', 'date_Fin', 'edit'];
+  displayedColumns: string[] = ['stats', 'id', 'name', 'description', 'date_Debut', 'date_Fin', 'edit', 'delete'];
 
   constructor(
     private sprintService: SprintService,
@@ -59,7 +59,21 @@ export class SprintListComponent implements OnInit {
       console.error('No teamId available for navigation');
     }
   }
-
+  deleteSprint(sprintId: number): void {
+    if (confirm('Are you sure you want to delete this sprint?')) {
+      this.sprintService.deleteSprint(sprintId).subscribe({
+        next: () => {
+          // Update the sprint list after deletion
+          this.sprints = this.sprints.filter(sprint => sprint.id !== sprintId);
+          console.log('Sprint deleted successfully');
+        },
+        error: (err) => {
+          console.error('Error deleting sprint', err);
+        }
+      });
+    }
+  }
+  
   // Method to navigate to the stats page for the specific sprint
   navigateToStats(idsprint: number): void {
     this.router.navigate([`/data-table/${idsprint}`]);

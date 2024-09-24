@@ -140,3 +140,8 @@ h2 {
   width: 100%;
   margin-top: 20px;
 }
+.deleted-row {
+  text-decoration: line-through;
+  color: grey;
+  pointer-events: none; /* Désactive les clics */
+}

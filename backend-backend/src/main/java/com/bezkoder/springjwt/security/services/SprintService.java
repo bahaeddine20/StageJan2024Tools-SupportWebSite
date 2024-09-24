@@ -1,14 +1,20 @@
 package com.bezkoder.springjwt.security.services;
 
+import com.amazonaws.services.glue.model.EntityNotFoundException;
+import com.bezkoder.springjwt.models.Employee;
+import com.bezkoder.springjwt.models.LeaveRequest;
 import com.bezkoder.springjwt.models.Sprint;
 import com.bezkoder.springjwt.models.Team;
+import com.bezkoder.springjwt.repository.LeaveRequestRepository;
 import com.bezkoder.springjwt.repository.SprintRepository;
 import com.bezkoder.springjwt.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SprintService {
@@ -17,6 +23,9 @@ public class SprintService {
     private SprintRepository sprintRepository;
     @Autowired
     private  TeamService teamService;
+    @Autowired
+    private LeaveRequestRepository leaveRequestRepository;
+
 
     // Create a new Sprint
 
@@ -34,6 +43,74 @@ public class SprintService {
         // Save the sprint
         return sprintRepository.save(sprint);
     }
+
+
+
+ public Set<Employee> getEmployeesBySprintId(int sprintId) {
+        Optional<Sprint> sprintOptional = sprintRepository.findById(sprintId);
+
+        if (sprintOptional.isPresent()) {
+            Sprint sprint = sprintOptional.get();
+            Team team = sprint.getTeam();
+            return team.getEmployees();  // Retourner les employés de l'équipe associée au sprint
+        }
+
+        throw new EntityNotFoundException("Sprint not found with id: " + sprintId);
+    }
+
+
+public int CoutCongee(int sprintId, Date start, Date end) {
+    Optional<Sprint> sprintOptional = sprintRepository.findById(sprintId);
+    if (!sprintOptional.isPresent()) {
+        throw new EntityNotFoundException("Sprint not found with id: " + sprintId);
+    }
+
+    Sprint sprint = sprintOptional.get();
+    Team team = sprint.getTeam();
+    int nbremp=team.getEmployees().size();
+    System.out.println("nombre d'emploiee:"+nbremp);
+    int totalConfirmedLeaveDays = 0;
+
+    System.out.println("Start date: " + start);
+    System.out.println("End date: " + end);
+
+    for (Employee employee : team.getEmployees()) {
+        // Filtrer les doublons dans les demandes de congé confirmées
+        List<LeaveRequest> confirmedLeaveRequests = leaveRequestRepository
+                .findByEmployeeIdAndConfirmedTrue(employee.getId())
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        System.out.println("Employé : " + employee.getFirstname());
+        System.out.println("Demandes de congé confirmées : " + confirmedLeaveRequests);
+
+      Set<LocalDate> uniqueDates = new HashSet<>();
+for (LeaveRequest leaveRequest : confirmedLeaveRequests) {
+    // Filtrer les dates dans l'intervalle donné (start, end)
+    for (Date leaveDate : leaveRequest.getSelectedDates()) {
+        // Convertir Date en LocalDate
+        LocalDate localLeaveDate = leaveDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localStart = start.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localEnd = end.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        if (!localLeaveDate.isBefore(localStart) && !localLeaveDate.isAfter(localEnd)) {
+            uniqueDates.add(localLeaveDate);  // Ajoutez seulement les dates qui sont dans l'intervalle
+        }
+    }
+}
+
+        int days = uniqueDates.size();
+        System.out.println("Demandes de congé pour " + employee.getFirstname() + ": " + uniqueDates + " (Nombre de jours : " + days + ")");
+        totalConfirmedLeaveDays += days;  // Incrémentez le nombre total de jours confirmés
+    }
+
+    System.out.println("Total des jours de congé confirmés : " + totalConfirmedLeaveDays);
+    return (nbremp*12)-totalConfirmedLeaveDays;
+}
+
+
+
 
     // Retrieve all Sprints
     public List<Sprint> getAllSprints(int teamId) {

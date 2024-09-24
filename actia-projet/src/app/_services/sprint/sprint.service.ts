@@ -49,10 +49,20 @@ export class SprintService {
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
     });
     return this.http.get<Sprint>(`${this.apiUrlSprint}/${id}`, { headers });
+
+
+    
   }
 
   
 
+  deleteSprint(sprintId: number): Observable<void> {
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    return this.http.delete<void>(`${this.apiUrlSprint}/delete/${sprintId}`, { headers });
+}
 
   updateSprint(sprint: Sprint, sprintId: number): Observable<Sprint> {
     const headers = new HttpHeaders({

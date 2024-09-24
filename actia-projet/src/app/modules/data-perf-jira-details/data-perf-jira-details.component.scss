@@ -36,4 +36,162 @@
   .chart-date {
     margin-top: 10px;
   }
+  button {
+    margin: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  button.download-excel {
+    background-color: #007bff; /* Blue color for Excel download */
+    color: white;
+    border: none;
+  }
+  
+  button.download-excel:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  button.download-presentation {
+    background-color: #28a745; /* Green color for Presentation download */
+    color: white;
+    border: none;
+  }
+  
+  button.download-presentation:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  button.download-grouped-bar-chart {
+    background-color: #ffc107; /* Yellow color for Grouped Bar Chart */
+    color: black;
+    border: none;
+  }
+  
+  button.download-grouped-bar-chart:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+  }
+  
+  button.download-pie-chart {
+    background-color: #17a2b8; /* Teal color for Pie Chart */
+    color: white;
+    border: none;
+  }
+  
+  button.download-pie-chart:hover {
+    background-color: #138496; /* Darker teal on hover */
+  }
+  
+  button.download-histogram {
+    background-color: #dc3545; /* Red color for Histogram */
+    color: white;
+    border: none;
+  }
+  
+  button.download-histogram:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  .pie-chart-container {
+    width: 300px;  /* Réduire la largeur */
+    height: 300px; /* Réduire la hauteur */
+    margin: auto;  /* Centrer le graphique */
+  }.success-message {
+    color: green;
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  .form-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  
+    .form-card {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+  
+      mat-card-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+  
+      mat-card-content {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .file-upload {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+  
+        .upload-label {
+          font-weight: 600;
+          margin-bottom: 5px;
+          color: #555;
+        }
+  
+        input[type="file"] {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+  
+      .spacer {
+        height: 20px;
+      }
+  
+      .full-width {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+  
+      .action-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+  
+        button {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+  
+          mat-icon {
+            font-size: 18px;
+          }
+        }
+  
+        mat-spinner {
+          margin-left: 10px;
+        }
+      }
+  
+      .success-message {
+        color: green;
+        font-weight: 500;
+        margin-top: 15px;
+      }
+  
+      .error-message {
+        color: red;
+        font-weight: 500;
+        margin-top: 15px;
+      }
+    }
+  }
   

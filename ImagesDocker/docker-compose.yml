@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: bahaeddinesomrani/frontend:latest
+    image: aestoolscelad/frontendv2:latest
     ports:
       - 4200:4200
     depends_on:
@@ -12,7 +12,7 @@ services:
       - app-network
 
   flask-backend:
-    image: bahaeddinesomrani/flask-backend:latest
+    image: aestoolscelad/flask-backendv2:latest
     ports:
       - 5000:5000
     env_file:
@@ -27,7 +27,7 @@ services:
       - app-network
 
   spring-boot-backend:
-    image: bahaeddinesomrani/spring-boot-backend:latest
+    image: aestoolscelad/spring-boot-backendv2:latest
     ports:
       - 8080:8080
     environment:
@@ -74,3 +74,4 @@ volumes:
 networks:
   app-network:
     driver: bridge
+

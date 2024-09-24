@@ -31,7 +31,7 @@ public class Sprint {
         private Date date_Fin ;
 
 
-        @ManyToOne(cascade = CascadeType.ALL)
+        @ManyToOne
         private  Team team;
 
     @Override

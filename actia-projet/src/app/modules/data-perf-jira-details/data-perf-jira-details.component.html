@@ -1,44 +1,103 @@
 <div class="main-body">
-    <div class="data-container">
-      <div *ngIf="data">
-        <div class="data-item">
-          <p><strong>Start Date:</strong> {{ data.start_date | date: 'dd MMM yyyy' }}</p>
-          <p><strong>End Date:</strong> {{ data.end_date | date: 'dd MMM yyyy' }}</p>
-          <p><strong>Sprint Name:</strong> {{ data.sprint_name }}</p>
-          <!-- Add this button inside your data display, where it makes sense -->
-<button (click)="downloadExcelFile()">Download Excel File</button>
+  <div class="data-container">
+    <div *ngIf="data">
+      <div class="data-item">
+        <p><strong>Start Date:</strong> {{ data.start_date | date: 'dd MMM yyyy' }}</p>
+        <p><strong>End Date:</strong> {{ data.end_date | date: 'dd MMM yyyy' }}</p>
+        <p><strong>Sprint Name:</strong> {{ data.sprint_name }}</p>
+        
+        <!-- Buttons for downloading Excel and Presentation files -->
+        <button mat-raised-button color="primary" (click)="downloadExcelFile()">Download Excel File</button>
 
-          <!-- Grouped Bar Chart -->
-<div class="chart-container" *ngIf="chartOptions" #groupedBarChartContainer>
-    <div class="chart-content">
-      <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
-      <p class="chart-date">Date Generated: {{ data.date_genere  }}</p>
-    </div>
-    <button (click)="downloadChart('grouped_bar_chart')">Download Grouped Bar Chart</button>
-  </div>
-  
-  <!-- Pie Chart -->
-  <div class="chart-container" *ngIf="pieChartOptions" #pieChartContainer>
-    <div class="chart-content">
-      <canvasjs-chart [options]="pieChartOptions"></canvasjs-chart>
-      <p class="chart-date">Date Generated: {{ data.date_genere }}</p>
-    </div>
-    <button (click)="downloadChart('pie_chart')">Download Pie Chart</button>
-  </div>
-  
-  <!-- Histogram -->
-  <div class="chart-container" *ngIf="histogramOptions" #histogramContainer>
-    <div class="chart-content">
-      <canvasjs-chart [options]="histogramOptions"></canvasjs-chart>
-      <p class="chart-date">Date Generated: {{ data.date_genere  }}</p>
-    </div>
-    <button (click)="downloadChart('histogram')">Download Histogram</button>
-  </div>
-  
+        <!-- Grouped Bar Chart -->
+        <div class="chart-container" *ngIf="chartOptions" #groupedBarChartContainer>
+          <div class="chart-content">
+            <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+            <p class="chart-date">Date Generated: {{ data.date_genere }}</p>
+          </div>
+          <button (click)="downloadChart('grouped_bar_chart')">Download Grouped Bar Chart</button>
         </div>
-      </div>
-      <div *ngIf="!data">
-        <p>No data available.</p>
-      </div>
+
+        <!-- Pie Chart -->
+        <div class="chart-container" *ngIf="pieChartOptions" #pieChartContainer>
+          <div class="chart-content">
+            <canvasjs-chart [options]="pieChartOptions"></canvasjs-chart>
+            <p class="chart-date">Date Generated: {{ data.date_genere }}</p>
+          </div>
+          <button (click)="downloadChart('pie_chart')">Download Pie Chart</button>
+        </div>
+
+        <!-- Histogram -->
+        <div class="chart-container" *ngIf="histogramOptions" #histogramContainer>
+          <div class="chart-content">
+            <canvasjs-chart [options]="histogramOptions"></canvasjs-chart>
+            <p class="chart-date">Date Generated: {{ data.date_genere }}</p>
+          </div>
+          <button (click)="downloadChart('histogram')">Download Histogram</button>
+        </div>
+
+        <div class="form-section">
+          <mat-card class="form-card">
+            <mat-card-title>Upload Files and Generate Presentation</mat-card-title>
+            <mat-card-content>
+              <form>
+                <!-- Champ de fichier pour vélocity .xlsx -->
+                <div class="file-upload">
+                  <label for="fileInput1" class="upload-label">Upload Velocity .xlsx File *</label>
+                  <input id="fileInput1" type="file" (change)="onFileSelected($event)" />
+                </div>
+        
+                <!-- Espacement entre les champs -->
+                <div class="spacer"></div>
+        
+                <!-- Champ de fichier pour Excel -->
+                <div class="file-upload">
+                  <label for="fileInput2" class="upload-label">Upload Excel File</label>
+                  <input id="fileInput2" type="file" (change)="onFileSelectedEXEL($event)" />
+                </div>
+        
+                <!-- Espacement entre les champs -->
+                <div class="spacer"></div>
+        
+                <!-- Champ de capacité avec mat-form-field -->
+                <mat-form-field class="full-width">
+                  <mat-label>Capacity (in hours)</mat-label>
+                  <input matInput type="number" [(ngModel)]="capacity" name="capacity" required />
+                </mat-form-field>
+        
+                <!-- Espacement entre les champs -->
+                <div class="spacer"></div>
+        
+                <!-- Bouton de soumission avec icône et espace -->
+                <div class="action-section">
+                  <button (click)="onSubmit()" mat-raised-button color="primary" [disabled]="isLoading">
+                    <mat-icon>cloud_upload</mat-icon>
+                    Generate Presentation
+                  </button>
+                  
+                  <!-- Spinner pendant le chargement -->
+                  <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+                </div>
+        
+                <!-- Espacement entre les sections -->
+                <div class="spacer"></div>
+        
+                <!-- Messages de succès et d'erreur -->
+                <div *ngIf="successMessage" class="success-message">
+                  {{ successMessage }}
+                </div>
+                <div *ngIf="errorMessage" class="error-message">
+                  {{ errorMessage }}
+                </div>
+              </form>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        
     </div>
+
+    <div *ngIf="!data">
+      <p>No data available.</p>
+    </div>
+  </div>
 </div>

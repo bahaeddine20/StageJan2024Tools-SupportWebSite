@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.security.services;
 
+import com.bezkoder.springjwt.models.User;
+import com.bezkoder.springjwt.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,6 +30,8 @@ public class EmployeeService {
     private EmployeeRepository ER;
     @Autowired
     TeamRepository TR;
+    @Autowired
+    private UserRepository userRepository;
 
     public Employee addEmployee(Employee employee) throws IOException {
         logger.info("Attempting to add new employee: {}", employee.getEmail());
@@ -44,6 +49,14 @@ public class EmployeeService {
         logger.debug("Employee existence check for email {}: {}", email, exists);
         return exists;
     }
+
+public Employee employeebyemail(String email) {
+    Employee employee = ER.findByEmail(email); // Rechercher l'employé par email
+    boolean exists = employee != null; // Vérifier si l'employé existe
+    logger.debug("Employee existence check for email {}: {}", email, exists);
+    return employee; // Retourner l'employé trouvé
+}
+
 
     public List<Employee> getAllEmployees(){
         List<Employee> employees = new ArrayList<>();
@@ -102,6 +115,15 @@ public class EmployeeService {
     public boolean deleteEmployeeByID(int id) {
         logger.info("Deleting employee with ID: {}", id);
         Employee existingEMP = ER.getById(id);
+
+        Optional<User> optionalUser = userRepository.findByEmail(existingEMP.getEmail());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setEmployee(null);
+            userRepository.save(user);
+        }
+
+
         if (existingEMP != null) {
             ER.deleteById(id);
             logger.info("Employee deleted successfully.");
